@@ -2,8 +2,8 @@ import './App.css';
 import {useEffect} from "react";
 import {useTelegram} from "./hooks/useTelegram";
 import { Route, Routes} from 'react-router-dom'
-import Form from './components/Form.jsx'
 import './App.css'
+import Main from "./pages/Main/Main.jsx";
 function App() {
   const {tg} = useTelegram()
   useEffect(() => {
@@ -12,7 +12,7 @@ function App() {
   return (
       <div className="App">
         <Routes>
-          <Route index element={<Form/>}/>
+          <Route index element={<Main/>}/>
         </Routes>
       </div>
   );
