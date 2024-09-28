@@ -1,0 +1,13 @@
+
+
+.add__ticket__btn {
+    display: flex;
+    justify-content: center;
+}
+
+.add__ticket__btn__img {
+    background-color: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 10px;
+}

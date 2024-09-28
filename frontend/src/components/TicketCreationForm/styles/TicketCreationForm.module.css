@@ -1,0 +1,93 @@
+
+
+.form__name__type__block__input__container {
+    position: relative;
+}
+
+.form__name__type__block {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.block__input__input {
+    max-width: 135px;
+    color: white;
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    font-family: "Pixeloid Sans Regular";
+    padding: 15px 10px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.block__input__input:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+ 
+
+.block__input__placeholder {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    color: rgba(107, 107, 107, 0.83);
+    top: 16px;
+    left: 10px;
+    z-index: -1;
+    transition: top 0.2s ease;
+    font-size: 14px;
+}
+
+.block__input__placeholder__top {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    color: rgba(107, 107, 107, 0.83);
+    top: -20px;
+    left: 10px;
+    z-index: -1;
+    transition: top 0.2s ease;
+    font-size: 14px;
+}
+
+.block__input__input:hover + .block__input__placeholder {
+    top: -20px;
+}
+
+
+
+.dropdown__btn {
+    align-items: center;
+    justify-content: space-between;
+    min-width: 135px;
+    font-family: 'Pixeloid Sans Regular';
+    color: rgb(179, 175, 175);
+    background: rgba(0, 0, 0, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 15px 10px 15px 15px;
+    border-radius: 10px;
+    font-size: 12.5px;
+
+}
+
+.dropdown__btn__img {
+    margin-left: 8px;
+    margin-top: 4px;
+}
+
+.dropdown__options {
+    margin-top: 5px;
+    background: rgba(0, 0, 0, 0.01);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.dropdown__options__item {
+    font-family: "Pixeloid Sans Regular";
+    font-size: 10px;
+    color: rgba(72, 73, 73, 0.59);
+
+}

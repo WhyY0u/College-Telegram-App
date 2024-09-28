@@ -15,16 +15,7 @@ a:focus,a:active{outline: none;}
 
 nav,footer,header,aside{display: block;}
 
-html,body{
-	height: 100%;
-	width: 100%;
-	font-size: 100%;
-	line-height: 1;
-	font-size: 14px;
-	-ms-text-size-adjust: 100%;
-	-moz-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
-}
+
 input,button,textarea{font-family:inherit;}
 
 input::-ms-clear{display: none;}
@@ -38,7 +29,13 @@ img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 
 body {
-    background-color: rgba(0, 0, 0, 1);
+    color: white;
+    background-color: #02040F;
+}
+
+@font-face {
+    font-family: "Pixeloid Sans Regular";
+    src: url("../fonts/ofont.ru_Pixeloid\ Sans.ttf");
 }
 
 .wrapper {
@@ -47,7 +44,7 @@ body {
 }
 
 ._container {
-    max-width: 335px;
-    padding: 30px 0px;
+    max-width: 345px;
+    padding: 30px 20px;
     margin: 0 auto;
 }
