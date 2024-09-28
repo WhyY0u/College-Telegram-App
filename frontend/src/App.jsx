@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="wrapper">
       <Routes>
-        <Route path="signin" element={<Signin />} />
+        <Route path="/" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
         <Route path="main-page-user" element={<MainPageUser />} />
         <Route path="ticker-creation-page-user" element={<TicketCreationPageUser />} />
