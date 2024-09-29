@@ -10,6 +10,7 @@ export const useSignUpStates = () => {
 
   const [nameValue, setNameValue] = useState('')
   const [surnameValue, setSurnameValue] = useState('')
+  const [middlenameValue, setMiddlenameValue] = useState('')
   const [inputValue, setInputValue] = useState('')
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
@@ -40,6 +41,10 @@ export const useSignUpStates = () => {
     setPasswordConfValue(event.target.value)
   }
 
+  const handleMiddlenameChange = (event) => {
+    setMiddlenameValue(event.target.value)
+  }
+
 
   const isNameEmpty = () => {
     return nameValue.trim() === ''
@@ -65,6 +70,9 @@ export const useSignUpStates = () => {
     return passwordConfValue.trim() === '';
   }
 
+  const isMiddlenameEmpty = () => {
+    return middlenameValue.trim() === '';
+  }
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible)
@@ -82,6 +90,7 @@ export const useSignUpStates = () => {
     isConfClicked,
     nameValue,
     surnameValue,
+    middlenameValue,
     inputValue,
     emailValue,
     passwordValue,
@@ -90,12 +99,14 @@ export const useSignUpStates = () => {
     setConfClicked,
     handleNameChange,
     handleSurnameChange,
+    handleMiddlenameChange,
     handleInputChange,
     handleEmailChange,
     handlePasswordChange,
     handlePasswordConfChange,
     isNameEmpty,
     isSurnameEmpty,
+    isMiddlenameEmpty,
     isInputEmpty,
     isEmailEmpty,
     isPasswordEmpty,

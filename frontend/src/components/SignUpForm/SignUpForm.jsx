@@ -12,6 +12,7 @@ function SignUpForm() {
     isConfClicked,
     nameValue,
     surnameValue,
+    middlenameValue,
     inputValue,
     emailValue,
     passwordValue,
@@ -20,12 +21,14 @@ function SignUpForm() {
     setConfClicked,
     handleNameChange,
     handleSurnameChange,
+    handleMiddlenameChange,
     handleInputChange,
     handleEmailChange,
     handlePasswordChange,
     handlePasswordConfChange,
     isNameEmpty,
     isSurnameEmpty,
+    isMiddlenameEmpty,
     isInputEmpty,
     isEmailEmpty,
     isPasswordEmpty,
@@ -60,14 +63,25 @@ function SignUpForm() {
                             <label className={`${ isSurnameEmpty() ? styles.form__inputs__surname__placeholder : styles.form__inputs__surname__placeholder__top }`}>Фамилия</label>
                         </div>
                     </div>
-                    <div className={`${styles.form__inputs__login__container}`}>
-                        <input 
-                            type="text" 
-                            className={styles.form__inputs__login} 
-                            value={inputValue}
-                            onChange={handleInputChange}
-                        />
-                        <label className={`${isInputEmpty() ? styles.form__inputs__login__placeholder : styles.form__inputs__login__placeholder__top}`}>Логин</label>
+                    <div className={styles.form__inputs__middlename__login}>
+                        <div className={`${styles.form__inputs__middlename__container}`}>
+                            <input 
+                                type="text" 
+                                className={styles.form__inputs__middlename} 
+                                value={middlenameValue}
+                                onChange={handleMiddlenameChange}
+                            />
+                            <label className={`${isMiddlenameEmpty() ? styles.form__inputs__middlename__placeholder : styles.form__inputs__middlename__placeholder__top}`}>Отчество</label>
+                        </div>
+                        <div className={`${styles.form__inputs__login__container}`}>
+                            <input 
+                                type="text" 
+                                className={styles.form__inputs__login} 
+                                value={inputValue}
+                                onChange={handleInputChange}
+                            />
+                            <label className={`${isInputEmpty() ? styles.form__inputs__login__placeholder : styles.form__inputs__login__placeholder__top}`}>Логин</label>
+                        </div>
                     </div>
                     <div className={`${styles.form__inputs__mail__container}`}>
                         <input 

@@ -2,7 +2,7 @@ import React from 'react'
 import BouncingBalls from '../../components/BouncingBalls/BouncingBalls'
 import HeaderWithLine from '../../components/HeaderWithLine/HeaderWithLine'
 import styles from './styles/TicketCreationPageUser.module.css'
-import arrow_left from '../../../../images/arrow_left.svg'
+import arrow_left from '../../../images/arrow_left.svg'
 import { Link } from 'react-router-dom'
 import TicketCreationForm from '../../components/TicketCreationForm/TicketCreationForm'
 

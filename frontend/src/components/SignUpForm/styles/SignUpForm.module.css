@@ -110,6 +110,60 @@
     top: -20px;
 }   
 
+.form__inputs__middlename__login {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form__inputs__middlename__container {
+    position: relative;
+}
+
+.form__inputs__middlename {
+    width: 100%;
+    font-family: 'Pixeloid Sans Regular';
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    padding: 15px 10px;
+    color: white;
+    max-width: 130px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form__inputs__middlename__placeholder {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: 16px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__middlename__placeholder__top {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: -20px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+
+.form__inputs__middlename:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+
+.form__inputs__middlename:hover + .form__inputs__middlename__placeholder {
+    top: -20px;
+}
+
 .form__inputs__login__container {
     position: relative;
 }
@@ -121,6 +175,7 @@
     border: 1px solid rgba(80, 1, 255, 0.39);
     padding: 15px 10px;
     color: white;
+    max-width: 130px;
     border-radius: 10px;
     font-size: 15px;
 }
