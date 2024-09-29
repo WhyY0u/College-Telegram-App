@@ -1,0 +1,100 @@
+
+
+.search__and__sort__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.search__and__sort__search__container {
+    position: relative;
+}
+
+.search__container__search {
+    font-family: 'Pixeloid Sans Regular';
+    background-color: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    color: rgba(215, 215, 215, 0.72);
+    padding: 10px;
+    transition: border 0.3s ease-in;
+}
+
+.search__container__search__stretched {
+    font-family: 'Pixeloid Sans Regular';
+    background-color: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.3s ease-in;
+    border-radius: 10px;
+    color: rgba(215, 215, 215, 0.72);
+    padding: 10px;
+    height: 50px;
+}
+
+.search__container__placeholder {
+    font-family: 'Pixeloid Sans Regular';
+    color: rgba(215, 215, 215, 0.72);
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 14px;
+    z-index: -1;
+    transition: top 0.3s ease-in, left 0.3s ease-in;
+}
+
+
+.search__container__search__stretched + .search__container__placeholder {
+    top: 15px;
+    left: 15px;
+}
+
+.search__container__placeholder__top {
+    font-family: 'Pixeloid Sans Regular';
+    color: rgba(215, 215, 215, 0.72);
+    position: absolute;
+    top: -20px;
+    left: 15px;
+    font-size: 14px;
+    z-index: -1;
+    transition: top 0.3s ease-in, left 0.3s ease-in;
+}
+
+
+
+.sort__container__dropdown__none {
+    display: none;
+}
+
+.dropdown__btn {
+    background-color: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.dropdown__btn__text {
+    text-align: center;
+    font-family: Pixeloid Sans;
+    font-size: 14px;    
+    color: rgba(215, 215, 215, 0.72);
+}
+
+.dropdown__options {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+.dropdown__options__item {
+    font-family: Pixeloid Sans;
+    font-size: 11px;
+    color: rgba(215, 215, 215, 0.29);
+}
+
+.dropdown__options__item__red {
+    font-family: Pixeloid Sans;
+    font-size: 13px;
+    color: rgba(173, 11, 11, 0.69);
+}

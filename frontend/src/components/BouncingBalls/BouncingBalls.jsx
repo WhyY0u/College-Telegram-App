@@ -10,6 +10,13 @@ const BouncingBalls = () => {
     canvas.height = window.innerHeight;
 
     const balls = [];
+    const colors = [
+      'rgba(255, 255, 255, 1)', // белый
+      'rgba(79, 62, 231, 1)', // темно-фиолетовый
+      'rgb(231, 62, 62)', // светло-розовый
+      'rgb(62, 231, 161)', // светло-зеленый
+      'rgb(231, 208, 62)', // светло-желтый
+    ];
 
     // Создаем 5 случайных шариков
     for (let i = 0; i < 5; i++) {
@@ -19,7 +26,8 @@ const BouncingBalls = () => {
         radius: 40,
         dx: (Math.random() - 0.5) * 2,
         dy: (Math.random() - 0.5) * 2,
-        blur: 20, // Максимально блюр для всех шариков
+        blur: 30, // Максимально блюр для всех шариков
+        color: colors[Math.floor(Math.random() * colors.length)], // Случайный цвет
       });
     }
 
@@ -44,7 +52,7 @@ const BouncingBalls = () => {
         ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(0, 0, 0, 0.1)`;
         ctx.shadowBlur = ball.blur;
-        ctx.shadowColor = 'rgba(79, 62, 231, 1)'; // Увеличиваем непрозрачность тени
+        ctx.shadowColor = ball.color; // Увеличиваем непрозрачность тени
         ctx.fill();
       });
 

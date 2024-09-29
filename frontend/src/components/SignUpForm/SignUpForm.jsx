@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import EyeIcon from '../EyeIcon/EyeIcon'
 import styles from "./styles/SignUpForm.module.css"
 import { useSignUpStates } from './hooks/useSignUpStates'
 import SignedIn from './components/SignedIn/SignedIn'
 
+
 function SignUpForm() {
+
+
   const {
     isPasswordVisible,
     isPasswordConfVisible,
@@ -37,6 +41,27 @@ function SignUpForm() {
     togglePasswordConfVisibility
   } = useSignUpStates()
 
+
+  const loginGet = {
+    login: inputValue,
+    email: emailValue,
+    name: nameValue,
+    surname: surnameValue,
+    patronymic: middlenameValue,
+    password: passwordValue,
+}
+const handleRegister = (event) => {
+    event.preventDefault()
+    if (passwordValue !== passwordConfValue) {
+        alert('Неверное подтверждение пароля')
+        return
+    }
+    axios.post(`http://localhost:3000/auth/register`, {
+        ...loginGet
+    })
+    .then(response => localStorage.setItem(response?.data))
+    .catch(error => console.error(error))
+}
 
   return (
     <div className={styles.signup__form}>
@@ -135,8 +160,9 @@ function SignUpForm() {
                 </div>
                 <div className={styles.form__signup__btn__block}>
                     <button
-                        type='button'
+                        type='submit'
                         className={`${isNameEmpty() || isSurnameEmpty() || isInputEmpty() || isEmailEmpty() || isPasswordEmpty() || isPasswordConfEmpty() ? styles.form__signup__btn__black : styles.form__signup__btn}`}
+                        onClick={handleRegister}
                     >Зарегистрироваться</button>
                 </div>
             </form>  
