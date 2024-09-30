@@ -13,14 +13,11 @@ const imageRouter = require('./router/imageRouter');
 
 const PORT = process.env.PORT || 3000;
 
-const dbUser = process.env.DB_USER;
-const dbPassword = process.env.DB_PASSWORD;
-const dbName = process.env.DB_NAME;
+const dbURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@mongo:27017/${process.env.DB_NAME}?authSource=admin`;
 
-mongoose.connect(`mongodb://${dbUser}:${dbPassword}@mongo:27017/${dbName}`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
 
 const app = express();
 app.use(bodyParser.json());

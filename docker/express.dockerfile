@@ -10,11 +10,7 @@ RUN rm -rf docker
 WORKDIR /app/backend
 RUN npm install
 
-RUN echo "DB_USER=${DB_USER}" > .env && \
-    echo "DB_PASSWORD=${DB_PASSWORD}" >> .env && \
-    echo "DB_NAME=${DB_NAME}" >> .env && \
-    echo "DB_IP=l${DB_IP}" >> .env
-
+COPY .env .env
 
 EXPOSE 3000
 
