@@ -65,7 +65,7 @@ const saveTicketValidator =
 const createTicketValidator = [
     body('heading')
     .notEmpty().withMessage('Heading не должен быть пустым.')
-    .isLength({ min: 5, max: 20 }).withMessage('Heading должен быть от 5 до 20 символов.'),
+    .isLength({ min: 5, max: 13 }).withMessage('Heading должен быть от 5 до 13 символов.'),
     
      body('type')
     .notEmpty().withMessage('Type не должен быть пустым.'),
