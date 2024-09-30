@@ -1,0 +1,144 @@
+.login__form__form {
+    margin-bottom: 70px;
+}
+
+.form__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    margin-bottom: 10px;
+}
+
+.form__input__container {
+    position: relative;
+}
+
+.form__inputs__placeholder {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    position: absolute;
+    top: 16px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83);
+    z-index: -1;
+}
+
+.form__inputs__placeholder__top {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    position: absolute;
+    top: -20px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83);
+    z-index: -1;
+}
+
+.form__inputs__login {
+    width: 100%;
+    color: white;
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    font-family: "Pixeloid Sans Regular";
+    padding: 15px 10px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+.form__inputs__password__block {
+    position: relative; /* Добавляем относительное позиционирование */
+    display: flex; /* Используем flexbox для выравнивания */
+    align-items: center;
+}  
+
+.form__inputs__password__block__placeholder {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: 16px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__password__block__placeholder__top {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: -20px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__password {
+    width: 100%;
+    color: white;
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    font-family: "Pixeloid Sans Regular";
+    padding: 15px 50px 15px 10px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form__inputs__icon {
+    position: absolute; /* Позиционируем иконку абсолютно */
+    right: 10px;
+    cursor: pointer; /* Курсор указывает, что элемент кликабельный */
+}
+
+.form__inputs__login:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+
+.form__inputs__login:hover + .form__inputs__placeholder {
+  top: -20px; /* Поднятие плейсхолдер */
+}
+
+.form__inputs__password:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+
+.form__inputs__password:hover + .form__inputs__password__block__placeholder{
+    top: -20px;
+}   
+
+.form__inputs__forgot__password__btn {
+    display: inline-block;
+    font-family: "Pixeloid Sans Regular";
+    color: rgba(248, 248, 248, 0.29);
+    font-size: 12px;
+    margin-bottom: 30px;
+}
+
+
+.form__signin__btn__block {
+    display: flex;
+    justify-content: center;
+    font-family: "Pixelify Sans";
+}
+
+.form__signin__btn {
+    padding: 20px 70px;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgb(28, 5, 81);
+    color: #B3AFAF;
+    transition: background-color 0.3s ease-in;
+}
+
+.form__signin__btn__black {
+    padding: 20px 70px;
+    border-radius: 10px;
+    font-size: 20px;
+    background-color: rgba(13, 13, 13, 0.28);
+    color: #B3AFAF;
+    transition: background-color 0.3s ease-in;
+}

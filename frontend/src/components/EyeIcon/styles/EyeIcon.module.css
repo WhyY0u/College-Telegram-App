@@ -1,0 +1,72 @@
+.eye_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 30px; /* Размер глазика */
+    height: 20px; /* Размер глазика */
+  }
+  
+  .eye {
+    background-color: transparent;
+    border: 2px solid rgba(241, 241, 241, 0.56);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: background-color 0.3s ease-out;
+  }
+  
+  .pupil {
+    background-color: rgba(241, 241, 241, 0.56);
+    border-radius: 50%;
+    width: 8px; /* Размер зрачка */
+    height: 8px; /* Размер зрачка */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s, left 0.1s ease-in;
+  }
+  
+  .open .pupil {
+    transform: translate(-50%, -50%);
+  }
+  
+  .closed .pupil {
+    transform: translate(-50%, 0); /* Зрачок "закрыт" */
+    width: 6px;
+    height: 6px;
+    position: relative;
+    transition: transform 0.2s ease, width 0.2s ease, height 0.2s ease; 
+  }
+
+  
+  .look_right .pupil {
+    left: 30%;
+    transition: left 0.1s ease-in;
+  }
+
+  .eye .pupil.closed {
+    transition: left 0.1s ease; /* Убедитесь, что добавлен transition */
+}
+
+  
+  .closed {
+      position: relative;
+      border-radius: 50%;
+  }
+
+/* .closed::after {
+    content: "";
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: rgba(241, 241, 241, 0.56);
+    position: absolute;
+    left: -13px;
+    transition: opacity 0.5s ease; 
+    opacity: 1; 
+    overflow: hidden;
+} */
+  

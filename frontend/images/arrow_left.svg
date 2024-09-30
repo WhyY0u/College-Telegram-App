@@ -1,0 +1,20 @@
+<svg width="24.136841" height="21.321899" viewBox="0 0 24.1368 21.3219" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<filter id="filter_10_73_dd" x="0.000000" y="0.000000" width="24.136841" height="21.321899" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+			<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+			<feOffset dx="0" dy="0"/>
+			<feGaussianBlur stdDeviation="1.33333"/>
+			<feComposite in2="hardAlpha" operator="out" k2="-1" k3="1"/>
+			<feColorMatrix type="matrix" values="0 0 0 0 0.26667 0 0 0 0 0.078431 0 0 0 0 0.85882 0 0 0 0.9 0"/>
+			<feBlend mode="normal" in2="BackgroundImageFix" result="effect_dropShadow_1"/>
+			<feBlend mode="normal" in="SourceGraphic" in2="effect_dropShadow_1" result="shape"/>
+		</filter>
+	</defs>
+	<g filter="url(#filter_10_73_dd)">
+		<path id="Стрелка 1" d="M7.41 11.66L11.36 15.61C11.76 16 11.76 16.62 11.36 17.02C10.97 17.42 10.34 17.42 9.95 17.02L4.29 11.36C3.9 10.97 3.9 10.34 4.29 9.95L9.95 4.29C10.34 3.9 10.97 3.9 11.36 4.29C11.76 4.69 11.76 5.31 11.36 5.71L7.41 9.66L20.13 9.66L20.13 11.66L7.41 11.66Z" fill="#4414DB" fill-opacity="1.000000" fill-rule="evenodd"/>
+	</g>
+</svg>

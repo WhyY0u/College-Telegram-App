@@ -1,0 +1,397 @@
+
+.signup__form__form {
+    margin-bottom: 70px;
+}
+
+.form__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 45px;
+}
+
+.form__inputs__name__surname {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form__inputs__name {
+    font-family: 'Pixeloid Sans Regular';
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    max-width: 130px;
+    padding: 15px 10px;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form__inputs__name:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+
+.form__inputs__name__container {
+    position: relative;
+}
+
+.form__inputs__name__placeholder {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: 16px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__name__placeholder__top {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: -20px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__name:hover + .form__inputs__name__placeholder {
+    top: -20px;
+}
+
+
+.form__inputs__surname__container {
+    position: relative;
+}
+
+.form__inputs__surname {
+    font-family: 'Pixeloid Sans Regular';
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    max-width: 130px;
+    padding: 15px 10px;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form__inputs__surname__placeholder {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: 16px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__surname__placeholder__top {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: -20px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__surname:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+
+.form__inputs__surname:hover + .form__inputs__surname__placeholder {
+    top: -20px;
+}   
+
+.form__inputs__middlename__login {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form__inputs__middlename__container {
+    position: relative;
+}
+
+.form__inputs__middlename {
+    width: 100%;
+    font-family: 'Pixeloid Sans Regular';
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    padding: 15px 10px;
+    color: white;
+    max-width: 130px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form__inputs__middlename__placeholder {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: 16px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__middlename__placeholder__top {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: -20px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+
+.form__inputs__middlename:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+
+.form__inputs__middlename:hover + .form__inputs__middlename__placeholder {
+    top: -20px;
+}
+
+.form__inputs__login__container {
+    position: relative;
+}
+
+.form__inputs__login {
+    width: 100%;
+    font-family: 'Pixeloid Sans Regular';
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    padding: 15px 10px;
+    color: white;
+    max-width: 130px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form__inputs__login__placeholder {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: 16px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__login__placeholder__top {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: -20px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__login:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+
+.form__inputs__login:hover + .form__inputs__login__placeholder {
+    top: -20px;
+}
+
+.form__inputs__mail__container {
+    position: relative;
+}
+
+.form__inputs__mail {
+    width: 100%;
+    font-family: 'Pixeloid Sans Regular';
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    padding: 15px 10px;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form__inputs__mail__placeholder {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: 16px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__mail__placeholder__top {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: -20px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__mail:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+
+.form__inputs__mail:hover + .form__inputs__mail__placeholder {
+    top: -20px;
+}
+
+
+.form__inputs__password__block {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form__inputs__password {
+    width: 100%;
+    font-family: 'Pixeloid Sans Regular';
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    padding: 15px 50px 15px 10px;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form__inputs__password__placeholder {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: 16px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__password__placeholder__top {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: -20px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__password:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+
+.form__inputs__password:hover + .form__inputs__password__placeholder {
+    top: -20px;
+}
+
+.form__inputs__icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.form__inputs__confirmation__password__block {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.form__inputs__confirmation__password {
+    width: 100%;
+    font-family: 'Pixeloid Sans Regular';
+    background-color: transparent;
+    border: 1px solid rgba(80, 1, 255, 0.39);
+    padding: 15px 50px 15px 10px;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.form__inputs__confirmation__password__placeholder {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: 16px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__confirmation__password__placeholder__top {
+    position: absolute;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 15px;
+    top: -20px; /* начальная позиция */
+    left: 10px;
+    transition: 0.2s ease all;
+    color: rgba(107, 107, 107, 0.83); 
+    z-index: -1;
+}
+
+.form__inputs__confirmation__password:hover {
+    border: 1px solid rgb(68, 9, 199);
+    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    transition: border 0.2s ease-in;
+}
+
+.form__inputs__confirmation__password:hover + .form__inputs__confirmation__password__placeholder {
+    top: -20px;
+}
+
+.form__confirmation__inputs__icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+
+.form__signup__btn__block {
+    display: flex;
+    justify-content: center;
+}
+
+.form__signup__btn {
+    font-family: 'Pixeloid Sans Regular';
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: rgb(28, 5, 81);
+    color: #B3AFAF;
+    transition: background-color 0.3s ease-in;
+}
+
+.form__signup__btn__black {
+    font-family: 'Pixeloid Sans Regular';
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: rgba(13, 13, 13, 0.28);
+    color: #B3AFAF;
+    transition: background-color 0.3s ease-in;
+}
