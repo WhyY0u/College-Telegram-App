@@ -17,7 +17,10 @@ const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASSWORD;
 const dbName = process.env.DB_NAME;
 
-mongoose.connect(`mongodb://${dbUser}:${dbPassword}@localhost:27017/${dbName}`);
+mongoose.connect(`mongodb://${dbUser}:${dbPassword}@mongo:27017/${dbName}`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const app = express();
 app.use(bodyParser.json());
