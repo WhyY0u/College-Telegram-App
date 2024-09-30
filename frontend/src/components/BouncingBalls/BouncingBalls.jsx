@@ -17,6 +17,7 @@ const BouncingBalls = () => {
       'rgb(62, 231, 161)', // светло-зеленый
       'rgb(231, 208, 62)', // светло-желтый
     ];
+    const randomNumber = Math.floor(Math.random() * 5) + 1; // Случайное число от 1 до 5
 
     // Создаем 5 случайных шариков
     for (let i = 0; i < 5; i++) {
@@ -26,8 +27,8 @@ const BouncingBalls = () => {
         radius: 40,
         dx: (Math.random() - 0.5) * 2,
         dy: (Math.random() - 0.5) * 2,
-        blur: 30, // Максимально блюр для всех шариков
-        color: colors[Math.floor(Math.random() * colors.length)], // Случайный цвет
+        blur: 20, // Максимально блюр для всех шариков
+        color: `rgba(${Math.min(Math.max(Math.random() * 255 , 0), 255)}, ${Math.min(Math.max(Math.random() * 255 , 0), 255)}, ${Math.min(Math.max(Math.random() * 255 , 0), 255)}, 1)`, // Случайный цвет
       });
     }
 

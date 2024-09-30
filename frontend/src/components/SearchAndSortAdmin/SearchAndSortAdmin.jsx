@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import styles from './styles/SearchAndSortAdmin.module.css'
 
-function SearchAndSortAdmin() {
+function SearchAndSortAdmin({ onSearch, onSort }) {
     const [inputValue, setInputValue] = useState('')
     const [isClicked, setIsClicked] = useState(false)
     const [selected, setSelected] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
 
     const handleInputChange = (event) => {
-        setInputValue(event.target.value)
+        const value = event.target.value
+        setInputValue(value)
+        onSearch(value)
     }
 
     const isInputEmpty = () => {
@@ -20,6 +22,7 @@ function SearchAndSortAdmin() {
     const toggleDropdown = () => setIsOpen(!isOpen)
     const handleSelect = (option) => {
         setSelected(option)
+        onSort(option)
         setIsOpen(false)
     }
 

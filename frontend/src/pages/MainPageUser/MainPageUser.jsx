@@ -3,7 +3,7 @@ import styles from './styles/MainPageUser.module.css'
 import BouncingBalls from '../../components/BouncingBalls/BouncingBalls'
 import HeaderWithLine from '../../components/HeaderWithLine/HeaderWithLine'
 import TicketsListUser from '../../components/TicketsListUser/TicketsListUser'
-import AddTicketButtonUser from '../../components/AddTicketButtonUser/AddTicketButtonUser'
+import Navigation from '../../components/Navigation/Navigation'
 
 function MainPageUser() {
   return (
@@ -12,7 +12,7 @@ function MainPageUser() {
         <TicketsListUser />
         <div className='_container'>
 
-        <AddTicketButtonUser />
+          <Navigation />
         </div>
         <BouncingBalls />
     </div>

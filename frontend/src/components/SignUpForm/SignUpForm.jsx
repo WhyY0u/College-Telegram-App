@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import EyeIcon from '../EyeIcon/EyeIcon'
 import styles from "./styles/SignUpForm.module.css"
 import { useSignUpStates } from './hooks/useSignUpStates'
@@ -8,6 +9,7 @@ import SignedIn from './components/SignedIn/SignedIn'
 
 function SignUpForm() {
 
+    const navigate = useNavigate()
 
   const {
     isPasswordVisible,
@@ -59,14 +61,20 @@ const handleRegister = (event) => {
     axios.post(`http://localhost:3000/auth/register`, {
         ...loginGet
     })
-    .then(response => localStorage.setItem(response?.data))
+    .then(response => console.log(response?.data))
+    .then(response => { 
+        localStorage.setItem('token', response?.data)
+        navigate('/main-page-user')
+    })
     .catch(error => console.error(error))
 }
+
+
 
   return (
     <div className={styles.signup__form}>
         <div className={`${styles.signup__form__container} _container`}>
-            <form action='' className={`${styles.signup__form__form} ${styles.from}`}>
+            <form action='http://localhost:3000/auth/register' method='post' className={`${styles.signup__form__form} ${styles.from}`}>
                 <div className={styles.form__inputs}>
                     <div className={styles.form__inputs__name__surname}>
                         <div className={styles.form__inputs__name__container}>

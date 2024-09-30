@@ -1,0 +1,254 @@
+
+
+.navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.navigation__container {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 0px 10px;
+}
+
+.navigation__tickets__block {
+    position: relative; /* Добавьте это */
+}
+
+.tickets__block__text__block {
+    display: none;
+    position: absolute;
+    right: -9px;
+    bottom: 40px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Чтобы не мешать наведению */
+} 
+
+.navigation__tickets__block:hover .tickets__block__text__block {
+    display: block;
+    opacity: 1;
+    pointer-events: auto; /* Включите события указателя при наведении */
+}
+
+.tickets__block__text__block__parg {
+    font-family: 'Pixelify Sans';
+    color: rgb(214, 214, 214);
+    font-size: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.tickets__block__text__block__img {
+    position: absolute;
+    bottom: -5.5px;
+    left: 17px;
+    width: 6px;
+    height: 7px;
+}
+
+.navigation__tickets__block__img {
+    filter: invert(100%) sepia(0%) saturate(0%) brightness(100%) contrast(100%);
+    width: 24px;
+    height: 24px;
+}
+
+.navigation__tickets__block .navigation__tickets__block__img {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+
+.navigation__tickets__block:hover .navigation__tickets__block__img {
+    filter: invert(30%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(85%) contrast(90%);
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+
+.navigation__news__block {
+    position: relative; /* Добавьте это */
+}
+
+.news__block__text__block {
+    display: none;
+    position: absolute;
+    right: -2px;
+    bottom: 40px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Чтобы не мешать наведению */
+} 
+
+.navigation__news__block:hover .news__block__text__block {
+    display: block;
+    opacity: 1;
+    pointer-events: auto; /* Включите события указателя при наведении */
+}
+
+.news__block__text__block__parg {
+    font-family: 'Pixelify Sans';
+    color: rgb(214, 214, 214);
+    font-size: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.news__block__text__block__img {
+    position: absolute;
+    bottom: -5.5px;
+    left: 15px;
+    width: 6px;
+    height: 7px;
+}
+
+.navigation__news__block__img {
+    filter: invert(100%) sepia(0%) saturate(0%) brightness(100%) contrast(100%);
+    width: 25px;
+    height: 25px;
+}
+
+.navigation__news__block .navigation__news__block__img {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.navigation__news__block:hover .navigation__news__block__img {
+    filter: invert(30%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(85%) contrast(90%);
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+
+.navigation__img {
+    position: relative;
+    top: -10px;
+    background-color: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 15px;
+    border-radius: 10px;
+    color: rgb(25, 26, 34);
+    backdrop-filter: blur(13px);
+    z-index: 1;
+}
+
+
+
+
+
+
+.navigation__schedule__block {
+    position: relative; /* Добавьте это */
+}
+
+.schedule__block__text__block {
+    display: none;
+    position: absolute;
+    right: -13px;
+    bottom: 40px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Чтобы не мешать наведению */
+}
+
+.navigation__schedule__block:hover .schedule__block__text__block {
+    display: block;
+    opacity: 1;
+    pointer-events: auto; /* Включите события указателя при наведении */
+}
+
+.schedule__block__text__block__parg {
+    font-family: 'Pixelify Sans';
+    color: rgb(214, 214, 214);
+    font-size: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.schedule__block__text__block__img {
+    position: absolute;
+    bottom: -5.5px;
+    left: 23px;
+    width: 6px;
+    height: 7px;
+}
+
+.navigation__schedule__block__img {
+    filter: invert(100%) sepia(0%) saturate(0%) brightness(100%) contrast(100%);
+    width: 25px;
+    height: 25px;
+}
+
+.navigation__schedule__block .navigation__schedule__block__img {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.navigation__schedule__block:hover .navigation__schedule__block__img {
+    filter: invert(30%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(85%) contrast(90%);
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+
+
+
+.navigation__profile__block {
+    position: relative; /* Добавьте это */
+}
+
+.profile__block__text__block {
+    display: none;
+    position: absolute;
+    right: -7px;
+    bottom: 40px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* Чтобы не мешать наведению */
+}
+
+.navigation__profile__block:hover .profile__block__text__block {
+    display: block;
+    opacity: 1;
+    pointer-events: auto; /* Включите события указателя при наведении */
+}
+
+.profile__block__text__block__parg {
+    font-family: 'Pixelify Sans';
+    color: rgb(214, 214, 214);
+    font-size: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.profile__block__text__block__img {
+    position: absolute;
+    bottom: -5.5px;
+    left: 18px;
+    width: 6px;
+    height: 7px;
+}
+
+.navigation__profile__block__img {
+    filter: invert(100%) sepia(0%) saturate(0%) brightness(100%) contrast(100%);
+    width: 25px;
+    height: 25px;
+}
+
+.navigation__profile__block .navigation__profile__block__img {
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+.navigation__profile__block:hover .navigation__profile__block__img {
+    filter: invert(30%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(85%) contrast(90%);
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}

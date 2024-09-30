@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import styles from './styles/LoginForm.module.css';
 import Unregistered from './components/Unregistered/Unregistered';
 import EyeIcon from '../EyeIcon/EyeIcon';
@@ -9,6 +11,7 @@ function LoginForm() {
   const [inputValue, setInputValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
 
+  const navigate = useNavigate()
 
   const handlePasswordChange = (event) => {
     setPasswordValue(event.target.value)
@@ -29,6 +32,24 @@ function LoginForm() {
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
+
+
+  const loginGet = {
+    login: inputValue,
+    password: passwordValue,
+}
+const handleSignIn = (event) => {
+    event.preventDefault()
+    axios.post(`http://localhost:3000/auth/login`, {
+        ...loginGet
+    })
+    .then(response => console.log(response?.data))
+    .then(response => { 
+        localStorage.setItem('token', response?.data)
+        navigate('/main-page-user')
+    })
+    .catch(error => console.error(error))
+}
 
   return (
     <div className={styles.login__form}>
@@ -68,7 +89,8 @@ function LoginForm() {
           <a href="" className={styles.form__inputs__forgot__password__btn}>я забыл пароль</a>
           <div className={styles.form__signin__btn__block}>
             <button 
-              type='button' 
+              type='submit'
+              onClick={handleSignIn} 
               className={`${isInputEmpty() || isPasswordEmpty() ? styles.form__signin__btn__black : styles.form__signin__btn}`}
             >Войти</button>      
           </div>    

@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import axios from 'axios'
 import styles from './styles/TicketsListUser.module.css'
-import AddTicketButtonUser from '../AddTicketButtonUser/AddTicketButtonUser'
 import { Link } from 'react-router-dom'
 
 function TicketsListUser() {
@@ -15,6 +15,28 @@ function TicketsListUser() {
         inProgress: 'выполняется',
         sent: 'отправлено'
     })
+
+    const page = 1
+    const limit = 10
+
+    useEffect(() => {
+        console.log(localStorage.getItem('token'))
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/user/tickets?page=${page}&limit=${limit}`, {
+                    headers: { 
+                        'Content-Type': 'application/json', 
+                        'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6ImpvaG4xMjM0IiwibmFtZSI6ImR3ZHdkZHdkdyIsInN1cm5hbWUiOiJ3ZHdkd2QiLCJyb2xlIjoiU3R1ZGVudCIsImlhdCI6MTcyNzcyMTczOSwiZXhwIjoxNzI4MzI2NTM5fQ.3wREoEqqJmJ_v-4q9IeWXOGpENrNXjRPkjGzYIFM448'
+                    },
+                });
+                console.log(response);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+    
+        fetchData();
+    }, [])
 
   return (
     <div className={styles.ticket__list__user}>

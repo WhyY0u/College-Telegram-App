@@ -15,7 +15,7 @@
     max-width: 135px;
     color: white;
     background-color: transparent;
-    border: 1px solid rgba(80, 1, 255, 0.39);
+    border: 1px solid rgba(255, 255, 255, 0.03);
     font-family: "Pixeloid Sans Regular";
     padding: 15px 10px;
     border-radius: 10px;
@@ -23,8 +23,8 @@
 }
 
 .block__input__input:hover {
-    border: 1px solid rgb(68, 9, 199);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 0 10px rgba(74, 0, 238, 0.17);
     transition: border 0.2s ease-in;
 }
  
@@ -148,7 +148,7 @@
     font-family: 'Pixeloid Sans Regular';
     color: rgba(107, 107, 107, 0.83);
     font-size: 14px;
-    border: 1px solid rgba(80, 1, 255, 0.39);
+    border: 1px solid rgba(255, 255, 255, 0.03);
     border-radius: 10px;
     padding: 15px 10px;
 }
@@ -204,7 +204,7 @@
 .block__textarea__textarea {
     color: white;
     background-color: transparent;
-    border: 1px solid rgba(80, 1, 255, 0.39);
+    border: 1px solid rgba(255, 255, 255, 0.03);
     font-family: "Pixeloid Sans Regular";
     padding: 15px 10px;
     border-radius: 10px;
@@ -237,8 +237,8 @@
 }
 
 .block__textarea__textarea:hover {
-    border: 1px solid rgb(68, 9, 199);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 0 10px rgba(74, 0, 238, 0.17);
     transition: border 0.2s ease-in;
 }
 

@@ -61,9 +61,16 @@
     color: rgba(215, 215, 215, 0.72);
 }
 
-.item__type__block__title__name {
+.item__type__block__title__name__complaint {
     font-family: 'Pixeloid Sans Regular';
     font-size: 11px;
+    color: rgba(255, 0, 0, 0.43);
+}
+
+.item__type__block__title__name__offer {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(0, 141, 255, 0.43);
 }
 
 
@@ -81,9 +88,28 @@
     color: rgba(215, 215, 215, 0.72);
 }
 
-.item__status__block__title__name {
+.item__status__block__title__name__rejected {
     font-family: 'Pixeloid Sans Regular';
     font-size: 11px;
+    color: rgba(235, 4, 4, 0.69);
+}
+
+.item__status__block__title__name__expectation {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(234, 237, 43, 0.69);
+}
+
+.item__status__block__title__name__inProgress {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(4, 131, 235, 0.69);
+}
+
+.item__status__block__title__name__done {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(4, 235, 36, 0.69);
 }
 
 .item__name__block,
