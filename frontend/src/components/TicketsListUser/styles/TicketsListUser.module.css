@@ -1,5 +1,6 @@
 .ticket__list__user {
     flex-grow: 1; 
+    margin-bottom: 100px;
 }
 
 .ticket__list__user__container {

@@ -5,6 +5,7 @@ import styles from './styles/TicketCreationPageUser.module.css'
 import arrow_left from '../../../images/arrow_left.svg'
 import { Link } from 'react-router-dom'
 import TicketCreationForm from '../../components/TicketCreationForm/TicketCreationForm'
+import Navigation from '../../components/Navigation/Navigation'
 
 function TicketCreationPageUser() {
   return (
@@ -17,6 +18,10 @@ function TicketCreationPageUser() {
             </Link>
         </div>
         <TicketCreationForm />
+        
+        <div className={`${styles.ticket__creation__page__user__navigation__container} _container`}>
+          <Navigation />
+        </div>
         <BouncingBalls />
     </div>
   )

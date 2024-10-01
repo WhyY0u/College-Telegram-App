@@ -10,8 +10,7 @@ function MainPageUser() {
     <div className={styles.main__page__user}>
         <HeaderWithLine />
         <TicketsListUser />
-        <div className='_container'>
-
+        <div className={`${styles.main__page__user__navigation__container} _container`}>
           <Navigation />
         </div>
         <BouncingBalls />

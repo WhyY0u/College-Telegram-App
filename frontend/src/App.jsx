@@ -8,9 +8,9 @@ import TicketCreationPageUser from './pages/TicketCreationPageUser/TicketCreatio
 import TicketWatchPageUser from './pages/TicketWatchPageUser/TicketWatchPageUser'
 import MainPageAdmin from './pages/MainPageAdmin/MainPageAdmin';
 import TicketWatchPageAdmin from './pages/TicketWatchPageAdmin/TicketWatchPageAdmin';
+import axios from 'axios';
 
 function App() {
-
   return (
     <div className="wrapper">
       <Routes>
