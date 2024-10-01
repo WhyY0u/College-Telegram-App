@@ -10,14 +10,6 @@ const BouncingBalls = () => {
     canvas.height = window.innerHeight;
 
     const balls = [];
-    const colors = [
-      'rgba(255, 255, 255, 1)', // белый
-      'rgba(79, 62, 231, 1)', // темно-фиолетовый
-      'rgb(231, 62, 62)', // светло-розовый
-      'rgb(62, 231, 161)', // светло-зеленый
-      'rgb(231, 208, 62)', // светло-желтый
-    ];
-    const randomNumber = Math.floor(Math.random() * 5) + 1; // Случайное число от 1 до 5
 
     // Создаем 5 случайных шариков
     for (let i = 0; i < 5; i++) {
@@ -28,13 +20,39 @@ const BouncingBalls = () => {
         dx: (Math.random() - 0.5) * 2,
         dy: (Math.random() - 0.5) * 2,
         blur: 20, // Максимально блюр для всех шариков
-        color: `rgba(${Math.min(Math.max(Math.random() * 255 , 0), 255)}, ${Math.min(Math.max(Math.random() * 255 , 0), 255)}, ${Math.min(Math.max(Math.random() * 255 , 0), 255)}, 1)`, // Случайный цвет
       });
     }
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+      for (const ball of balls) {
+        for (const ball2 of balls) {
+            if (ball !== ball2) { 
+                const distX = ball.x - ball2.x;
+                const distY = ball.y - ball2.y;
+                const distance = Math.sqrt(distX * distX + distY * distY); 
+    
+                if (distance < ball.radius + ball2.radius) {
+                    const overlap = (ball.radius + ball2.radius) - distance;
+                    const totalRadius = ball.radius + ball2.radius;
+                    
+                    const normalX = distX / distance;
+                    const normalY = distY / distance;
+    
+                    ball.x += normalX * overlap * (ball.radius / totalRadius);
+                    ball.y += normalY * overlap * (ball.radius / totalRadius);
+                    ball2.x -= normalX * overlap * (ball2.radius / totalRadius);
+                    ball2.y -= normalY * overlap * (ball2.radius / totalRadius);
+    
+                    ball.dx = -ball.dx;
+                    ball.dy = -ball.dy;
+                    ball2.dx = -ball2.dx;
+                    ball2.dy = -ball2.dy;
+                }
+            }
+        }
+    }
+    
       balls.forEach((ball) => {
         // Двигаем шарики
         ball.x += ball.dx;
@@ -51,9 +69,8 @@ const BouncingBalls = () => {
         // Рисуем шарик с блюром
         ctx.beginPath();
         ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0, 0, 0, 0.1)`;
-        ctx.shadowBlur = ball.blur;
-        ctx.shadowColor = ball.color; // Увеличиваем непрозрачность тени
+        ctx.fillStyle = `rgba(79, 62, 231, 0.2)`;
+        ctx.filter = 'blur(30px)';
         ctx.fill();
       });
 
@@ -64,7 +81,7 @@ const BouncingBalls = () => {
 
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.height = window.innerHeфight;
     });
 
     // Убираем canvas из потока событий
@@ -82,7 +99,7 @@ const BouncingBalls = () => {
       top: 0, 
       left: 0, 
       width: '100vw', // Занимает всю ширину окна
-      height: '100vh', // Занимает всю высоту окна
+      height: '100vh', 
       zIndex: -1,
     }} 
   />

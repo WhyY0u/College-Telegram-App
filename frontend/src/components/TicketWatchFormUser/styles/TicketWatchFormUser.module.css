@@ -104,6 +104,7 @@
     font-weight: 400;
     color: rgba(200, 200, 200, 0.53);
     padding: 10px;
+    word-break: break-all;
 }
 
 .ticket__watch__form__user__image__block {
@@ -126,7 +127,6 @@
     align-items: center;
     position: absolute;
     top: -5px;
-    left: 1px;
     font-family: 'Pixeloid Sans Regular';
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);

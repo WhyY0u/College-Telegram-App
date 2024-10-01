@@ -59,11 +59,11 @@ const handleRegister = (event) => {
         return
     }
     axios.post(`http://localhost:3000/auth/register`, {
-        ...loginGet
+        ...loginGet,
     })
-    .then(response => console.log(response?.data))
-    .then(response => { 
+    .then(response => {
         localStorage.setItem('token', response?.data)
+        console.log(response?.data)
         navigate('/main-page-user')
     })
     .catch(error => console.error(error))

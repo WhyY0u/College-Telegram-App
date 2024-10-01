@@ -43,10 +43,10 @@ const handleSignIn = (event) => {
     axios.post(`http://localhost:3000/auth/login`, {
         ...loginGet
     })
-    .then(response => console.log(response?.data))
-    .then(response => { 
-        localStorage.setItem('token', response?.data)
-        navigate('/main-page-user')
+    .then(response => {
+      localStorage.setItem('token', response?.data)
+      console.log(response?.data)
+      navigate('/main-page-user')
     })
     .catch(error => console.error(error))
 }

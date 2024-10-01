@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles/TicketsListAdmin.module.css'
+import axios from 'axios'
 
 function TicketsListAdmin({ searchQuery, sortType }) {
+
+    const [data, setData] = useState(null)
+
     const TYPES = Object.freeze({
         complaint: 'Жалоба',
         offer: 'Предложение'
@@ -47,6 +51,29 @@ function TicketsListAdmin({ searchQuery, sortType }) {
         }
         return 0
     })
+
+    const page = 1
+    const limit = 10
+
+    useEffect(() => {
+        console.log(localStorage.getItem('token'))
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/confidant/tickets?page=${page}&limit=${limit}`, {
+                    headers: { 
+                        'Content-Type': 'application/json', 
+                        'authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                });
+                setData(response?.data)
+                console.log(response);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+    
+        fetchData();
+    }, [])
 
   return (
     <div className={styles.ticket__list__admin}>
