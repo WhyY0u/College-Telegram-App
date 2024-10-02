@@ -5,4 +5,13 @@ const require = createRequire(import.meta.url);
 
 export default defineConfig({
   plugins: [react()],
-})
+  resolve: {
+    alias: {
+      process: require.resolve('process/browser'),
+    },
+  },
+  define: {
+    'process.env': {},
+  },
+});
+
