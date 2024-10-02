@@ -10,5 +10,6 @@ router.post('/checkEmail', validator.checkemailValidators, controller.checkEmail
 router.post('/checklogin', validator.checkloginValidators, controller.checkLoginHandler);
 router.post('/register', validator.registrationValidators, controller.registerHandle);
 router.post('/login', validator.loginValidators, controller.loginHandle);
+router.post('/checktoken', controller.checktoken);
 
 module.exports = router;
