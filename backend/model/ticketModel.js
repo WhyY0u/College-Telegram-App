@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ticketSchema = new mongoose.Schema({
+const TicketSchema = new mongoose.Schema({
   creatorid: { type: mongoose.Schema.Types.ObjectId, required: true },
   heading: {type: String, required: true} ,
   status: { type: String, required: true },
@@ -25,7 +25,7 @@ const status = Object.freeze({
 
 
 module.exports = {
-    Ticket: mongoose.model('Ticket', ticketSchema),
+    Ticket: mongoose.model('Ticket', TicketSchema),
     Type: type,
     Status: status,
 };
