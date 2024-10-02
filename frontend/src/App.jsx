@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './globals.css'
 import Signin from './pages/Signin/Signin'
 import Signup from './pages/Signup/Signup';
@@ -11,25 +11,27 @@ import TicketWatchPageAdmin from './pages/TicketWatchPageAdmin/TicketWatchPageAd
 import ProtectedRoutes from './protected/Protected'
 import axios from 'axios';
 import ProtectedByRole from './protected/ProtectedByRole';
+
 function App() {
   const token = localStorage.getItem('token');
   const [isAuth, setAuth] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-  if(isAuth != undefined) {
-  axios.post('http://localhost:3000/auth/checktoken', 
-    {
-      headers: { 
-          'Content-Type': 'application/json', 
-          'authorization': `Bearer ${localStorage.getItem('token')}`
-      },
-  },
-  ).then(setAuth(true)).catch( error => {
-    setAuth(false);
-  });
-  } else {
-    setAuth(false); 
-  }
+    console.log(localStorage.getItem('token'))
+    if(isAuth != undefined) {
+    axios.post('http://localhost:3000/auth/checktoken', 
+      {
+        headers: { 
+            'Content-Type': 'application/json', 
+            'authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+    },
+    ).then(setAuth(true)).catch( error => {
+      setAuth(false);
+    });
+    } else {
+      setAuth(false); 
+    }
  },[token, navigate]);
   return (
     <div className="wrapper">
