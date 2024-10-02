@@ -9,7 +9,6 @@ import TicketWatchPageUser from './pages/TicketWatchPageUser/TicketWatchPageUser
 import MainPageAdmin from './pages/MainPageAdmin/MainPageAdmin';
 import TicketWatchPageAdmin from './pages/TicketWatchPageAdmin/TicketWatchPageAdmin';
 import axios from 'axios';
-import NewsPageUser from './pages/NewsPageAdmin/NewsPageUser';
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
         <Route path="ticket-watch-page-user/:id" element={<TicketWatchPageUser />} />
         <Route path="ticket-watch-page-admin/:id" element={<TicketWatchPageAdmin />} />
         <Route path="main-page-admin" element={<MainPageAdmin />} />
-        <Route path="news-page-user" element={<NewsPageUser />} />
       </Routes>
     </div>
   )
