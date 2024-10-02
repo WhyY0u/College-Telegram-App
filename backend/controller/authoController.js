@@ -19,6 +19,21 @@ const checkEmailHandler = async (req, res) => {
   }
 };
 
+const checktoken = async (req, res) => {
+
+  try {
+   const user = Jwt.getUserByReq(req);
+   if(user != null) {
+    res.status(201).send('Токен валидный');
+   } else {
+    res.status(400).send('Токен не дествителен'); 
+   }
+
+  } catch {
+    res.status(500).send("Ошибка при проверки токена");
+  }
+};
+
 const checkLoginHandler = async (req, res) => {
   const { login } = req.body;
   try {
@@ -94,4 +109,4 @@ const {login, password} = req.body;
  }
 }
 
-module.exports = {loginHandle, registerHandle, checkEmailHandler, checkLoginHandler}
+module.exports = {loginHandle, registerHandle, checkEmailHandler, checkLoginHandler, checktoken}

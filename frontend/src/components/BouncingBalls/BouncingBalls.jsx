@@ -11,7 +11,6 @@ const BouncingBalls = () => {
 
     const balls = [];
 
-    // Создаем 5 случайных шариков
     for (let i = 0; i < 5; i++) {
       balls.push({
         x: Math.random() * canvas.width,
@@ -19,54 +18,53 @@ const BouncingBalls = () => {
         radius: 40,
         dx: (Math.random() - 0.5) * 2,
         dy: (Math.random() - 0.5) * 2,
-        blur: 20, // Максимально блюр для всех шариков
+        blur: 20, 
       });
     }
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (const ball of balls) {
-        for (const ball2 of balls) {
-            if (ball !== ball2) { 
-                const distX = ball.x - ball2.x;
-                const distY = ball.y - ball2.y;
-                const distance = Math.sqrt(distX * distX + distY * distY); 
+      for (let i = 0; i < balls.length; i++) {
+        const ball = balls[i];
+        for (let j = i + 1; j < balls.length; j++) {  
+            const ball2 = balls[j];
+            
+            const distX = ball.x - ball2.x;
+            const distY = ball.y - ball2.y;
+            const distSquared = distX * distX + distY * distY;  
+            const radiusSum = ball.radius + ball2.radius;
+            const radiusSumSquared = radiusSum * radiusSum; 
+            
+            if (distSquared < radiusSumSquared) {
+                const distance = Math.sqrt(distSquared); 
+                const overlap = radiusSum - distance;
+                const totalRadius = radiusSum;
+                
+                const normalX = distX / distance;
+                const normalY = distY / distance;
     
-                if (distance < ball.radius + ball2.radius) {
-                    const overlap = (ball.radius + ball2.radius) - distance;
-                    const totalRadius = ball.radius + ball2.radius;
-                    
-                    const normalX = distX / distance;
-                    const normalY = distY / distance;
+                ball.x += normalX * overlap * (ball.radius / totalRadius);
+                ball.y += normalY * overlap * (ball.radius / totalRadius);
+                ball2.x -= normalX * overlap * (ball2.radius / totalRadius);
+                ball2.y -= normalY * overlap * (ball2.radius / totalRadius);
     
-                    ball.x += normalX * overlap * (ball.radius / totalRadius);
-                    ball.y += normalY * overlap * (ball.radius / totalRadius);
-                    ball2.x -= normalX * overlap * (ball2.radius / totalRadius);
-                    ball2.y -= normalY * overlap * (ball2.radius / totalRadius);
-    
-                    ball.dx = -ball.dx;
-                    ball.dy = -ball.dy;
-                    ball2.dx = -ball2.dx;
-                    ball2.dy = -ball2.dy;
-                }
+                [ball.dx, ball2.dx] = [-ball2.dx, -ball.dx];
+                [ball.dy, ball2.dy] = [-ball2.dy, -ball.dy];
             }
         }
     }
     
       balls.forEach((ball) => {
-        // Двигаем шарики
         ball.x += ball.dx;
         ball.y += ball.dy;
 
-        // Проверка на границы и отскакивание
         if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
           ball.dx = -ball.dx;
         }
         if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-          ball.dy = -ball.dy;
+          ball.dy = -ball.dy ;
         }
 
-        // Рисуем шарик с блюром
         ctx.beginPath();
         ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(79, 62, 231, 0.2)`;
@@ -84,7 +82,6 @@ const BouncingBalls = () => {
       canvas.height = window.innerHeфight;
     });
 
-    // Убираем canvas из потока событий
     canvas.style.pointerEvents = 'none';
 
     return () => {  
@@ -95,10 +92,10 @@ const BouncingBalls = () => {
   return <canvas 
     ref={canvasRef} 
     style={{ 
-      position: 'fixed', // Используйте fixed, чтобы занять всю область
+      position: 'fixed',
       top: 0, 
       left: 0, 
-      width: '100vw', // Занимает всю ширину окна
+      width: '100vw', 
       height: '100vh', 
       zIndex: -1,
     }} 
