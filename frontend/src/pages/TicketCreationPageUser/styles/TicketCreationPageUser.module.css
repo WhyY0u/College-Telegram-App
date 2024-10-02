@@ -1,0 +1,23 @@
+
+
+.ticket__creation__page__user__back__btn__container {
+    max-width: 345px;
+    padding: 15px 20px;
+    margin: 0 auto;
+}
+
+.ticket__creation__page__user__back__btn__link {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    max-width: 82px;
+}
+
+
+
+.ticket__creation__page__user__back__btn__text {
+    font-family: "Pixeloid Sans Regular";
+    font-size: 16px;
+    color: rgb(68, 20, 219);
+}
+

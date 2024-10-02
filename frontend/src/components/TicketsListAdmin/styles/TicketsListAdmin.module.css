@@ -1,0 +1,149 @@
+
+
+.ticket__list__admin__container {
+    max-width: 345px;
+    padding: 0px 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ticket__list__admin__item {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 10px 10px;
+    border-radius: 10px;
+    align-items: center;
+    gap: 10px;
+}
+
+.item__name__block {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    position: relative;
+}
+
+
+
+.item__name__block__title {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 14px;
+    color: rgba(215, 215, 215, 0.72);
+}
+ 
+.item__name__block__title__name {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(89, 85, 85, 0.53);
+}
+
+.item__stick__element {
+    width: 1px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.13);
+}
+
+
+.item__type__block {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    position: relative;
+}
+
+
+.item__type__block__title {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 14px;
+    color: rgba(215, 215, 215, 0.72);
+}
+
+.item__type__block__title__name__complaint {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(255, 0, 0, 0.43);
+}
+
+.item__type__block__title__name__offer {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(0, 141, 255, 0.43);
+}
+
+
+
+.item__status__block {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.item__status__block__title {
+    text-align: center;
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 14px;
+    color: rgba(215, 215, 215, 0.72);
+}
+
+.item__status__block__title__name__rejected {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(235, 4, 4, 0.69);
+}
+
+.item__status__block__title__name__expectation {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(234, 237, 43, 0.69);
+}
+
+.item__status__block__title__name__inProgress {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(4, 131, 235, 0.69);
+}
+
+.item__status__block__title__name__done {
+    font-family: 'Pixeloid Sans Regular';
+    font-size: 11px;
+    color: rgba(4, 235, 36, 0.69);
+}
+
+.item__name__block,
+.item__type__block,
+.item__status__block {
+    width: 300px; /* фиксированная ширина */
+    text-align: center; /* центрирование текста */
+}
+
+
+@media(max-width: 340px) {
+    .item__name__block__title {
+        font-size: 12px;
+    }
+
+    .item__name__block__title__name {
+        font-size: 9px;
+    }
+
+
+    .item__type__block__title {
+        font-size: 12px;
+    }
+
+    .item__type__block__title__name {
+        font-size: 9px;
+    }
+
+    .item__status__block__title {
+        font-size: 12px;
+    }
+
+    .item__status__block__title__name {
+        font-size: 9px;
+    }
+}

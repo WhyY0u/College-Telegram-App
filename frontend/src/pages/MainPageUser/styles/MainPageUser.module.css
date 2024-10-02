@@ -1,0 +1,10 @@
+.main__page__user {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+.main__page__user__navigation__container {
+    position: relative;
+    bottom: 10px;
+}

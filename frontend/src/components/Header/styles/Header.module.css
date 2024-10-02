@@ -1,0 +1,26 @@
+
+
+.header__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.header__title {
+    color: #fff;
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.header__title__letter {
+    color: #3601FF;
+}
+
+.header__title__description {
+    color: #fff;
+    font-family: "Pixelify Sans", sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+}

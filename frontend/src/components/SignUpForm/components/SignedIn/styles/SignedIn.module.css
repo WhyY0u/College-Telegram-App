@@ -1,0 +1,41 @@
+
+.signedin {
+    background-color: rgba(0, 0, 0, 0.22);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 20px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    max-width: 255px;
+    margin: 0 auto;
+}
+
+.signedin__text__block {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: 'Pixeloid Sans Regular';
+    text-align: center;
+}
+
+.signedin__text__block__question {
+    color: rgba(162, 161, 162, 0.61);
+}
+
+.signedin__text__block__parg {
+    color: rgba(162, 161, 162, 0.41);
+    max-width: 190px;
+    font-size: 12px;
+}
+
+.signedin__button__signin {
+    font-family: 'Pixeloid Sans Regular';
+    padding: 12px 15px;
+    background-color: rgb(28, 5, 81);
+    color: rgb(179, 175, 175);
+    font-size: 12px;
+    border-radius: 10px;
+}
