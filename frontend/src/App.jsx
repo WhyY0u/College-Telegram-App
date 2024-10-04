@@ -19,16 +19,14 @@ function App() {
   useEffect(() => {
     console.log(localStorage.getItem('token'))
     if(isAuth != undefined) {
-    axios.post('http://localhost:3000/auth/checktoken', 
-      {
+      axios.post('http://localhost:3000/auth/checktoken', {}, {
         headers: { 
-            'Content-Type': 'application/json', 
-            'authorization': `Bearer ${localStorage.getItem('token')}`
+          'Content-Type': 'application/json', 
+          'authorization': `Bearer ${localStorage.getItem('token')}`
         },
-    },
-    ).then(setAuth(true)).catch( error => {
-      setAuth(false);
-    });
+      }).then(() => setAuth(true)).catch(error => {
+        setAuth(false);
+      });       
     } else {
       setAuth(false); 
     }
