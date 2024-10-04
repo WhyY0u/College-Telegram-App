@@ -18,17 +18,19 @@ function App() {
   const [isAuth, setAuth] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(localStorage.getItem('token'))
-    if(isAuth != undefined) {
-      axios.post('http://localhost:3000/auth/checktoken', {}, {
-        headers: { 
+  if(isAuth != undefined) {
+    console.log(token)
+  axios.post('http://localhost:3000/auth/checktoken', 
+    {
+      headers: { 
           'Content-Type': 'application/json', 
           'authorization': `Bearer ${localStorage.getItem('token')}`
       },
-    },
-    ).then(response => setAuth(true)).catch(error => {
-      setAuth(false);
-    });
+  },
+  ).then(setAuth(true)).catch(error => {
+    console.log(error);
+    setAuth(false);
+  });
   } else {
     setAuth(false); 
   }
@@ -36,10 +38,12 @@ function App() {
   return (
     <div className="wrapper">
       <Routes>
+      <Route element={<ProtectedByRole isAuth={!isAuth}/>}>
         <Route path="/" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
-
+      </Route>
     <Route element={<ProtectedRoutes isAuth={isAuth}/>}>
+    
       <Route element={<ProtectedByRole isRole={'Student'}/>}>
           <Route path="main-page-user" element={<MainPageUser />} />
           <Route path="ticket-creation-page-user" element={<TicketCreationPageUser />} />
