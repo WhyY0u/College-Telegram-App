@@ -25,14 +25,14 @@ function App() {
           'Content-Type': 'application/json', 
           'authorization': `Bearer ${localStorage.getItem('token')}`
       },
-  },
-  ).then(setAuth(true)).catch(error => {
-    setAuth(false);
-  });
+    },
+    ).then(response => setAuth(true)).catch(error => {
+      setAuth(false);
+    });
   } else {
     setAuth(false); 
   }
- },[token, navigate]);
+ },[token, navigate, isAuth]);
   return (
     <div className="wrapper">
       <Routes>

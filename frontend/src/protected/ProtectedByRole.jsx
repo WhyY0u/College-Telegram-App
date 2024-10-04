@@ -8,9 +8,9 @@ const switchByRole = (role) => {
         case 'Confidant':return <Navigate to="/main-page-admin"/>
     }
 }
-const ProtectedByRole = (isRole) => {
+const ProtectedByRole = ({ isRole }) => {
     const token = localStorage.getItem('token');
-    const role = jwt.decode(token);
+    const role = jwt.decode(token)?.role;
     return isRole == role ? <Outlet /> : switchByRole(role);
 }
 export default ProtectedByRole

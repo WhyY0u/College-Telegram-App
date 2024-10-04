@@ -50,7 +50,7 @@ function TicketWatchFormUser() {
     useEffect(() => {
         const fetchImage = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/image/get/${id}`, {
+                const response = await axios.get(`http://localhost:3000/getTicket/${id}`, {
                     responseType: 'blob', // Указываем, что ожидаем Blob (изображение)
                     headers: { 
                         'Content-Type': 'application/json', 
