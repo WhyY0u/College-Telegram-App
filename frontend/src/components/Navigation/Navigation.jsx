@@ -21,13 +21,15 @@ function Navigation() {
               <img className={styles.navigation__tickets__block__img} src={tickets} alt="" />
             </div>
           </Link>
-          <div className={`${styles.navigation__news__block} ${styles.news__block}`}>
-            <div className={styles.news__block__text__block}>
-              <p className={styles.news__block__text__block__parg}>News</p>
-              <img className={styles.news__block__text__block__img} src={triangle_down} alt="" />
+          <Link to={'/news-page-user'} >
+            <div className={`${styles.navigation__news__block} ${styles.news__block}`}>
+              <div className={styles.news__block__text__block}>
+                <p className={styles.news__block__text__block__parg}>News</p>
+                <img className={styles.news__block__text__block__img} src={triangle_down} alt="" />
+              </div>
+              <img className={styles.navigation__news__block__img} src={list} alt="" />
             </div>
-            <img className={styles.navigation__news__block__img} src={list} alt="" />
-          </div>
+          </Link>
           <Link to={'/ticket-creation-page-user'}>
             <img className={styles.navigation__img} src={plus_icon} alt="" />
           </Link>
