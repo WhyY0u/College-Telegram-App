@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './globals.css'
 import Signin from './pages/Signin/Signin'
 import Signup from './pages/Signup/Signup';
@@ -17,6 +17,7 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
   if(isAuth != undefined) {
+    console.log(token)
   axios.post('http://localhost:3000/auth/checktoken', 
     {
       headers: { 
@@ -24,20 +25,23 @@ function App() {
           'authorization': `Bearer ${localStorage.getItem('token')}`
       },
   },
-  ).then(setAuth(true)).catch( error => {
+  ).then(setAuth(true)).catch(error => {
+    console.log(error);
     setAuth(false);
   });
   } else {
     setAuth(false); 
   }
- },[token, navigate]);
+ },[token, navigate, isAuth]);
   return (
     <div className="wrapper">
       <Routes>
+      <Route element={<ProtectedByRole isAuth={!isAuth}/>}>
         <Route path="/" element={<Signin />} />
         <Route path="signup" element={<Signup />} />
-
+      </Route>
     <Route element={<ProtectedRoutes isAuth={isAuth}/>}>
+    
       <Route element={<ProtectedByRole isRole={'Student'}/>}>
           <Route path="main-page-user" element={<MainPageUser />} />
           <Route path="ticket-creation-page-user" element={<TicketCreationPageUser />} />

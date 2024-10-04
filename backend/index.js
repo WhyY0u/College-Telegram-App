@@ -14,11 +14,15 @@ const newsRouter = require('./router/newsRouter');
 
 const PORT = process.env.PORT || 3000;
 
-const dbURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@mongo:27017/${process.env.DB_NAME}?authSource=admin`;
-
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+/* const dbURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@mongo:27017/${process.env.DB_NAME}?authSource=admin`;
+ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
+    .catch(err => console.error('MongoDB connection error:', err)); */
+
+const dbURI = `mongodb://localhost:27017/`;
+ mongoose.connect(dbURI)
+.then(() => console.log('MongoDB connected'))
+.catch(err => console.error('MongoDB connection error:', err));
 
 const app = express();
 app.use(bodyParser.json());
