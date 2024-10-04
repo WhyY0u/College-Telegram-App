@@ -6,6 +6,6 @@ const validator = require('../validator/validator');
 const router = express.Router();
 
 
-router.post('/get', validator.newsValidator, controller.getNewsHandle);
+router.get('/get', controller.getNewsHandle);
 
 module.exports = router;

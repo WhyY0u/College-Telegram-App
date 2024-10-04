@@ -3,7 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
-const User = require('./model/userModel')
+const User = require('./model/userModel');
+const cors = require('cors');
 
 const middleware = require('./middleware/middleware');
 const authoRouter = require("./router/authRouter");
@@ -25,6 +26,14 @@ const dbURI = `mongodb://localhost:27017/`;
 .catch(err => console.error('MongoDB connection error:', err));
 
 const app = express();
+
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],  
+  allowedHeaders: ['Content-Type', 'Authorization']  
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.use('/auth', authoRouter);
