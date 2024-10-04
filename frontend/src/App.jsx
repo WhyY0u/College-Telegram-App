@@ -24,7 +24,7 @@ function App() {
           'authorization': `Bearer ${localStorage.getItem('token')}`
       },
   },
-  ).then(setAuth(true)).catch( error => {
+  ).then(setAuth(true)).catch(error => {
     setAuth(false);
   });
   } else {
