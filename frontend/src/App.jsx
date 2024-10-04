@@ -14,6 +14,7 @@ import ProtectedByRole from './protected/ProtectedByRole';
 
 function App() {
   const token = localStorage.getItem('token');
+  console.log(token);
   const [isAuth, setAuth] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
@@ -23,13 +24,14 @@ function App() {
         headers: { 
           'Content-Type': 'application/json', 
           'authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-      }).then(() => setAuth(true)).catch(error => {
-        setAuth(false);
-      });       
-    } else {
-      setAuth(false); 
-    }
+      },
+  },
+  ).then(setAuth(true)).catch(error => {
+    setAuth(false);
+  });
+  } else {
+    setAuth(false); 
+  }
  },[token, navigate]);
   return (
     <div className="wrapper">
