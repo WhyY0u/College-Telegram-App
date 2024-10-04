@@ -13,6 +13,7 @@ import axios from 'axios';
 import ProtectedByRole from './protected/ProtectedByRole';
 function App() {
   const token = localStorage.getItem('token');
+  console.log(token);
   const [isAuth, setAuth] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
