@@ -24,7 +24,7 @@ const createTicketHandle = async (req, res) => {
   
     if (req.file) {
       try {
-        const name = await file.saveImage(req);
+        const name = await file.saveImage(req, "imgTicket");
         newTicket.image = name;
       } catch (err) {
         if (err instanceof multer.MulterError) {

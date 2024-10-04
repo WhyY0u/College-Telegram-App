@@ -74,4 +74,45 @@ const createTicketValidator = [
     .notEmpty().withMessage('Description не должна быть пустой.')
     .isLength({ min: 50, max: 2000 }).withMessage('Description должна быть от 50 до 2000 символов.')
 ];
-  module.exports = {registrationValidators, checkemailValidators, checkloginValidators, loginValidators, ticketsValidator, saveTicketValidator, createTicketValidator}
+
+const createNewsValidator = [
+  body('heading')
+  .notEmpty().withMessage('Heading не должен быть пустым.')
+  .isLength({ min: 5, max: 13 }).withMessage('Heading должен быть от 5 до 13 символов.'),
+  
+   body('description')
+  .notEmpty().withMessage('Description не должна быть пустой.')
+  .isLength({ min: 50, max: 2000 }).withMessage('Description должна быть от 50 до 2000 символов.')
+];
+
+const createEventValidator = [
+  body('heading')
+    .notEmpty().withMessage('Heading не должен быть пустым.')
+    .isLength({ min: 5, max: 13 }).withMessage('Heading должен быть от 5 до 13 символов.'),
+
+  body('description')
+    .notEmpty().withMessage('Description не должна быть пустой.')
+    .isLength({ min: 50, max: 2000 }).withMessage('Description должна быть от 50 до 2000 символов.'),
+
+  body('place')
+    .notEmpty().withMessage('place не должен быть пустым.')
+    .isLength({ min: 1, max: 30 }).withMessage('place должен быть от 1 до 30 символов.'),
+
+  body('start')
+    .notEmpty().withMessage('Start не должна быть пустой.')
+    .isISO8601().withMessage('Start должна быть валидной датой в формате ISO8601.')
+    .custom((value) => {
+      const inputDate = new Date(value);
+      const currentDate = new Date();
+      
+      inputDate.setHours(0, 0, 0, 0);
+      currentDate.setHours(0, 0, 0, 0);
+
+      if (inputDate < currentDate) {
+        throw new Error('Start не должна быть меньше текущей даты.');
+      }
+      return true;
+    })
+];
+
+  module.exports = {registrationValidators, checkemailValidators, checkloginValidators, loginValidators, ticketsValidator, saveTicketValidator, createTicketValidator, createNewsValidator, createEventValidator}

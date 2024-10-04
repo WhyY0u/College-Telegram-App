@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
+const { Schema: LikesSchema } = require('./likesModel'); 
 
 const EventSchema = new mongoose.Schema({
-  heading: {type: String, required: true} ,
-  date: { type: String, required: true },
+  date: { type: Date, required: true },
+  heading: { type: Date, required: true },
   description: { type: String, required: true },
-  likes: { type: String, required: true },
-  images: { type: [String], required: true },
+  likes: { type: [LikesSchema], default: [] }, 
+  images: { type: [String], required: false },
+  start: { type: Date, required: true },
+  place: { type: String, required: true },
 });
 
 module.exports = {
-    News: mongoose.model('Event', EventSchema),
+  Event: mongoose.model('Event', EventSchema),
 };
