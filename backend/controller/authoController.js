@@ -20,17 +20,16 @@ const checkEmailHandler = async (req, res) => {
 };
 
 const checktoken = async (req, res) => {
-
   try {
    const user = Jwt.getUserByReq(req);
    if(user != null) {
-    res.status(201).send('Токен валидный');
+    return res.status(201).send('Токен валидный');
    } else {
-    res.status(400).send('Токен не дествителен'); 
+    return res.status(400).send('Токен не дествителен'); 
    }
 
   } catch {
-    res.status(500).send("Ошибка при проверки токена");
+    return res.status(500).send("Ошибка при проверки токена");
   }
 };
 

@@ -3,7 +3,8 @@ const { Status } = require('../model/ticketModel');
 const UserModelUtils = require('../utils/userModelUtils');
 const jwtUtils = require('../utils/jwtUtils');
 const { validationResult } = require('express-validator');
-
+const file = require('../utils/fileUtils');
+const { News } = require('../model/newsModel');
 
 const getTicketsHandle = async (req, res) => {
     const { page, limit } = req.query;
@@ -20,7 +21,6 @@ const getTicketsHandle = async (req, res) => {
 
     try {
         const tickets = await TicketUtils.getTickets(page, limitNumber);
-        const infoTicket = {_id: tickets._id, heading: tickets.heading, status: tickets.status, type: tickets.type, description: tickets.description}
         const totalTickets = await TicketUtils.countTickets(); 
         res.status(200).json({
             tickets,
@@ -94,4 +94,72 @@ const getTicketByIDHandle = async (req, res) => {
    
 };
 
-module.exports = {saveTicketHandle, getTicketByIDHandle, getTicketsHandle};
+
+  /*
+  Проверить
+  */
+const saveEventHandle = async (req, res) => {
+    const { heading, description, start, place} = req.query;
+    const {files} = req;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+    const newEvent = new Event.Event({ date: new Date(), heading, description, start, place, likes: [] });
+    try {
+      
+        if (!files || files.length === 0) {
+            const imgs = file.saveImages(files, "imgNews");
+            newEvent.images = imgs;
+        }
+    } catch {
+        if (err instanceof multer.MulterError) {
+            return res.status(400).send("Файл слишком большой.");
+          } else {
+            return res.status(500).send("Ошибка загрузки файла.");
+          }
+    }
+    await newEvent.save();
+    return res.status(200).send("Успешно.");
+    }catch {
+    return res.status(500).send("Ошибка создание Мероприятие.");
+    }
+    
+}
+
+  /*
+  Проверить
+  */
+
+  
+const saveNewsHandle = async (req,res) => {
+    const { heading, description} = req.query;
+    const {files} = req;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    try {
+    const newNews = new News.News({ date: new Date(), heading, description, likes: [] });
+    try {
+      
+        if (!files || files.length === 0) {
+            const imgs = file.saveImages(files, "imgNews");
+            newNews.images = imgs;
+        }
+    } catch {
+        if (err instanceof multer.MulterError) {
+            return res.status(400).send("Файл слишком большой.");
+          } else {
+            return res.status(500).send("Ошибка загрузки файла.");
+          }
+    }
+    await newNews.save();
+    return res.status(200).send("Успешно.");
+    }catch {
+    return res.status(500).send("Ошибка создание Новости.");
+    }
+}
+
+module.exports = {saveTicketHandle, getTicketByIDHandle, getTicketsHandle, saveNewsHandle, saveEventHandle};

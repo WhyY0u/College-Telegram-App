@@ -29,7 +29,7 @@ const getImageTicket = async (req, res) => {
             return res.status(400).send("Доступ запрещен");
         }
     }
-  const filePath = path.join(__dirname, '../img', ticket.image);
+  const filePath = path.join(__dirname, '../img/imgTicket', ticket.image);
   res.status(200).sendFile(filePath, (err) => {
     if (err) {
         res.status(err.status).end();
