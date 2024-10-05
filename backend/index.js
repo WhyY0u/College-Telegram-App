@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 3000;
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err)); */
 
-const dbURI = `mongodb://localhost:27017/`;
+const dbURI = `mongodb://localhost:27017/kit`;
  mongoose.connect(dbURI)
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.error('MongoDB connection error:', err));
@@ -35,6 +35,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/auth', authoRouter);
 app.use('/user', middleware.RoleAndAuthoMiddleware(User.Role.Student), userRouter);
