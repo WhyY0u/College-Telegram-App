@@ -65,34 +65,34 @@ const saveTicketValidator =
 const createTicketValidator = [
     body('heading')
     .notEmpty().withMessage('Heading не должен быть пустым.')
-    .isLength({ min: 5, max: 13 }).withMessage('Heading должен быть от 5 до 13 символов.'),
+    .isLength({ min: 5, max: 20 }).withMessage('Heading должен быть от 5 до 20 символов.'),
     
      body('type')
     .notEmpty().withMessage('Type не должен быть пустым.'),
     
      body('description')
     .notEmpty().withMessage('Description не должна быть пустой.')
-    .isLength({ min: 50, max: 2000 }).withMessage('Description должна быть от 50 до 2000 символов.')
+    .isLength({ min: 35, max: 2000 }).withMessage('Description должна быть от 35 до 2000 символов.')
 ];
 
 const createNewsValidator = [
   body('heading')
   .notEmpty().withMessage('Heading не должен быть пустым.')
-  .isLength({ min: 5, max: 13 }).withMessage('Heading должен быть от 5 до 13 символов.'),
+  .isLength({ min: 5, max: 20 }).withMessage('Heading должен быть от 5 до 20 символов.'),
   
    body('description')
   .notEmpty().withMessage('Description не должна быть пустой.')
-  .isLength({ min: 50, max: 2000 }).withMessage('Description должна быть от 50 до 2000 символов.')
+  .isLength({ min: 35, max: 2000 }).withMessage('Description должна быть от 35 до 2000 символов.')
 ];
 
 const createEventValidator = [
   body('heading')
     .notEmpty().withMessage('Heading не должен быть пустым.')
-    .isLength({ min: 5, max: 13 }).withMessage('Heading должен быть от 5 до 13 символов.'),
+    .isLength({ min: 5, max: 20 }).withMessage('Heading должен быть от 5 до 20 символов.'),
 
   body('description')
     .notEmpty().withMessage('Description не должна быть пустой.')
-    .isLength({ min: 50, max: 2000 }).withMessage('Description должна быть от 50 до 2000 символов.'),
+    .isLength({ min: 35, max: 2000 }).withMessage('Description должна быть от 35 до 2000 символов.'),
 
   body('place')
     .notEmpty().withMessage('place не должен быть пустым.')

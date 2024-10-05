@@ -30,6 +30,7 @@ const createTicketHandle = async (req, res) => {
         if (err instanceof multer.MulterError) {
           return res.status(400).send("Файл слишком большой.");
         } else {
+          console.log(err);
           return res.status(500).send("Ошибка загрузки файла.");
         }
       }
