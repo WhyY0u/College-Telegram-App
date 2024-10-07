@@ -44,5 +44,27 @@ const getImageTicket = async (req, res) => {
   }
 };
 
+const getImageNews = async (req,res) => {
+   const imageNewsId = req.params.id;
+   const filePath = path.join(__dirname, '../img/imgTicket', imageNewsId);
+  res.status(200).sendFile(filePath, (err) => {
+    if (err) {
+      res.status(err.status).end();
+    } else {
+    }
+});
+}
 
-module.exports = {getImageTicket};
+const getImageEvent = async (req,res) => {
+  const imageEventId = req.params.id;
+  const filePath = path.join(__dirname, '../img/imgEvent', imageEventId);
+  res.status(200).sendFile(filePath, (err) => {
+   if (err) {
+     res.status(err.status).end();
+   } else {
+   }
+});
+}
+
+
+module.exports = {getImageTicket, getImageNews, getImageEvent};
