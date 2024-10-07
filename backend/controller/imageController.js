@@ -1,5 +1,7 @@
 const express = require('express');
 const TicketUtils = require('../utils/ticketModelUtils');
+const NewsUtils = require('../utils/newsUtils');
+
 const Jwt = require('../utils/jwtUtils');
 const User = require('../model/userModel');
 const router = express.Router();
@@ -41,5 +43,6 @@ const getImageTicket = async (req, res) => {
     res.status(500).send("Ошибка при получение картинки");
   }
 };
+
 
 module.exports = {getImageTicket};

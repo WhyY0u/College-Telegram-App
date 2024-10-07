@@ -78,7 +78,7 @@ const createTicketValidator = [
 const createNewsValidator = [
   body('heading')
   .notEmpty().withMessage('Heading не должен быть пустым.')
-  .isLength({ min: 5, max: 13 }).withMessage('Heading должен быть от 5 до 13 символов.'),
+  .isLength({ min: 5, max: 20 }).withMessage('Heading должен быть от 5 до 20 символов.'),
   
    body('description')
   .notEmpty().withMessage('Description не должна быть пустой.')
@@ -88,7 +88,7 @@ const createNewsValidator = [
 const createEventValidator = [
   body('heading')
     .notEmpty().withMessage('Heading не должен быть пустым.')
-    .isLength({ min: 5, max: 13 }).withMessage('Heading должен быть от 5 до 13 символов.'),
+    .isLength({ min: 5, max: 20 }).withMessage('Heading должен быть от 5 до 20 символов.'),
 
   body('description')
     .notEmpty().withMessage('Description не должна быть пустой.')

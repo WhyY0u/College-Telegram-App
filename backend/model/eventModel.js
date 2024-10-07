@@ -3,7 +3,7 @@ const { Schema: LikesSchema } = require('./likesModel');
 
 const EventSchema = new mongoose.Schema({
   date: { type: Date, required: true },
-  heading: { type: Date, required: true },
+  heading: { type: String, required: true },
   description: { type: String, required: true },
   likes: { type: [LikesSchema], default: [] }, 
   images: { type: [String], required: false },
