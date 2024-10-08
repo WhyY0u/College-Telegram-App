@@ -4,7 +4,7 @@ const controller = require('../controller/imageController');
 const router = express.Router();
 
 router.get('/getTicket/:id', controller.getImageTicket);
-//router.get('/getNews/:id', controller.getImageNews);
-//router.get('/getEvent/:id', controller.getImageEvent);
-
+router.get('/getNewsImg/:id', controller.getImageNews);
+router.get('/getEventImg/:id', controller.getImageEvent);
+router.get('/getProfileImg/:id', controller.getProfileImg);
 module.exports = router;

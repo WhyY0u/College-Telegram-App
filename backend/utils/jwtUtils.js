@@ -32,9 +32,9 @@ const hashPassword = async (password) => {
     return match;
   };
 
-  const createToken = (login, name, surname, role) => {
+  const createToken = (login, name, surname, role, patronymic) => {
     const expiresIn = '7d';
-    const token = jwt.sign({login: login, name: name, surname: surname, role: role }, SECRETKEY, { expiresIn });
+    const token = jwt.sign({login: login, name: name, surname: surname, role: role, patronymic: patronymic}, SECRETKEY, { expiresIn });
     return token;
   };
 

@@ -8,6 +8,14 @@ const { v4: uuidv4 } = require('uuid');
     await fs.promises.writeFile(uploadPath, req.file.buffer); 
     return uniqueFilename;
 }
+const deleteImage = async (paths, filename) => {
+    const filePath = path.join(__dirname, '../img/' + paths, filename);
+    try {
+        await fs.promises.unlink(filePath);
+    } catch (error) {
+        console.error(`Ошибка при удалении файла ${filename}:`, error);
+    }
+}
 const saveImageByFile = async (file, paths) =>  {
     const uniqueFilename = `${uuidv4()}-${file.originalname}`; 
     const uploadPath = path.join(__dirname, '../img/' + paths, uniqueFilename);
@@ -24,4 +32,4 @@ const saveImages = async (files, paths) => {
         return filePaths;    
 }
 
-module.exports = {saveImage, saveImages};
+module.exports = {saveImage, saveImages, deleteImage};

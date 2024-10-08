@@ -12,6 +12,7 @@ const userRouter = require("./router/userRouter");
 const confidantRouter = require('./router/confidantRouter');
 const imageRouter = require('./router/imageRouter');
 const newsRouter = require('./router/newsRouter');
+const profileRouter = require('./router/profileRouter')
 
 const PORT = process.env.PORT || 3000;
 
@@ -41,8 +42,8 @@ app.use('/auth', authoRouter);
 app.use('/user', middleware.RoleAndAuthoMiddleware(User.Role.Student), userRouter);
 app.use('/confidant', middleware.RoleAndAuthoMiddleware(User.Role.Confidant), confidantRouter);
 app.use('/image', middleware.authMiddleware, imageRouter);
-app.use('/news', middleware.authMiddleware, newsRouter)
-
+app.use('/news', middleware.authMiddleware, newsRouter);
+app.use('/profile', middleware.authMiddleware, profileRouter);
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on http://0.0.0.0:${PORT}`);
