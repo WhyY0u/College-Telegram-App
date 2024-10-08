@@ -13,7 +13,9 @@ services:
       - mongo
 
   mongo:
-    image: amd64/mongo:8.0.0
+    build:
+      context: .
+      dockerfile: mongodb.dockerfile
     env_file:
       - .env 
     environment:
