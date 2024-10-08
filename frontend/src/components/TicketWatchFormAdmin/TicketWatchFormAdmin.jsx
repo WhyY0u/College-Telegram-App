@@ -3,14 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion'
 import ithub from '../../../images/ithub.jpg'
 import styles from './styles/TicketWatchFormAdmin.module.css'
 import big_right_arrow from '../../../images/big_right_arrow.svg'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios'
 
 function TicketWatchFormAdmin() {
 
+    const { id } = useParams()
+    const [data, setData] = useState(null)
+    const [imageUrl, setImageUrl] = useState(null)
     const [isOpen, setIsOpen] = useState(false)
     const [selected, setSelected] = useState(null)
     const [textArea, setTextArea] = useState('')
     const textareaRef = useRef(null)
     const [isTextAreaClicked, setIsTextAreaClicked] = useState(false)
+    const navigate = useNavigate()
 
     const toggleDropdown = () => setIsOpen(!isOpen)
     const handleSelect = (option) => {
@@ -44,11 +50,70 @@ function TicketWatchFormAdmin() {
     })
 
     const truncateText = (text) => {
-        return text.length > 8 ? text.slice(0, 8) + '...' : text;
+        return text?.length > 8 ? text.slice(0, 8) + '...' : text;
     }
 
     const isTextAreaEmpty = () => {
         return textArea.trim() === ''
+    }
+
+    useEffect(() => {
+
+
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/confidant/ticket/${id}`, {
+                    headers: { 
+                        'Content-Type': 'application/json', 
+                        'authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                });
+                setData(response?.data)
+                setTextArea(response?.data?.comment || ''); // Устанавливаем текст комментария при загрузке данных
+                console.log(response)
+            } catch(error) {
+                console.error(error)
+            }
+        }
+
+        fetchData()
+    }, [id])
+
+    useEffect(() => {
+        const fetchImage = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3000/image/getTicket/${id}`, {
+                    responseType: 'blob', // Указываем, что ожидаем Blob (изображение)
+                    headers: { 
+                        'Content-Type': 'application/json', 
+                        'authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                });
+                const url = URL.createObjectURL(response.data);
+                console.log(url)
+                setImageUrl(url); 
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchImage();
+    }, [id]);
+
+
+    const handleSave = () => {
+        axios.put(`http://localhost:3000/confidant/saveticket`, {
+            id: id,
+            comment: textArea,
+            status: selected,
+        }, {
+            headers: { 
+                'Content-Type': 'application/json', 
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+        })
+
+        navigate('/main-page-admin')
     }
 
   return (
@@ -57,55 +122,51 @@ function TicketWatchFormAdmin() {
         <div className={`${styles.ticket__watch__form__admin__fullname__block} ${styles.fullname__block}`}>
             <div className={`${styles.fullname__block__surname__block} ${styles.surname__block}`}>
                 <h6 className={styles.surname__block__header}>Фамилия</h6>
-                <p className={styles.surname__block__parg}>{truncateText('Попандопуло')}</p>
+                <p className={styles.surname__block__parg}>{truncateText(data?.name)}</p>
             </div>
             <div className={`${styles.fullname__block__name__block} ${styles.name__block}`}>
                 <h6 className={styles.name__block__header}>Имя</h6>
-                <p className={styles.name__block__parg}>{truncateText('Аристид')}</p>
+                <p className={styles.name__block__parg}>{truncateText(data?.surname)}</p>
             </div>
             <div className={`${styles.fullname__block__patronymic__block} ${styles.patronymic__block}`}>
                 <h6 className={styles.patronymic__block__header}>Отчество</h6>
-                <p className={styles.patronymic__block__parg}>{truncateText('Константинович')}</p>
+                <p className={styles.patronymic__block__parg}>{truncateText(data?.patronymic)}</p>
             </div>
         </div>
         <div className={`${styles.ticket__watch__form__admin__headers__block} ${styles.headers__block}`}>
             <div className={`${styles.headers__block__title__block} ${styles.title__block}`}>
                 <h6 className={styles.title__block__header}>Название</h6>
-                <p className={styles.title__block__parg}>Убрать пары</p>
+                <p className={styles.title__block__parg}>{data?.heading}</p>
             </div>
             <div className={`${styles.headers__block__type__block} ${styles.type__block}`}>
                 <h6 className={styles.type__block__header}>Тип</h6>
                 <p 
                     className={styles.type__block__parg}
                     style={TYPES.complaint ? {color: 'rgba(255, 0, 0, 0.43)'} : ''}
-                >{TYPES.complaint}</p>
+                >{data?.type}</p>
             </div>
             <div className={`${styles.headers__block__status__block} ${styles.status__block}`}>
                 <h6 className={styles.status__block__header}>Статус</h6>
                 <p 
                     className={styles.status__block__parg}
                     style={STATUS.rejected ? {color: 'rgba(235, 4, 4, 0.69)'} : ''}
-                >{STATUS.rejected}</p>
+                >{data?.status}</p>
             </div>
         </div>
 
         <div className={`${styles.ticket__watch__form__admin__desc__block} ${styles.desc__block}`}>
             <div className={styles.desc__block__header}><span>Описание</span></div>
             <p className={styles.desc__block__description}>
-            Место: Кабинет № 204
-            <br />
-            <br />
-            Уважаемая администрация!
-            <br />
-            <br />
-            Мы, ученики PO 232, обращаемся с просьбой обратить внимание на проблему, возникшую в нашем кабинете № 204. В последнее время одна из парт (номер 7) стала непригодной для использования
+                {data?.description}
             </p>
         </div>
 
-        <div className={`${styles.ticket__watch__form__admin__image__block} ${styles.image__block}`}>
-            <img className={styles.image__block__img} src={ithub} alt="uploaded" />
-            <div className={styles.image__block__text}><span>Картинка</span></div>
-        </div>
+        {imageUrl &&
+            <div className={`${styles.ticket__watch__form__admin__image__block} ${styles.image__block}`}>
+                <img className={styles.image__block__img} src={imageUrl} alt="uploaded" />
+                <div className={styles.image__block__text}><span>Картинка</span></div>
+            </div>
+        }
 
         <div className={`${styles.ticket__watch__form__admin__status__dropdown} ${styles.status__dropdown}`}>
             <motion.div
@@ -196,14 +257,16 @@ function TicketWatchFormAdmin() {
                         className={styles.text__area__block__block__textarea}
                 ></textarea>
                 <div className={styles.text__area__block__block__placeholder__block}>
-                    <label className={`${isTextAreaClicked ? styles.text__area__block__block__placeholder__down : styles.text__area__block__block__placeholder}`}>Введите Комментарий к Тикету</label>
+                    <label className={`${isTextAreaClicked || textArea ? styles.text__area__block__block__placeholder__down : styles.text__area__block__block__placeholder}`}>Введите Комментарий к Тикету</label>
                 </div>
             </div> 
         </div>
 
         <div className={`${styles.ticket__watch__form__admin__btn__block} ${styles.btn__block}`}>
-            <button className={styles.btn__block__back__btn}>Назад</button>
-            <button className={styles.btn__block__save__btn}>Сохранить</button>
+            <Link to={'/main-page-admin'}>
+                <button className={styles.btn__block__back__btn}>Назад</button>
+            </Link>
+            <button onClick={() => handleSave()} className={styles.btn__block__save__btn}>Сохранить</button>
         </div>
       </div>
     </div>

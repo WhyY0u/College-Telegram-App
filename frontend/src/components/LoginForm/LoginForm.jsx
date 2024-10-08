@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import jwt from 'jsonwebtoken'
 import styles from './styles/LoginForm.module.css';
 import Unregistered from './components/Unregistered/Unregistered';
 import EyeIcon from '../EyeIcon/EyeIcon';
@@ -46,7 +47,7 @@ const handleSignIn = (event) => {
     .then(response => {
       localStorage.setItem('token', response?.data)
       console.log(response?.data)
-      navigate('/main-page-user')
+      navigate('/');
     })
     .catch(error => console.error(error))
 }
