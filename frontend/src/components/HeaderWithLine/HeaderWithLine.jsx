@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './styles/HeaderWithLine.module.css'
 
 function HeaderWithLine() {
+
   return (
     <header className={styles.header__with__line}>
         <div className={`${styles.header__with__line__container} _container`}>

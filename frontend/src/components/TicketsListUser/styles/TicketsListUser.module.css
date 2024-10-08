@@ -6,7 +6,13 @@
 .ticket__list__user__container {
     display: flex;
     flex-direction: column;
+}
+
+.ticket__list__user__items__container {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
+    min-height: 350px;
 }
 
 .ticket__list__user__item {
@@ -95,6 +101,42 @@
 }
 
 
+.ticket__list__user__pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.pagination__simple {
+    font-family: 'Inter';
+    font-size: 10px;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.17);
+    border-radius: 5px;
+    color: rgba(215, 215, 215, 0.72);
+    padding: 5px 10px;
+}
+
+.pagination__active {
+    font-size: 12px;
+    font-family: 'Inter';
+    font-weight: 600;
+    background: rgba(215, 215, 215, 0.72);
+    border-radius: 5px;
+    color: rgba(0, 0, 0);
+    padding: 5px 10px;
+}
+
+.pagination__arrow {
+    font-size: 10px;
+    font-family: 'Inter';
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.17);
+    border-radius: 5px;
+    color: rgba(215, 215, 215, 0.72);
+    padding: 5px
+}
+
 @media(max-width: 340px) {
     .item__name__block__title {
         font-size: 12px;
@@ -119,5 +161,11 @@
 
     .item__status__block__title__name {
         font-size: 9px;
+    }
+}
+
+@media (max-width: 320px) {
+    .pagination__arrow {
+        padding: 0px
     }
 }

@@ -40,13 +40,15 @@ function Navigation() {
             </div>
             <img className={styles.navigation__schedule__block__img} src={schedule} alt="" />
           </div>
-          <div className={`${styles.navigation__profile__block} ${styles.profile__block}`}>
-            <div className={styles.profile__block__text__block}>
-              <p className={styles.profile__block__text__block__parg}>Profile</p>
-              <img className={styles.profile__block__text__block__img} src={triangle_down} alt="" />
+          <Link to={'/profile-page'}>
+            <div className={`${styles.navigation__profile__block} ${styles.profile__block}`}>
+              <div className={styles.profile__block__text__block}>
+                <p className={styles.profile__block__text__block__parg}>Profile</p>
+                <img className={styles.profile__block__text__block__img} src={triangle_down} alt="" />
+              </div>
+              <img className={styles.navigation__profile__block__img} src={user} alt="" />
             </div>
-            <img className={styles.navigation__profile__block__img} src={user} alt="" />
-          </div>
+          </Link>
         </div>
       </div>
   )
