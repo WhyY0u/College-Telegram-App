@@ -2,6 +2,7 @@ const User = require('../model/userModel');
 const Jwt = require('../utils/jwtUtils')
 const UserModelUtils = require('../utils/userModelUtils');
 const { validationResult } = require('express-validator');
+const Profile = require('../model/profileModel')
 
 const checkEmailHandler = async (req, res) => {
   const { email } = req.body;
@@ -62,11 +63,14 @@ const checkLoginHandler = async (req, res) => {
     if(await UserModelUtils.findByLogin(login) != null)  return res.status(400).send("Логин уже занят");
     if(await UserModelUtils.findByEmail(email) != null)  return res.status(400).send("Почта уже занята");
 
-    const token = Jwt.createToken(login, name, surname, 'Student');
+    const token = Jwt.createToken(login, name, surname, 'Student', patronymic);
     const pswd = await Jwt.hashPassword(password);
-    const newUser = new User.User({ login, name, surname, patronymic, email, password: pswd, role: User.Role.Student, token: token});
 
+    const newUser = new User.User({ login, name, surname, patronymic, email, password: pswd, role: User.Role.Student, token: token });
     await newUser.save();
+    const profile = new Profile.Profile({ user_id: newUser._id, description: "", image: "" });
+    await profile.save();
+
     return res.status(201).send(token);
   } catch (error) {
     console.log(error);

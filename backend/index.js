@@ -12,6 +12,7 @@ const userRouter = require("./router/userRouter");
 const confidantRouter = require('./router/confidantRouter');
 const imageRouter = require('./router/imageRouter');
 const newsRouter = require('./router/newsRouter');
+const profileRouter = require('./router/profileRouter')
 
 const PORT = process.env.PORT || 3000;
 

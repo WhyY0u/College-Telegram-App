@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.get('/getTicket/:id', controller.getImageTicket);
 router.get('/getNewsImg/:id', controller.getImageNews);
-router.get('/getEvenImg/:id', controller.getImageEvent);
-
+router.get('/getEventImg/:id', controller.getImageEvent);
+router.get('/getProfileImg/:id', controller.getProfileImg);
 module.exports = router;

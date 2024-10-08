@@ -13,8 +13,8 @@ const upload = multer({
 router.get('/tickets', validator.ticketsValidator, controller.getTicketsHandle);
 router.get('/ticket/:id', controller.getTicketByIDHandle);
 router.put('/saveticket', validator.saveTicketValidator, controller.saveTicketHandle);
-router.put('/saveNews', upload.array('images', 10), validator.createNewsValidator, controller.saveNewsHandle);
-router.put('/saveEvent', upload.array('images', 10), validator.createEventValidator, controller.saveEventHandle);
+router.post('/saveNews', upload.array('images', 10), validator.createNewsValidator, controller.saveNewsHandle);
+router.post('/saveEvent', upload.array('images', 10), validator.createEventValidator, controller.saveEventHandle);
 
 
 module.exports = router;

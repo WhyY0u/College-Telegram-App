@@ -1,12 +1,15 @@
 const likeUtils = require('./likeUtils');
 const Event = require('../model/eventModel');
-
+const Image = require('../utils/fileUtils')
 
 const getAllEvent = async (user) => {
     const user_id = user._id;
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
+    const eventsToDelete = await Event.Event.find({ start: { $lt: oneWeekAgo } });
+    const imagesToDelete = eventsToDelete.flatMap(event => event.images);
+    await deleteImage(imagesToDelete);
     await Event.Event.deleteMany({ start: { $lt: oneWeekAgo } });
 
     const events = await Event.Event.find(); 
@@ -25,7 +28,11 @@ const getAllEvent = async (user) => {
             type: "Мероприятие",
         }));
 }
-
+const deleteImage = async (imageIds) => {
+    await Promise.all(imageIds.map(images => {
+        if(images != null && images != "") return Image.deleteImage("imgEvent", images); 
+    }));
+}
 
 
 module.exports = {getAllEvent};
