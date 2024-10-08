@@ -58,8 +58,6 @@ const ticketsValidator = [
 const saveTicketValidator = 
 [
     body('id').notEmpty().withMessage('id не должен быть пустым.'),
-    body('comment').optional().isLength({min: 15, max: 2000}).withMessage("Диапозон comment должен быть в приделе от 15 до 2000 символов"),
-
 ];
 
 const createTicketValidator = [
