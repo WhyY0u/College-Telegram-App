@@ -131,9 +131,9 @@ function NewsListUser() {
                     </div>
                     <div className={`${styles.img__row__row__image__modal}`} onClick={(e) => handleImageClick(e)} >
                     <img
-                        className={`${styles.img__row__row__image} ${image.src === homelander && image.id === 3 ? styles.stretched : ''}`}
-                        src={homelander}
-                        onClick={() => handleImageOpen(homelander,3, imgRefs.current.homelander)}
+                        className={`${styles.img__row__row__image} ${image.src === schedule && image.id === 3 ? styles.stretched : ''}`}
+                        src={schedule}
+                        onClick={() => handleImageOpen(schedule,3, imgRefs.current.homelander)}
                         ref={el => imgRefs.current.homelander = el}
                         alt=""
                     />

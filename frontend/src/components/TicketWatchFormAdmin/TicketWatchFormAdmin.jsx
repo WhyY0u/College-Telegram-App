@@ -22,6 +22,11 @@ function TicketWatchFormAdmin() {
     const handleSelect = (option) => {
         setSelected(option)
     }
+
+    useEffect(() => {
+        console.log(selected);
+    }, [selected]);
+    
     
     const handleTextareaChange = (event) => {
         setTextArea(event.target.value)
@@ -101,19 +106,31 @@ function TicketWatchFormAdmin() {
     }, [id]);
 
 
-    const handleSave = () => {
-        axios.put(`http://localhost:3000/confidant/saveticket`, {
-            id: id,
-            comment: textArea,
-            status: selected,
-        }, {
-            headers: { 
-                'Content-Type': 'application/json', 
-                'authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-        })
-
-        navigate('/main-page-admin')
+    const handleSave = async () => {
+        try {
+            await axios.put(`http://localhost:3000/confidant/saveticket`, {
+                id: id,
+                comment: textArea,
+                status: selected || data?.status,
+            }, {
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            });
+            
+            const response = await axios.get(`http://localhost:3000/confidant/ticket/${id}`, {
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            });
+            setData(response?.data);
+    
+            navigate('/main-page-admin');
+        } catch (error) {
+            console.error(error);
+        }
     }
 
   return (
@@ -122,11 +139,11 @@ function TicketWatchFormAdmin() {
         <div className={`${styles.ticket__watch__form__admin__fullname__block} ${styles.fullname__block}`}>
             <div className={`${styles.fullname__block__surname__block} ${styles.surname__block}`}>
                 <h6 className={styles.surname__block__header}>Фамилия</h6>
-                <p className={styles.surname__block__parg}>{truncateText(data?.name)}</p>
+                <p className={styles.surname__block__parg}>{truncateText(data?.surname)}</p>
             </div>
             <div className={`${styles.fullname__block__name__block} ${styles.name__block}`}>
                 <h6 className={styles.name__block__header}>Имя</h6>
-                <p className={styles.name__block__parg}>{truncateText(data?.surname)}</p>
+                <p className={styles.name__block__parg}>{truncateText(data?.name)}</p>
             </div>
             <div className={`${styles.fullname__block__patronymic__block} ${styles.patronymic__block}`}>
                 <h6 className={styles.patronymic__block__header}>Отчество</h6>
@@ -150,7 +167,7 @@ function TicketWatchFormAdmin() {
                 <p 
                     className={styles.status__block__parg}
                     style={STATUS.rejected ? {color: 'rgba(235, 4, 4, 0.69)'} : ''}
-                >{data?.status}</p>
+                >{ data?.status === 'Отправлено' ? 'Ожидание' : data?.status}</p>
             </div>
         </div>
 
@@ -227,7 +244,7 @@ function TicketWatchFormAdmin() {
                                         ? styles.dropdown__options__item__yellow
                                         : styles.dropdown__options__item
                                     } 
-                                    onClick={() => handleSelect('Ожидание')}
+                                    onClick={() => handleSelect('Отправлено')}
                                 >
                                     Ожидание
                                 </li>

@@ -4,6 +4,7 @@ import HeaderWithLine from '../../components/HeaderWithLine/HeaderWithLine'
 import BouncingBalls from '../../components/BouncingBalls/BouncingBalls'
 import SearchAndSortAdmin from '../../components/SearchAndSortAdmin/SearchAndSortAdmin'
 import TicketsListAdmin from '../../components/TicketsListAdmin/TicketsListAdmin'
+import Navigation from '../../components/Navigation/Navigation'
 
 function MainPageAdmin() {
 
@@ -29,6 +30,7 @@ function MainPageAdmin() {
           searchQuery={searchQuery} 
           sortType={sortType}
         />
+        <Navigation />
         <BouncingBalls />
     </div>
   )
