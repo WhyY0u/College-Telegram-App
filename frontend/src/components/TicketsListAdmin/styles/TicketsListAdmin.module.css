@@ -37,15 +37,17 @@
 
 
 .item__name__block__title {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
+    font-weight: 600;
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
 }
  
 .item__name__block__title__name {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
+    font-weight: 300;
     font-size: 11px;
-    color: rgba(89, 85, 85, 0.53);
+    color: rgba(155, 150, 150, 0.53);
 }
 
 .item__stick__element {
@@ -65,21 +67,22 @@
 
 
 .item__type__block__title {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
+    font-weight: 600;
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
 }
 
 .item__type__block__title__name__complaint {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
-    color: rgba(255, 0, 0, 0.43);
+    color: rgba(255, 0, 0, 0.70);
 }
 
 .item__type__block__title__name__offer {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
-    color: rgba(0, 141, 255, 0.43);
+    color: rgba(0, 141, 255, 0.70);
 }
 
 
@@ -92,31 +95,32 @@
 
 .item__status__block__title {
     text-align: center;
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
+    font-weight: 600;
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
 }
 
 .item__status__block__title__name__rejected {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
     color: rgba(235, 4, 4, 0.69);
 }
 
 .item__status__block__title__name__expectation {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
     color: rgba(234, 237, 43, 0.69);
 }
 
 .item__status__block__title__name__inProgress {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
     color: rgba(4, 131, 235, 0.69);
 }
 
 .item__status__block__title__name__done {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
     color: rgba(4, 235, 36, 0.69);
 }
@@ -130,41 +134,7 @@
 
 
 
-.ticket__list__admin__pagination {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
 
-.pagination__simple {
-    font-family: 'Inter';
-    font-size: 10px;
-    font-weight: 600;
-    background: rgba(0, 0, 0, 0.17);
-    border-radius: 5px;
-    color: rgba(215, 215, 215, 0.72);
-    padding: 5px 10px;
-}
-
-.pagination__active {
-    font-size: 12px;
-    font-family: 'Inter';
-    font-weight: 600;
-    background: rgba(215, 215, 215, 0.72);
-    border-radius: 5px;
-    color: rgba(0, 0, 0);
-    padding: 5px 10px;
-}
-
-.pagination__arrow {
-    font-size: 10px;
-    font-family: 'Inter';
-    font-weight: 600;
-    background: rgba(0, 0, 0, 0.17);
-    border-radius: 5px;
-    color: rgba(215, 215, 215, 0.72);
-    padding: 5px
-}
 
 @media(max-width: 340px) {
     .item__name__block__title {
@@ -194,8 +164,3 @@
 }
 
 
-@media (max-width: 320px) {
-    .pagination__arrow {
-        padding: 0px
-    }
-}

@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './styles/NotFoundTicket.module.css'
-
 function NotFoundTicket() {
   return (
     <div className={styles.not__found__tickets}>

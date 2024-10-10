@@ -63,6 +63,11 @@ function TicketsListUser() {
 
     const visiblePages = getVisiblePages();
 
+    const truncateText = (text) => {
+        return text?.length > 12 ? text.slice(0, 12) + '...' : text
+    }
+
+
     return (
         <div className={styles.ticket__list__user}>
             <div className={`${styles.ticket__list__user__container} _container`}>
@@ -72,7 +77,7 @@ function TicketsListUser() {
                             <div className={`${styles.ticket__list__user__item} ${styles.item}`}>
                                 <div className={styles.item__name__block}>
                                     <h6 className={styles.item__name__block__title}>Название</h6>
-                                    <p className={styles.item__name__block__title__name}>{ticket?.heading}</p>
+                                    <p className={styles.item__name__block__title__name}>{truncateText(ticket?.heading)}</p>
                                 </div>
                                 <div className={styles.item__stick__element}></div>
                                 <div className={styles.item__type__block}>
@@ -95,7 +100,6 @@ function TicketsListUser() {
                     ))}
                 </div>
                 {totalPages != 0 ? <TicketNavigate handlePageChange={handlePageChange} currentPage={currentPage} visiblePages={visiblePages} totalPages={totalPages}/>: <NotFoundTicket/>}
-                
             </div>
         </div>
     );

@@ -43,10 +43,10 @@ function TicketWatchFormAdmin() {
 
 
     const STATUS = Object.freeze({
-        rejected: 'отказано',
-        done: 'выполнено',
-        inProgress: 'выполняется',
-        sent: 'отправлено'
+        rejected: 'Отказано',
+        done: 'Выполнено',
+        inProgress: 'Выполняется',
+        sent: 'Отправлено'
     })
 
     const TYPES = Object.freeze({
@@ -56,6 +56,10 @@ function TicketWatchFormAdmin() {
 
     const truncateText = (text) => {
         return text?.length > 8 ? text.slice(0, 8) + '...' : text;
+    }
+
+    const truncateTextFamilyName = (text) => {
+        return text?.length > 1 ? text.slice(0, 1) + '.' : text;
     }
 
     const isTextAreaEmpty = () => {
@@ -111,7 +115,7 @@ function TicketWatchFormAdmin() {
             await axios.put(`http://localhost:3000/confidant/saveticket`, {
                 id: id,
                 comment: textArea,
-                status: selected || data?.status,
+                status: selected === 'Ожидание' ? 'Отправлено' : selected || data?.status,
             }, {
                 headers: { 
                     'Content-Type': 'application/json', 
@@ -158,15 +162,26 @@ function TicketWatchFormAdmin() {
             <div className={`${styles.headers__block__type__block} ${styles.type__block}`}>
                 <h6 className={styles.type__block__header}>Тип</h6>
                 <p 
-                    className={styles.type__block__parg}
-                    style={TYPES.complaint ? {color: 'rgba(255, 0, 0, 0.43)'} : ''}
+                    className={TYPES.complaint === data?.type 
+                        ? styles.type__block__parg__red
+                        : TYPES.offer === data?.type 
+                        ? styles.type__block__parg__blue
+                        : ''}
                 >{data?.type}</p>
             </div>
             <div className={`${styles.headers__block__status__block} ${styles.status__block}`}>
                 <h6 className={styles.status__block__header}>Статус</h6>
                 <p 
-                    className={styles.status__block__parg}
-                    style={STATUS.rejected ? {color: 'rgba(235, 4, 4, 0.69)'} : ''}
+                    className={STATUS.rejected === data?.status 
+                            ? styles.status__block__parg__rejected
+                            : STATUS.inProgress === data?.status 
+                            ? styles.status__block__parg__inProgress
+                            : STATUS.sent === data?.status
+                            ? styles.status__block__parg__expectation
+                            : STATUS.done === data?.status 
+                            ? styles.status__block__parg__done 
+                            : ''
+                    }
                 >{ data?.status === 'Отправлено' ? 'Ожидание' : data?.status}</p>
             </div>
         </div>
@@ -244,7 +259,7 @@ function TicketWatchFormAdmin() {
                                         ? styles.dropdown__options__item__yellow
                                         : styles.dropdown__options__item
                                     } 
-                                    onClick={() => handleSelect('Отправлено')}
+                                    onClick={() => handleSelect('Ожидание')}
                                 >
                                     Ожидание
                                 </li>
@@ -261,7 +276,7 @@ function TicketWatchFormAdmin() {
                         className={styles.text__area__block__block__text}
                     >
                         <span className={`${isTextAreaClicked ? styles.text__area__block__block__text__left__span : styles.text__area__block__block__text__span}`}>Комментарий</span></div>      
-                    <div className={`${isTextAreaClicked ? styles.text__area__block__block__text__family__name : styles.text__area__block__block__text__family__name__hidden }`}>А.С Пушкин</div>
+                    <div className={`${isTextAreaClicked ? styles.text__area__block__block__text__family__name : styles.text__area__block__block__text__family__name__hidden }`}>{truncateTextFamilyName(data?.moderator_name)}{truncateTextFamilyName(data?.moderator_patronymic)} {truncateText(data?.moderator_surname)}</div>
                 </div>
                 <textarea 
                         name="" 
