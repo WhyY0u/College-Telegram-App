@@ -41,6 +41,9 @@ const getTicketByIDHandle = async (req, res) => {
         return res.status(400).send("Тикет не найден");
     }
     const user = await UserModelUtils.findByID(ticket.creatorid);
+    if(!user) {
+        return res.status(400).send("Ошибка пользвателя");
+    }
 
     const ticketReq = {
         name: user.name,
