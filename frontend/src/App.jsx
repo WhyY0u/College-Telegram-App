@@ -33,7 +33,7 @@ function App() {
   } else {
     setAuth(false); 
   }
- },[token, navigate, isAuth]);
+ },[]);
   return (
     <div className="wrapper">
       <Routes>
