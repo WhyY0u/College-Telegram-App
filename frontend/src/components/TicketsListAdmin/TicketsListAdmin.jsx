@@ -57,9 +57,9 @@ function TicketsListAdmin({ searchQuery, sortType }) {
 
     const statusOrder = {
         Выполняется: 1,
-        Отказано: 2,
-        Выполнено: 3,
-        Ожидание: 4,
+        Ожидание: 2,
+        Отказано: 3,
+        Выполнено: 4,
     };
 
     const typeOrder = {
