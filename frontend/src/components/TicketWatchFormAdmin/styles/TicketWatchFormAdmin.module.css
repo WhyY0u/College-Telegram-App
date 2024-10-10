@@ -36,7 +36,7 @@
 .title__block__header,
 .type__block__header,
 .status__block__header {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     color: rgba(215, 215, 215, 0.72);
     font-size: 14px;
 }
@@ -44,11 +44,45 @@
 .surname__block__parg,
 .name__block__parg,
 .patronymic__block__parg,
-.title__block__parg,
-.type__block__parg,
-.status__block__parg {
-    font-family: 'Pixeloid Sans Regular';
-    color: rgba(139, 136, 136, 0.53);
+.title__block__parg{
+    font-family: 'Inter';
+    color: rgba(155, 150, 150, 0.53);
+    font-size: 11px;
+}
+
+.status__block__parg__rejected {
+    font-family: 'Inter';
+    color: rgba(235, 4, 4, 0.69);
+    font-size: 11px;
+}
+
+.status__block__parg__expectation {
+    font-family: 'Inter';
+    color: rgba(234, 237, 43, 0.69);
+    font-size: 11px;
+}
+
+.status__block__parg__inProgress {
+    font-family: 'Inter';
+    color: rgba(43, 103, 237, 0.69);
+    font-size: 11px;
+}
+
+.status__block__parg__done {
+    font-family: 'Inter';
+    color: rgba(4, 235, 36, 0.69);
+    font-size: 11px;
+}
+
+.type__block__parg__red {
+    font-family: 'Inter';
+    color: rgba(255, 0, 0, 0.70);
+    font-size: 11px;
+}
+
+.type__block__parg__blue {
+    font-family: 'Inter';
+    color: rgba(0, 141, 255, 0.70);
     font-size: 11px;
 }
 
@@ -72,13 +106,14 @@
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px 0px;
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
+    font-weight: 600;
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
 }
 
 .desc__block__description {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
     font-size: 11px;
     font-weight: 400;
     color: rgba(200, 200, 200, 0.53);
@@ -107,8 +142,9 @@
     align-items: center;
     position: absolute;
     top: -5px;
-    left: 1px;
-    font-family: 'Pixeloid Sans Regular';
+    left: 0px;
+    font-family: 'Inter';
+    font-weight: 600;
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
     background-color: rgba(0, 0, 0, 0.8);
@@ -133,8 +169,9 @@
 }
 
 .status__dropdown__btn__text {
-    font-family: 'Pixeloid Sans Regular';
-    font-size: 12px;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 13px;
     color: rgba(215, 215, 215, 0.72);
     display: flex;
     align-items: center;
@@ -159,31 +196,31 @@
 }
 
 .dropdown__options__item__red {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 12px;
     color: rgba(173, 11, 11, 0.69);
 }
 
 .dropdown__options__item__blue {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 12px;
     color: rgba(43, 103, 237, 0.69);
 }
 
 .dropdown__options__item__green {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 12px;
     color: rgba(4, 235, 36, 0.69);
 }
 
 .dropdown__options__item__yellow {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 12px;
     color: rgba(234, 237, 43, 0.69);
 }
 
 .dropdown__options__item {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 10px;
     color: rgba(160, 163, 163, 0.59);
 }
@@ -195,16 +232,20 @@
     position: relative;
     background: rgba(0, 0, 0, 0.17);
     border-radius: 10px;
+    overflow: hidden;
 }
 
+
 .text__area__block__block__text {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
+    font-weight: 600;
     width: 100%;
     position: absolute;
     display: flex;
     justify-content: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px 0px;
+    color: rgba(215, 215, 215, 0.72);
 }
 
 .text__area__block__block__text__span {
@@ -221,7 +262,7 @@
     position: absolute;
     right: -300px;
     transition: right 0.3s ease;
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     color: rgba(179, 175, 175, 0.49);
     font-size: 12px;
     padding-top: 10px;
@@ -232,7 +273,7 @@
     position: absolute;
     right: 10px;
     transition: right 0.3s ease;
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     color: rgba(179, 175, 175, 0.49);
     font-size: 12px;
     padding-top: 10px;
@@ -246,7 +287,7 @@
     min-height: 140px;
     padding: 50px 10px 10px 10px;
     border-radius: 10px;
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
     overflow: hidden;
     resize: none;
@@ -263,7 +304,7 @@
 }
 
 .text__area__block__block__placeholder {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
     color: rgba(200, 200, 200, 0.29);
     padding-top: 20px;
@@ -274,7 +315,7 @@
 }
 
 .text__area__block__block__placeholder__down {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
     color: rgba(200, 200, 200, 0.29);
     padding-top: 20px;
@@ -292,8 +333,9 @@
 }
 
 .btn__block__back__btn {
-    font-family: 'Pixeloid Sans Regular';
-    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 17px;
     color: rgb(179, 175, 175);
     background-color: rgb(81, 5, 5);
     border-radius: 10px;
@@ -301,8 +343,9 @@
 }
 
 .btn__block__save__btn {
-    font-family: 'Pixeloid Sans Regular';
-    font-size: 16px;
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 17px;
     color: rgb(179, 175, 175);
     background-color: rgb(21, 5, 81);
     border-radius: 10px;

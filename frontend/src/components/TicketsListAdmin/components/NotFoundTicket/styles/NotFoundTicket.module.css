@@ -10,13 +10,13 @@
     white-space: nowrap;
     color: rgba(255, 255, 255, 0.5);
 }
-.mb_hiden_tickets_text {
+.not__found__tickets__mb__hidden {
     position: absolute;
     font-family: 'Inter';
     font-weight: 300;
     font-size: 16px;
     text-align: center;
-    top: 53vh;
+    top: 55vh;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;

@@ -32,7 +32,7 @@
 
 .title__block__parg {
     font-family: 'Inter';
-    color: rgba(89, 85, 85, 0.53);
+    color: rgba(155, 150, 150, 0.53);
     font-size: 11px;
     font-weight: 400;
 }
@@ -174,7 +174,7 @@
 }
 
 .comment__block__response {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter';
     font-size: 11px;
     color: rgba(200, 200, 200, 0.53);
     padding: 10px;

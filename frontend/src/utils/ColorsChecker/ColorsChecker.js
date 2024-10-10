@@ -6,17 +6,17 @@ const TYPES = Object.freeze({
 })
 
 const STATUS = Object.freeze({
-    rejected: 'отказано',
-    done: 'выполнено',
-    inProgress: 'выполняется',
-    sent: 'отправлено'
+    rejected: 'Отказано',
+    done: 'Выполнено',
+    inProgress: 'Выполняется',
+    sent: 'Отправлено'
 })
 
 export const typeColorChecker = (option) => {
     if (option === TYPES.complaint) {
-        return { color: 'rgba(255, 0, 0, 0.43)' };
+        return { color: 'rgba(255, 0, 0, 0.70)' };
     } 
-    return { color: 'rgba(0, 141, 255, 0.43)' };
+    return { color: 'rgba(0, 141, 255, 0.70)' };
 }
 
 export const statusColorChecker = (option) => {
@@ -25,7 +25,7 @@ export const statusColorChecker = (option) => {
     } else if (option === STATUS.done) {
         return { color: 'rgba(4, 235, 36, 0.69)' }
     } else if (option === STATUS.inProgress ) {
-        return { color: 'rgba(4, 131, 235, 0.69)' }
+        return { color: 'rgba(43, 103, 237, 0.69)' }
     }
     return { color: 'rgba(234, 237, 43, 0.69)' }
 }

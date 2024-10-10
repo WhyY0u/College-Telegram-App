@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styles from './styles/TicketsListAdmin.module.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import TicketNavigate from './components/TicketNavigate/TicketNavigate';
+import NotFoundTicket from './components/NotFoundTicket/NotFoundTicket';
 
 function TicketsListAdmin({ searchQuery, sortType }) {
     const [data, setData] = useState(null);
@@ -35,7 +37,8 @@ function TicketsListAdmin({ searchQuery, sortType }) {
                 ...ticket,
                 status: ticket.status === 'Отправлено' && ticket.status !== STATUS.expectation ? STATUS.expectation : ticket.status,
             }));
-            console.log('Updated tickets:', response?.data?.tickets);
+            console.log('tickets:', response?.data?.tickets);
+            console.log('Updated tickets:', ticketsWithUpdatedStatus);
 
             setData(ticketsWithUpdatedStatus);
             setTotalPages(response?.data?.totalPages);
@@ -54,9 +57,9 @@ function TicketsListAdmin({ searchQuery, sortType }) {
 
     const statusOrder = {
         Выполняется: 1,
-        Ожидание: 2,
-        Отказано: 3,
-        Выполнено: 4,
+        Отказано: 2,
+        Выполнено: 3,
+        Ожидание: 4,
     };
 
     const typeOrder = {
@@ -105,6 +108,10 @@ function TicketsListAdmin({ searchQuery, sortType }) {
 
     const visiblePages = getVisiblePages();
 
+    const truncateText = (text) => {
+        return text?.length > 12 ? text.slice(0, 12) + '...' : text
+    }
+
     return (
         <div className={styles.ticket__list__admin}>
             <div className={`${styles.ticket__list__admin__container}`}>
@@ -114,7 +121,7 @@ function TicketsListAdmin({ searchQuery, sortType }) {
                             <div className={`${styles.ticket__list__admin__item} ${styles.item}`}>
                                 <div className={styles.item__name__block}>
                                     <h6 className={styles.item__name__block__title}>Название</h6>
-                                    <p className={styles.item__name__block__title__name}>{ticket.heading}</p>
+                                    <p className={styles.item__name__block__title__name}>{truncateText(ticket?.heading)}</p>
                                 </div>
                                 <div className={styles.item__stick__element}></div>
                                 <div className={styles.item__type__block}>
@@ -139,32 +146,7 @@ function TicketsListAdmin({ searchQuery, sortType }) {
                         </Link>
                     ))}
                 </div>
-                <div className={`${styles.ticket__list__admin__pagination} ${styles.pagination}`}>
-                    <button className={styles.pagination__arrow} onClick={() => handlePageChange(1)} disabled={currentPage === 1}>
-                        &lt;&lt;
-                    </button>
-                    <button className={styles.pagination__arrow} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-                        &lt;
-                    </button>
-
-                    {visiblePages.map((number, index) => (
-                        <button 
-                            key={index} 
-                            onClick={() => handlePageChange(number)} 
-                            className={number === currentPage ? styles.pagination__active : styles.pagination__simple}
-                            disabled={number === '...'}
-                        >
-                            {number}
-                        </button>
-                    ))}
-
-                    <button className={styles.pagination__arrow} onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-                        &gt;
-                    </button>
-                    <button className={styles.pagination__arrow} onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages}>
-                        &gt;&gt;
-                    </button>
-                </div>
+                {totalPages != 0 ? <TicketNavigate handlePageChange={handlePageChange} currentPage={currentPage} visiblePages={visiblePages} totalPages={totalPages}/>: <NotFoundTicket/>}
             </div>
         </div>
     );

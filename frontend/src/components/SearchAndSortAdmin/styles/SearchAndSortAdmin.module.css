@@ -11,7 +11,7 @@
 }
 
 .search__container__search {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     background-color: rgba(0, 0, 0, 0.17);
     border: 1px solid rgba(255, 255, 255, 0.03);
     border-radius: 10px;
@@ -21,7 +21,7 @@
 }
 
 .search__container__search__stretched {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     background-color: rgba(0, 0, 0, 0.17);
     border: 1px solid rgb(68, 9, 199);
     box-shadow: 0 0 10px rgba(68, 9, 199, 0.5);
@@ -33,7 +33,7 @@
 }
 
 .search__container__placeholder {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     color: rgba(215, 215, 215, 0.72);
     position: absolute;
     top: 10px;
@@ -45,12 +45,12 @@
 
 
 .search__container__search__stretched + .search__container__placeholder {
-    top: 15px;
-    left: 15px;
+    top: 16px;
+    left: 14px;
 }
 
 .search__container__placeholder__top {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     color: rgba(215, 215, 215, 0.72);
     position: absolute;
     top: -20px;
@@ -75,9 +75,10 @@
 
 .dropdown__btn__text {
     text-align: center;
-    font-family: Pixeloid Sans;
+    font-family: 'Inter';
+    font-weight: 600;
     font-size: 14px;    
-    color: rgba(215, 215, 215, 0.72);
+    color: rgba(215, 215, 215, 0.60);
 }
 
 .dropdown__options {
@@ -88,13 +89,13 @@
 }
 
 .dropdown__options__item {
-    font-family: Pixeloid Sans;
+    font-family: 'Inter';
     font-size: 11px;
-    color: rgba(215, 215, 215, 0.29);
+    color: rgba(215, 215, 215, 0.60);
 }
 
 .dropdown__options__item__red {
-    font-family: Pixeloid Sans;
+    font-family: 'Inter';
     font-size: 13px;
-    color: rgba(173, 11, 11, 0.69);
+    color: rgba(173, 11, 11, 0.80);
 }
