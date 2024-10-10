@@ -3,18 +3,36 @@ import styles from './styles/NewsListUser.module.css';
 import grey_heart from '../../../images/grey_heart.png';
 import red_heart from '../../../images/red_heart.png';
 import schedule from '../../../images/artworks-yHzRp6XJGtqtLAM2-0z0kIQ-t500x500.jpg';
+import ithub from '../../../images/ithub.jpg'
 import schedule_stretched from '../../../images/schedule_stretched.png';
 import homelander from '../../../images/homelander.png';
+import arrow_left from '../../../images/NewsListUser/Event/arrow_left.svg';
+import download_icon from '../../../images/NewsListUser/Event/download_icon.svg';
 import Event from './components/Event/Event';
 
 function NewsListUser() {
+  const [images, setImages] = useState([schedule, homelander, ithub, schedule]);
+  const [current, setCurrent] = useState(-1);
 
+  const handleImageClicked = (index) => {
+    setCurrent(index)
+  }
+
+  const handleImageClose = () => {
+    setCurrent(-1)
+  }
+
+  const areImagesMoreThanLimit = () => {
+    return images.length > 3 ? images.slice(0, 3) : images;
+  }
+
+  const displayedImages = areImagesMoreThanLimit();
     
 
   return (
     <div className={styles.news__list__user}>
       <div className={`${styles.news__list__user__container} _container`}>
-    <Event/>
+        <Event/>
 
         <div className={`${styles.news__list__user__new__block} ${styles.new__block}`}>
           <div className={styles.new__block__text}>Лента</div>
@@ -58,35 +76,48 @@ function NewsListUser() {
                 </div>
                 <div className={`${styles.item__block__img__row} ${styles.img__row}`}>
                   <div className={styles.img__row__row}>
-                    <div className={`${styles.img__row__row__image__modal}`} >
-                        <img
-                        className={`${styles.img__row__row__image}`}
-                        src={schedule}
-                        alt=""
-                        />
-                    </div>
-                    <div className={`${styles.img__row__row__image__modal}`} >
-                        <img
-                        className={`${styles.img__row__row__image} `}
-                        src={schedule}
-                        alt=""
-                        />
-                    </div>
-                    <div className={`${styles.img__row__row__image__modal}`} >
-                    <img
-                        className={`${styles.img__row__row__image} `}
-                        src={schedule}
-                        alt=""
-                    />
-                    </div>
+                    {displayedImages?.map((image, index) => (
+                      <img
+                        onClick={() => handleImageClicked(index)}
+                          key={index}
+                          className={`${styles.img__row__row__image} `}
+                          src={image}
+                          alt=""
+                      />
+                    ))}
                   </div>
-                  <div className={styles.img__row__likes__digit}>+13</div>
+                  {displayedImages.length < images.length && (
+                    <div onClick={() => setCurrent(0)} className={styles.img__row__likes__digit}>+{images.length - displayedImages.length}</div>
+                  )}
                 </div>
               </div>
             </div>
 
           </div>
         </div>
+
+        {current !== -1 && 
+          <div className={`${styles.news__list__user__image__macro} ${styles.image__macro}`}>
+            <div className={styles.image__macro__container}>
+              <div className={`${styles.image__macro__btn__block} ${styles.btn__block}`}>
+                <img src={arrow_left} alt='arrow left' onClick={() => handleImageClose()} className={styles.btn__block__close__btn} />
+                <a className={styles.btn__block__download__btn} href={images[current]} download>
+                  <img className={styles.btn__block__download__btn__img} src={download_icon} alt="" />
+                </a>
+              </div>
+              <div className={styles.image__macro__wrapper}>
+                <img className={styles.image__macro__img} src={images[current]} alt="nt bb" />
+              </div>
+              <div className={styles.image__macro__wrapper__container}>
+                <div className={styles.image__macro__images}>
+                  {images?.map((image, index) => (
+                      <img onClick={() => handleImageClicked(index)} key={index} className={`${styles.image__micro__img} ${styles.image__micro__img__slider}`} src={image} alt={index} />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     </div>
   );

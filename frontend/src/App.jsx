@@ -13,6 +13,7 @@ import axios from 'axios';
 import ProtectedByRole from './protected/ProtectedByRole';
 import NewsPageUser from './pages/NewsPageUser/NewsPageUser';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import NewsCreationPage from './pages/NewsCreationPage/NewsCreationPage';
 
 function App() {
   const token = localStorage.getItem('token');
@@ -50,15 +51,16 @@ function App() {
           <Route path="main-page-user" element={<MainPageUser />} />
           <Route path="ticket-creation-page-user" element={<TicketCreationPageUser />} />
           <Route path="ticket-watch-page-user/:id" element={<TicketWatchPageUser />} />
-          <Route path="news-page-user" element={<NewsPageUser />} />
-          <Route path="profile-page" element={<ProfilePage />} />
       </Route>
 
       <Route element={<ProtectedByRole isRole={'Confidant'}/>}>
           <Route path="ticket-watch-page-admin/:id" element={<TicketWatchPageAdmin />} />
           <Route path="main-page-admin" element={<MainPageAdmin />} />
+          <Route path="news-creation-page" element={<NewsCreationPage />} />
       </Route>
-        
+
+      <Route path="news-page-user" element={<NewsPageUser />} />
+      <Route path="profile-page" element={<ProfilePage />} />
     </Route>
 
   </Routes>

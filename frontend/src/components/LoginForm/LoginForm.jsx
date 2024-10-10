@@ -89,7 +89,7 @@ const handleSignIn = (event) => {
               </div>
             </div>
           </div>
-          <a href="" className={styles.form__inputs__forgot__password__btn}>я забыл пароль</a>
+          {/* <a href="" className={styles.form__inputs__forgot__password__btn}>я забыл пароль</a> */}
           <div className={styles.form__signin__btn__block}>
             <button 
               type='submit'

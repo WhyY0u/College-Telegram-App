@@ -155,7 +155,11 @@ function ProfileForm() {
                     </div>
                     <div className={styles.name__block__about}>
                         <div className={styles.name__block__about__family__name}>{decodedToken?.surname} {decodedToken?.name} {decodedToken?.patronymic}</div>
-                        <div className={styles.name__block__about__status}>{decodedToken?.role === 'Student' ? 'Студент' : decodedToken?.role === 'Confidant' ? 'Доверенное лицо' : 'Неизвестная роль'}</div>
+                        <div className={`${decodedToken?.role === 'Student' 
+                            ? styles.name__block__about__status__red 
+                            : decodedToken?.role === 'Confidant'
+                            ? styles.name__block__about__status__blue
+                            : styles.name__block__about__status}`}>{decodedToken?.role === 'Student' ? 'Студент' : decodedToken?.role === 'Confidant' ? 'Доверенное лицо' : 'Неизвестная роль'}</div>
                     </div>
                 </div>
 

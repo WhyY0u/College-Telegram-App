@@ -9,6 +9,7 @@ import schedule from '../../../images/schedule.svg'
 import user from '../../../images/user.svg'
 
 function Navigation({add, to}) {
+
   return (
       <div className={styles.navigation}>
         <div className={styles.navigation__container + " " + (add ? styles.add_enabled_padding : styles.add_disable_padding)}>
@@ -30,10 +31,13 @@ function Navigation({add, to}) {
               <img className={styles.navigation__news__block__img} src={list} alt="" />
             </div>
           </Link>
-          {add ?    <Link to={to}>
+          {add ?    
+          <Link to={to}>
             <img className={styles.navigation__img} src={plus_icon} alt="" />
           </Link> : ""}
-       
+
+          
+            
           <div className={`${styles.navigation__schedule__block} ${styles.schedule__block}`}>
             <div className={styles.schedule__block__text__block}>
               <p className={styles.schedule__block__text__block__parg}>Schedule</p>
