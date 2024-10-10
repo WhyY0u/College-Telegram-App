@@ -112,7 +112,7 @@
     border: 1px solid rgba(255, 255, 255, 0.03);
     color: rgba(200, 200, 200, 0.53);
     font-family: Inter;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
     min-height: 140px;
     padding: 50px 10px 10px 10px;
@@ -132,8 +132,8 @@
 }
 
 .text__area__block__block__placeholder {
-    font-family: 'Pixeloid Sans Regular';
-    font-size: 11px;
+    font-family: 'Inter';
+    font-size: 13px;
     color: rgba(200, 200, 200, 0.29);
     padding-top: 20px;
     z-index: -1;
@@ -143,7 +143,7 @@
 }
 
 .text__area__block__block__placeholder__down {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
     color: rgba(200, 200, 200, 0.29);
     padding-top: 20px;

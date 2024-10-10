@@ -8,10 +8,10 @@ import list from '../../../images/list.svg'
 import schedule from '../../../images/schedule.svg'
 import user from '../../../images/user.svg'
 
-function Navigation() {
+function Navigation({add, to}) {
   return (
       <div className={styles.navigation}>
-        <div className={styles.navigation__container}>
+        <div className={styles.navigation__container + " " + (add ? styles.add_enabled_padding : styles.add_disable_padding)}>
           <Link to={'/main-page-user'}>
             <div className={`${styles.navigation__tickets__block} ${styles.tickets__block}`}>
               <div className={styles.tickets__block__text__block}>
@@ -30,9 +30,10 @@ function Navigation() {
               <img className={styles.navigation__news__block__img} src={list} alt="" />
             </div>
           </Link>
-          <Link to={'/ticket-creation-page-user'}>
+          {add ?    <Link to={to}>
             <img className={styles.navigation__img} src={plus_icon} alt="" />
-          </Link>
+          </Link> : ""}
+       
           <div className={`${styles.navigation__schedule__block} ${styles.schedule__block}`}>
             <div className={styles.schedule__block__text__block}>
               <p className={styles.schedule__block__text__block__parg}>Schedule</p>

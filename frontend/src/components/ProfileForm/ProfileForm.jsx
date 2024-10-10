@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './styles/ProfileForm.module.css'
 import question_mark from '../../../images/question_mark.svg'
+import axios from 'axios'
 
 function ProfileForm() {
     const [textArea, setTextArea] = useState('')
@@ -9,7 +10,25 @@ function ProfileForm() {
     const [profileImage, setProfileImage] = useState(question_mark); // Состояние для изображения
     const [isTextAreaClicked, setIsTextAreaClicked] = useState(false)
     const fileInputRef = useRef(null)
+    const [data, setData] = useState(null);
     const navigate = useNavigate()
+
+
+    const SendInfo = async () => {
+        const response = await axios.get(`http://localhost:3000/profile/get`, {
+            headers: { 
+                'Content-Type': 'application/json', 
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+        });
+        setData(response?.data);
+        if(data?.description != null && data?.description != "") setTextArea(data?.description);
+        if(data?.image != null && data?.image != "") setProfileImage(data?.image);
+       
+    } 
+    useEffect(() => {
+        SendInfo();
+    },[]);
     
 
     const handleTextareaChange = (event) => {
@@ -50,14 +69,25 @@ function ProfileForm() {
 
 
     // Функция для обработки выбора изображения
-    const handleImageChange = (event) => {
+    const handleImageChange = async (event) => {
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onloadend = () => {
-                setProfileImage(reader.result); // Устанавливаем изображение
+            reader.onloadend = async () => {
+                setProfileImage(reader.result);
+
             };
-            reader.readAsDataURL(file); // Читаем изображение как Data URL
+            reader.readAsDataURL(file); 
+            const formData = new FormData();
+            if (profileImage) {
+                formData.append('image', reader.result); 
+            }
+            await axios.patch(`http://localhost:3000/profile/update`, formData, {
+                headers: { 
+                    'Content-Type': 'multipart/form-data',
+                    'authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            });
         }
     };
 
@@ -108,11 +138,13 @@ function ProfileForm() {
                             disabled={!isTextAreaClicked} 
                             onChange={handleTextareaChange}
                             className={styles.text__area__block__block__textarea}
+                            
                         ></textarea>
                         <div className={styles.text__area__block__block__placeholder__block}>
-                            <label className={`${isTextAreaClicked || !isTextAreaEmpty() ? styles.text__area__block__block__placeholder__down : styles.text__area__block__block__placeholder}`}>
+                            {isTextAreaEmpty() ?  <label className={`${isTextAreaClicked || !isTextAreaEmpty() ? styles.text__area__block__block__placeholder__down : styles.text__area__block__block__placeholder}`}>
                                 Напишите информацию о себе
-                            </label>
+                            </label> : ''}
+                           
                         </div>
                     </div> 
                 </div>

@@ -106,15 +106,15 @@ function TicketWatchFormUser() {
                 <div className={styles.image__block__text}><span>Картинка</span></div>
             </div>
         }
-
+        {data?.comment != null ? 
         <div className={`${styles.ticket__watch__form__user__comment__block} ${styles.comment__block}`}>
             <div className={styles.comment__block__header}>
                 <span className={styles.comment__block__header__title}>Комментарий к ответу</span>
                 <span className={styles.comment__block__header__author__name}>А.С.Пушкин</span>
             </div>
-            <p className={styles.comment__block__response}>Захотелась</p>
+            <p className={styles.comment__block__response}>{data?.comment}</p>
         </div>  
-
+        : ""}
         <div className={`${styles.ticket__watch__form__user__back__button__block} ${styles.back__button__block}`}>
             <Link 
                 className={styles.back__button__block__btn}

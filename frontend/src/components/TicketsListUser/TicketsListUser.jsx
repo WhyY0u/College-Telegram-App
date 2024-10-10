@@ -3,13 +3,14 @@ import axios from 'axios';
 import styles from './styles/TicketsListUser.module.css';
 import { Link } from 'react-router-dom';
 import { statusColorChecker, typeColorChecker } from '../../utils/ColorsChecker/ColorsChecker';
+import TicketNavigate from './components/TicketNavigate/TicketNavigate';
+import NotFoundTicket from './components/NotFoundTicket/NotFoundTicket';
 
 function TicketsListUser() {
     const [data, setData] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
     const limit = 5;
-
     const fetchData = async (page) => {
         try {
             const response = await axios.get(`http://localhost:3000/user/tickets?page=${page}&limit=${limit}`, {
@@ -27,7 +28,7 @@ function TicketsListUser() {
 
     useEffect(() => {
         fetchData(currentPage);
-    }, [currentPage]);
+        }, [currentPage]);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -93,32 +94,8 @@ function TicketsListUser() {
                         </Link>
                     ))}
                 </div>
-                <div className={`${styles.ticket__list__user__pagination} ${styles.pagination}`}>
-                    <button className={styles.pagination__arrow} onClick={() => handlePageChange(1)} disabled={currentPage === 1}>
-                        &lt;&lt;
-                    </button>
-                    <button className={styles.pagination__arrow} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-                        &lt;
-                    </button>
-
-                    {visiblePages.map((number, index) => (
-                        <button 
-                            key={index} 
-                            onClick={() => handlePageChange(number)} 
-                            className={number === currentPage ? styles.pagination__active : styles.pagination__simple}
-                            disabled={number === '...'}
-                        >
-                            {number}
-                        </button>
-                    ))}
-
-                    <button className={styles.pagination__arrow} onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-                        &gt;
-                    </button>
-                    <button className={styles.pagination__arrow} onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages}>
-                        &gt;&gt;
-                    </button>
-                </div>
+                {totalPages != 0 ? <TicketNavigate handlePageChange={handlePageChange} currentPage={currentPage} visiblePages={visiblePages} totalPages={totalPages}/>: <NotFoundTicket/>}
+                
             </div>
         </div>
     );

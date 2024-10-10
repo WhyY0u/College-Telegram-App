@@ -170,6 +170,7 @@ const handleRegister = (event) => {
                     <button
                         type='submit'
                         className={`${isNameEmpty() || isSurnameEmpty() || isInputEmpty() || isEmailEmpty() || isPasswordEmpty() || isPasswordConfEmpty() ? styles.form__signup__btn__black : styles.form__signup__btn}`}
+                        disabled={(isNameEmpty() || isSurnameEmpty() || isInputEmpty() || isEmailEmpty() || isPasswordEmpty() || isPasswordConfEmpty())}
                         onClick={handleRegister}
                     >Зарегистрироваться</button>
                 </div>

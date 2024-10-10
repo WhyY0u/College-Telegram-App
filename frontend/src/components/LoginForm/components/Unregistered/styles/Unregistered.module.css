@@ -21,21 +21,22 @@
 }
 
 .unregistered__text__block__question {
-    font-family: "Pixeloid Sans Regular";
+    font-family: "Inter";
     text-align: center;
     color: rgba(162, 161, 162, 0.61);
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .unregistered__text__block__parg {
-    font-family: "Pixeloid Sans Regular";
-    color: rgba(162, 161, 162, 0.41);
-    font-size: 12px;
+    font-family: "Inter";
+    color: rgba(150, 148, 150, 0.41);
+    font-size: 14px;
 }
 
 .unregistered__button__reg {
-    font-family: "Pixeloid Sans Regular";
-    font-size: 12px;
+    font-family: "Inter";
+    font-weight: 600;
+    font-size: 14px;
     color: rgb(179, 175, 175);
     background-color: rgb(28, 5, 81);
     padding: 15px;
