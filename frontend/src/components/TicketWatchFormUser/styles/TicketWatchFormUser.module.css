@@ -24,15 +24,17 @@
 }
 
 .title__block__header {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     color: rgba(215, 215, 215, 0.72);
     font-size: 14px;
+    font-weight: 600;
 }
 
 .title__block__parg {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     color: rgba(89, 85, 85, 0.53);
     font-size: 11px;
+    font-weight: 400;
 }
 
 
@@ -48,14 +50,16 @@
 }
 
 .type__block__header {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     color: rgba(215, 215, 215, 0.72);
     font-size: 14px;
+    font-weight: 600;
 }
 
 .type__block__parg {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
+    font-weight: 400;
 }
 
 
@@ -71,14 +75,16 @@
 }
 
 .status__block__header {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     color: rgba(215, 215, 215, 0.72);
     font-size: 14px;
+    font-weight: 600;
 }
 
 .status__block__parg {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
+    font-weight: 400;
 }
 
 .ticket__watch__form__user__desc__block {
@@ -93,9 +99,10 @@
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 10px 0px;
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
+    font-weight: 600;
 }
 
 .desc__block__description {
@@ -127,7 +134,7 @@
     align-items: center;
     position: absolute;
     top: -5px;
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
     background-color: rgba(0, 0, 0, 0.8);
@@ -135,6 +142,7 @@
     backdrop-filter: blur(11px);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    font-weight: 600;
 }
 
 
@@ -154,13 +162,13 @@
 }
 
 .comment__block__header__title {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
 }
 
 .comment__block__header__author__name {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 12px;
     color: rgba(179, 175, 175, 0.49);
 }
@@ -179,10 +187,12 @@
 }
 
 .back__button__block__btn {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 16px;
     color: rgb(179, 175, 175);
     background-color: rgb(81, 5, 5);
+    box-shadow: 0px 0px 10px rgb(81, 5, 5);
     padding: 20px 45px;
     border-radius: 10px;
+    font-weight: 600;
 }

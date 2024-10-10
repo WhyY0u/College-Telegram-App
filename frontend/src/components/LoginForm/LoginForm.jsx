@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import jwt from 'jsonwebtoken'
 import styles from './styles/LoginForm.module.css';
 import Unregistered from './components/Unregistered/Unregistered';
 import EyeIcon from '../EyeIcon/EyeIcon';
@@ -10,6 +11,7 @@ function LoginForm() {
   const [isClicked, setClicked] = useState(false);
   const [inputValue, setInputValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
+  const [isError, setError] = useState(false);
 
   const navigate = useNavigate()
 
@@ -46,12 +48,13 @@ const handleSignIn = (event) => {
     .then(response => {
       localStorage.setItem('token', response?.data)
       console.log(response?.data)
-      navigate('/main-page-user')
+      navigate('/');
     })
-    .catch(error => console.error(error))
+    .catch(setError(true))
 }
 
   return (
+    
     <div className={styles.login__form}>
       <div className={`${styles.login__form__container} _container`}>
         <form action="" className={`${styles.login__form__form} ${styles.form}`}>
@@ -90,7 +93,8 @@ const handleSignIn = (event) => {
           <div className={styles.form__signin__btn__block}>
             <button 
               type='submit'
-              onClick={handleSignIn} 
+              onClick={handleSignIn}
+              disabled={(isInputEmpty() || isPasswordEmpty())}
               className={`${isInputEmpty() || isPasswordEmpty() ? styles.form__signin__btn__black : styles.form__signin__btn}`}
             >Войти</button>      
           </div>    
@@ -98,6 +102,7 @@ const handleSignIn = (event) => {
         <Unregistered />
       </div>
     </div>
+    
   );
 }
 

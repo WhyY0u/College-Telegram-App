@@ -1,7 +1,16 @@
 import React from 'react'
 import styles from './styles/HeaderWithLine.module.css'
+import { useNavigate } from 'react-router-dom'
 
 function HeaderWithLine() {
+
+  const navigate = useNavigate()
+
+  const Logout = () => {
+    localStorage.removeItem('token')
+    navigate('/')
+  }
+
   return (
     <header className={styles.header__with__line}>
         <div className={`${styles.header__with__line__container} _container`}>

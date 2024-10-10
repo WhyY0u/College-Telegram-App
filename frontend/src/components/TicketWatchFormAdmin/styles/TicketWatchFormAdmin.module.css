@@ -83,6 +83,8 @@
     font-weight: 400;
     color: rgba(200, 200, 200, 0.53);
     padding: 10px;
+    word-wrap: break-word; /* для старых браузеров */
+    overflow-wrap: break-word;
 }
 
 .ticket__watch__form__admin__image__block {

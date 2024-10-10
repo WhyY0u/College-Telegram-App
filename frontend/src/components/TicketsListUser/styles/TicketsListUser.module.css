@@ -6,7 +6,13 @@
 .ticket__list__user__container {
     display: flex;
     flex-direction: column;
+}
+
+.ticket__list__user__items__container {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
+    min-height: 350px;
 }
 
 .ticket__list__user__item {
@@ -29,13 +35,15 @@
 
 
 .item__name__block__title {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
+    font-weight: 600;
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
 }
  
 .item__name__block__title__name {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
+    font-weight: 300;
     font-size: 11px;
     color: rgba(89, 85, 85, 0.53);
 }
@@ -57,13 +65,14 @@
 
 
 .item__type__block__title {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
+    font-weight: 600;
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
 }
 
 .item__type__block__title__name {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
 }
 
@@ -77,13 +86,14 @@
 
 .item__status__block__title {
     text-align: center;
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
+    font-weight: 600;
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
 }
 
 .item__status__block__title__name {
-    font-family: 'Pixeloid Sans Regular';
+    font-family: 'Inter';
     font-size: 11px;
 }
 
@@ -101,7 +111,7 @@
     }
 
     .item__name__block__title__name {
-        font-size: 9px;
+        font-size: 10px;
     }
 
 
@@ -110,7 +120,7 @@
     }
 
     .item__type__block__title__name {
-        font-size: 9px;
+        font-size: 10px;
     }
 
     .item__status__block__title {
@@ -118,6 +128,12 @@
     }
 
     .item__status__block__title__name {
-        font-size: 9px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 320px) {
+    .pagination__arrow {
+        padding: 0px
     }
 }

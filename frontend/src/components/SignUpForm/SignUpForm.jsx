@@ -74,7 +74,7 @@ const handleRegister = (event) => {
   return (
     <div className={styles.signup__form}>
         <div className={`${styles.signup__form__container} _container`}>
-            <form action='http://localhost:3000/auth/register' method='post' className={`${styles.signup__form__form} ${styles.from}`}>
+            <form className={`${styles.signup__form__form} ${styles.from}`}>
                 <div className={styles.form__inputs}>
                     <div className={styles.form__inputs__name__surname}>
                         <div className={styles.form__inputs__name__container}>
@@ -170,6 +170,7 @@ const handleRegister = (event) => {
                     <button
                         type='submit'
                         className={`${isNameEmpty() || isSurnameEmpty() || isInputEmpty() || isEmailEmpty() || isPasswordEmpty() || isPasswordConfEmpty() ? styles.form__signup__btn__black : styles.form__signup__btn}`}
+                        disabled={(isNameEmpty() || isSurnameEmpty() || isInputEmpty() || isEmailEmpty() || isPasswordEmpty() || isPasswordConfEmpty())}
                         onClick={handleRegister}
                     >Зарегистрироваться</button>
                 </div>

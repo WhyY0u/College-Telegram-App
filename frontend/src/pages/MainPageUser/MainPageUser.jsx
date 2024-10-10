@@ -11,7 +11,7 @@ function MainPageUser() {
         <HeaderWithLine />
         <TicketsListUser />
         <div className={`${styles.main__page__user__navigation__container} _container`}>
-          <Navigation />
+          <Navigation add={true} to={'/ticket-creation-page-user'} />
         </div>
         <BouncingBalls />
     </div>
