@@ -11,6 +11,7 @@ function ProfileForm() {
     const [isTextAreaClicked, setIsTextAreaClicked] = useState(false)
     const fileInputRef = useRef(null)
     const [data, setData] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null)
     const navigate = useNavigate()
 
 
@@ -90,6 +91,8 @@ function ProfileForm() {
             });
         }
     };
+
+    
 
     const handleImageClick = () => {
         if (fileInputRef.current) {
