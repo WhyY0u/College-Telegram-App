@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './styles/NewsListUser.module.css';
 import grey_heart from '../../../images/grey_heart.png';
 import red_heart from '../../../images/red_heart.png';
@@ -9,10 +9,33 @@ import homelander from '../../../images/homelander.png';
 import arrow_left from '../../../images/NewsListUser/Event/arrow_left.svg';
 import download_icon from '../../../images/NewsListUser/Event/download_icon.svg';
 import Event from './components/Event/Event';
+import axios from 'axios';
 
 function NewsListUser() {
   const [images, setImages] = useState([schedule, homelander, ithub, schedule]);
   const [current, setCurrent] = useState(-1);
+  const [data, setData] = useState(null)
+
+
+  const fetchAll = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3000/news/get`, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          'Content-Type': 'multipart/form-data', // Указываем тип контента
+        },
+      })
+
+      setData(response?.data)
+      console.log(data)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchAll()
+  }, [])
 
   const handleImageClicked = (index) => {
     setCurrent(index)
