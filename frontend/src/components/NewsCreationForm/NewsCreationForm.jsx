@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 import styles from './styles/NewsCreationForm.module.css';
@@ -9,6 +9,8 @@ import date from '../../../images/NewsCreationPage/date.svg';
 import plus_icon from '../../../images/NewsCreationPage/plus_icon.svg';
 
 function NewsCreationForm() {
+    const navigate = useNavigate()
+
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState(null);
 
@@ -123,6 +125,7 @@ function NewsCreationForm() {
                     'authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
             });
+            navigate('/news-page-user');
         } catch (error) {
             console.error('Ошибка при сохранении новости:', error);
         }
@@ -147,6 +150,7 @@ function NewsCreationForm() {
                     'authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
             });
+            navigate('/news-page-user');
         } catch (error) {
             console.error('Ошибка при сохранении мероприятия:', error);
         }

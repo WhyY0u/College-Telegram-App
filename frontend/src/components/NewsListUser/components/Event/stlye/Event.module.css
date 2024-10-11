@@ -61,6 +61,9 @@
     font-size: 11px;
     color: rgba(255, 255, 255, 0.25);
     padding: 10px;
+    max-width: 300px;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
 }
 
 .card__extra {
@@ -191,7 +194,8 @@
     display: flex;
     justify-content: center;
 }
-
+word-wrap: break-word; /* для старых браузеров */
+    overflow-wrap: break-word;
 .image__macro__img {
     width: 290px;
     height: 400px;

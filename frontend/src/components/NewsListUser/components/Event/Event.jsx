@@ -6,8 +6,31 @@ import homelander from '../../../../../images/NewsListUser/Event/homelander.png'
 import arrow_left from '../../../../../images/NewsListUser/Event/arrow_left.svg';
 import download_icon from '../../../../../images/NewsListUser/Event/download_icon.svg';
 
-function Event() {
-  const [images, setImages] = useState([schedule, homelander, ithub, schedule]);
+function Event({date, description, heading, img, place, start}) {
+  const newDate = new Date(date);
+  const newDateStart = new Date(start);
+  
+  newDate.setHours(newDate.getHours() + 4);
+  newDateStart.setHours(newDateStart.getHours() + 4);
+
+  console.log(start);
+  const formatDate = () => {
+      const day = String(newDate.getDate()).padStart(2, '0');
+      const month = String(newDate.getMonth() + 1).padStart(2, '0'); 
+      const year = newDate.getFullYear();
+      return `${day}.${month}.${year}`;
+  };
+  const formatDateToDay = () => {
+    const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
+    return newDateStart.toLocaleString('ru-RU', options).replace(',', '');
+  };
+  const now = new Date();
+
+  const isToday = newDateStart.getFullYear() === now.getFullYear() &&
+  newDateStart.getMonth() === now.getMonth() &&
+  newDateStart.getDate() === now.getDate();
+
+  const [images, setImages] = useState(img || []);
   const [current, setCurrent] = useState(-1);
 
   const handleImageClicked = (index) => {
@@ -26,18 +49,17 @@ function Event() {
 
   return (
     <div className={`${styles.news__list__user__on__today__block} ${styles.on__today__block}`}>
-    <div className={styles.on__today__block__text}>На Сегодня</div>
     <div className={`${styles.on__today__block__card} ${styles.card}`}>
       <div className={styles.card__block}>
         <div className={styles.card__block__text}>
           <div className={styles.card__block__text__main}>
-            <span>Почтение памяти погибшим</span>
+            <span>{heading}</span>
             <p>Мероприятие</p>
           </div>
-          <div className={styles.card__block__text__date}>08.03.2024</div>
+          <div className={styles.card__block__text__date}>{formatDate()}</div>
         </div>
         <div className={styles.card__block__description}>
-          Уважаймые студенты, хочу вас пригласить почтить память ветеранов 2-й мировой войны, по этому приглашаю вас сегодня в 13:00 в актовый зал, где мы почтим память героев, победивших фашизм.
+          {description}
         </div>
         
         <div className={`${styles.card__block__image__micro} ${styles.image__micro}`}>
@@ -54,11 +76,13 @@ function Event() {
       <div className={styles.card__extra}>
         <div className={styles.card__extra__time}>
           <span>Время проведения</span>
-          <p>Сегодня в 10:40</p>
+          <p>{ isToday
+  ? `Сегодня в ${newDateStart.toLocaleString('ru-RU', { hour: '2-digit', minute: '2-digit', hour12: false })}`
+  : formatDateToDay(newDateStart)}</p>
         </div>
         <div className={styles.card__extra__place}>
           <span>Место</span>
-          <p>Актовый Зал</p>
+          <p>{place}</p>
         </div>
       
       </div>
