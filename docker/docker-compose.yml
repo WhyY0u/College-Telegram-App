@@ -21,20 +21,6 @@ services:
     depends_on:
       - mongo
 
-  mongo:
-    build:
-      context: .
-      dockerfile: mongodb.dockerfile
-    env_file:
-      - .env 
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
-      MONGO_INITDB_DATABASE: ${DB_NAME}
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
 
 volumes:
   mongo-data:
