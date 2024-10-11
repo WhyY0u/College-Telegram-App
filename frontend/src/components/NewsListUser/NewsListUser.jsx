@@ -32,38 +32,44 @@ function NewsListUser() {
   }, [])
 
   useEffect(() => {
-    if(data) {
-    const today = new Date();
-    const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    if (data) {
+      const startOfDay = new Date();
+      startOfDay.setHours(0, 0, 0, 0); 
 
-    const filteredItems = data.filter(item => {
-      const itemDate = item.type === 'Новость' ? new Date(item.date) : new Date(item.start);
-      return itemDate >= startOfDay && itemDate < endOfDay;
-    });
-
-    const sortedItems = filteredItems.sort((a, b) => {
-      const dateA = a.type === 'Новость' ? new Date(a.date) : new Date(a.start);
-      const dateB = b.type === 'Новость' ? new Date(b.date) : new Date(b.start);
-      return dateA - dateB;
-    });
-
-    setTodayItems(sortedItems);
-
-    const remainingItems = data.filter(item => !sortedItems.includes(item));
-    setFilteredData(remainingItems);
-  }
+  
+      const filteredItems = data.filter(item => {
+        const dateT = item.type === 'Новость' ? new Date(item.date) : new Date(item.start);
+        
+        const isToday = dateT.getUTCFullYear() === startOfDay.getFullYear() &&
+        dateT.getUTCMonth() === startOfDay.getMonth() &&
+        dateT.getUTCDate() === startOfDay.getDate();
+        if(isToday && item.type === 'Новость') {
+           console.log(item.date);
+        }
+        return isToday; 
+      });
+  
+      const sortedItems = filteredItems.sort((a, b) => {
+        const dateAT = a.type === 'Новость' ? new Date(a.date) : new Date(a.start);
+        const dateBT = b.type === 'Новость' ? new Date(b.date) : new Date(b.start);
+        return dateAT - dateBT;
+      });
+  
+      setTodayItems(sortedItems);
+  
+      const remainingItems = data.filter(item => !sortedItems.includes(item));
+      setFilteredData(remainingItems);
+    }
   }, [data]);
-
 
     
 
   return (
     <div className={styles.news__list__user}>
       <div className={`${styles.news__list__user__container} _container`}>
-        <div className={styles.news__list__user__text__on__today}>
-          <div className={styles.on__today__block__text}>На Сегодня</div>
-        </div>
+          <div className={styles.news__list__user__text__on__today}>
+           <div className={styles.on__today__block__text}>На Сегодня</div>
+         </div>
       {todayItems?.map((item, index) => (
          item.type === "Новость" ? (<News key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} />) : (<Event key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} start={item.start} place={item.place}/>)
        ))}

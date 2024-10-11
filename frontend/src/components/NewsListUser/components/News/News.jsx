@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles/News.module.css'
 import arrow_left from '../../../../../images/NewsListUser/Event/arrow_left.svg';
 import download_icon from '../../../../../images/NewsListUser/Event/download_icon.svg';
+import axios from 'axios';
 function News({description, heading, date, img}) {
     const newDate = new Date(date);
     const formatDate = () => {
@@ -11,6 +12,35 @@ function News({description, heading, date, img}) {
         return `${day}.${month}.${year}`;
     };
     const [images, setImages] = useState(img || []);
+
+    const fetchImgs = async () => {
+      try {
+        const imgUrls = []; // Временный массив для хранения URL изображений
+    
+        for (let i = 0; i < img.length; i++) {
+          const response = await axios.get(`http://localhost:3000/image/getNewsImg/${img[i]}`, {
+            responseType: 'blob',
+            headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`,
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+          
+          const imgBlob = new Blob([response.data], { type: response.headers['content-type'] });
+          const imgUrl = URL.createObjectURL(imgBlob);
+          imgUrls.push(imgUrl); // Добавляем URL в временный массив
+        }
+    
+        setImages(imgUrls); // Устанавливаем состояние один раз после завершения цикла
+      } catch (error) {
+        console.error("Ошибка при получении изображений:", error);
+      }
+    };
+  
+    useEffect(() => {
+      fetchImgs();
+    }, [img]);
+
     const [current, setCurrent] = useState(-1);
     const handleImageClicked = (index) => {
         setCurrent(index)
@@ -46,7 +76,7 @@ function News({description, heading, date, img}) {
                         onClick={() => handleImageClicked(index)}
                           key={index}
                           className={`${styles.img__row__row__image} `}
-                          src={"http://localhost:3000/getNewsImg/" + image}
+                          src={image}
                           alt=""
                       />
                     ))}

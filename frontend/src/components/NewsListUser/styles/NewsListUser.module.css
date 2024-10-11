@@ -1,4 +1,7 @@
 
+.news__list__user {
+    margin-bottom: 60px;
+}
 
 .news__list__user__container {
     display: flex;
