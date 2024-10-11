@@ -1,5 +1,12 @@
 
-
+.news__creation__form__container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 350px;
+    padding: 10px 10px;
+    margin: 0 auto;
+}
 
 
 .news__creation__form__back__btn {
@@ -7,6 +14,7 @@
     border: 1px solid rgba(255, 255, 255, 0.03);
     padding: 5px 5px 7px 5px;
     border-radius: 5px;
+    max-width: fit-content;
 }
 
 .news__creation__form__back__btn img {
@@ -15,7 +23,15 @@
 }
 
 .form__inputs {
-    
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form__inputs__first__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 
@@ -27,15 +43,36 @@
     font-family: 'Inter';
     font-size: 12px;
     font-weight: 600;
+    max-width: 150px;
     color: rgba(215, 215, 215, 0.52);
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid rgba(255, 255, 255);
-    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 15px;
 }
 
 .form__inputs__header__placeholder {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 12px;
+    color: rgba(215, 215, 215, 0.52);
     position: absolute;
-    left: 16px;
+    left: 15px;
+    top: 15px;
+    z-index: -1;
+    transition: top 0.3s ease, font-size 0.3s ease;
+}
+
+.form__inputs__header__placeholder__top {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 11px;
+    color: rgba(215, 215, 215, 0.52);
+    position: absolute;
+    left: 15px;
+    top: -18px;
+    z-index: -1;
+    transition: top 0.3s ease, font-size 0.3s ease;
 }
 
 
@@ -76,18 +113,18 @@
      align-items: baseline;
  }
  
- .dropdown__btn__text__red {
-     display: flex;
-     justify-content: space-between;
-     align-items: baseline;
-     color: rgba(255, 0, 0, 0.70);
- }
- 
  .dropdown__btn__text__blue {
      display: flex;
      justify-content: space-between;
      align-items: baseline;
-     color: rgba(0, 141, 255, 0.70);
+     color: rgb(59, 15, 223);
+ }
+ 
+ .dropdown__btn__text__cyan {
+     display: flex;
+     justify-content: space-between;
+     align-items: baseline;
+     color: rgb(15, 123, 223);
  }
  
  .dropdown__btn__img {
@@ -106,14 +143,223 @@
      color: rgba(134, 138, 138, 0.59);
  }
  
- .dropdown__options__item__red {
-     font-family: "Inter";
-     font-size: 12px;
-     color: rgba(255, 0, 0, 0.43);
- }
- 
  .dropdown__options__item__blue {
      font-family: "Inter";
      font-size: 12px;
-     color: rgba(0, 141, 255, 0.43);
+     color: rgb(59, 15, 223);
  }
+ 
+ .dropdown__options__item__cyan {
+     font-family: "Inter";
+     font-size: 12px;
+     color: rgb(15, 123, 223);
+ }
+
+
+
+.form__inputs__second__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.form__inputs__place {
+    position: relative;
+}
+
+.form__inputs__place__input {
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 600;
+    max-width: 150px;
+    color: rgba(215, 215, 215, 0.52);
+    background-color: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 15px;  
+}
+
+.form__inputs__place__placeholder {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 12px;
+    color: rgba(215, 215, 215, 0.52);
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    z-index: -1;
+    transition: top 0.3s ease, font-size 0.3s ease;
+}
+
+.form__inputs__place__placeholder__top {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 11px;
+    color: rgba(215, 215, 215, 0.52);
+    position: absolute;
+    left: 15px;
+    top: -18px;
+    z-index: -1;
+    transition: top 0.3s ease, font-size 0.3s ease;
+}
+
+
+
+.form__inputs__date {
+    position: relative;
+}
+
+.form__inputs__date__datetime {
+    display: none;
+    position: absolute;
+    max-width: 120px;
+    left: 40px;
+}
+
+
+.form__inputs__date__text {
+    padding: 15px;
+    max-width: 136px;
+    background-color: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    color: rgba(215, 215, 215, 0.52); 
+}
+
+.form__inputs__date__placeholder {
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(215, 215, 215, 0.52);
+    position: absolute;
+    z-index: -1;
+    left: 16px;
+    top: 15px;
+}
+
+.form__inputs__date__placeholder__img {
+    position: absolute;
+    right: 10px;
+    top: 14px;
+}
+
+
+
+
+.text__area__block__block {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: rgba(0, 0, 0, 0.17);
+    border-radius: 10px;
+}
+
+.text__area__block__block__text {
+    font-family: 'Inter';
+    width: 100%;
+    font-size: 14px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 10px 0px 10px 10px;
+    color: rgba(215, 215, 215, 0.72);
+}
+
+
+.text__area__block__block__textarea {
+    background: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: rgba(200, 200, 200, 0.53);
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 400;
+    min-height: 140px;
+    padding: 50px 10px 10px 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    resize: none;
+}
+
+.text__area__block__block__placeholder__block {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -1;
+}
+
+.text__area__block__block__placeholder {
+    font-family: 'Inter';
+    font-size: 13px;
+    color: rgba(200, 200, 200, 0.29);
+    padding-top: 20px;
+    z-index: -1;
+    transform: translateY(0px);
+    opacity: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.text__area__block__block__placeholder__down {
+    font-family: 'Inter';
+    font-size: 13px;
+    color: rgba(200, 200, 200, 0.29);
+    padding-top: 20px;
+    z-index: -1;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+.images__block {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    row-gap: 10px;
+    background-color: rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.images__block__imagePreview {
+    width: 70px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.images__block__add__button__btn {
+    width: 15px;
+    height: 20px;
+}
+
+.images__block__add__button {
+    background-color: rgba(196, 196, 196, 0.03);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    max-width: fit-content;
+    padding: 40px 30px;
+}
+
+
+
+.form__button__save {
+    display: flex;
+    justify-content: center;
+}
+
+.form__button__save__btn {
+    font-family: 'Inter';
+    font-weight: 600;
+    font-size: 14px;
+    color: rgb(179, 175, 175);
+    background-color: rgb(21, 5, 81);
+    box-shadow: 0px 0px 10px rgba(21, 5, 81, 0.18);
+    padding: 20px;
+    border-radius: 10px;
+}
