@@ -7,7 +7,6 @@ const bodyParser = require("body-parser");
 const User = require('./model/userModel');
 const cors = require('cors');
 
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 const middleware = require('./middleware/middleware');
 const authoRouter = require("./router/authRouter");
@@ -19,7 +18,7 @@ const profileRouter = require('./router/profileRouter')
 
 const PORT = process.env.PORT || 3000;
 
-const dbURI = "mongodb+srv://aimsi13579:9kwLIEjYdsKPgpUu@cluster0.bym8p.mongodb.net/kit?retryWrites=true&w=majority&appName=Cluster0";
+const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.bym8p.mongodb.net/kit?retryWrites=true&w=majority&appName=Cluster0`;
 mongoose.connect(dbURI).then(() => console.log('MongoDB connected')).catch(err => console.error('MongoDB connection error:', err));
 
 //  const dbURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@mongo:27017/${process.env.DB_NAME}?authSource=admin`;
