@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import jwt from 'jsonwebtoken'
 import styles from './styles/ProfileForm.module.css'
 import question_mark from '../../../images/question_mark.svg'
-import axios from 'axios'
 
 function ProfileForm() {
-    const [textArea, setTextArea] = useState('')
+    const [textArea, setTextArea] = useState(null)
     const textareaRef = useRef(null)
     const [profileImage, setProfileImage] = useState(question_mark); // Состояние для изображения
     const [isTextAreaClicked, setIsTextAreaClicked] = useState(false)
@@ -15,21 +16,46 @@ function ProfileForm() {
 
 
     const SendInfo = async () => {
-        const response = await axios.get(`http://localhost:3000/profile/get`, {
-            headers: { 
-                'Content-Type': 'application/json', 
-                'authorization': `Bearer ${localStorage.getItem('token')}`
-            },
-        });
-        setData(response?.data);
-        if(data?.description != null && data?.description != "") setTextArea(data?.description);
-        if(data?.image != null && data?.image != "") setProfileImage(data?.image);
-       
+        try {
+            const response = await axios.get(`http://localhost:3000/profile/get`, {
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            });
+        
+            const imgResponse = await axios.get(`http://localhost:3000/image/getProfileImg/${encodeURIComponent(response?.data?.image)}`, {
+                responseType: 'blob',
+                headers: { 
+                    'Content-Type': 'application/json', 
+                    'authorization': `Bearer ${localStorage.getItem('token')}`
+                },
+            });
+        
+            const imgBlob = new Blob([imgResponse.data], { type: 'image/png' });
+            const imgUrl = URL.createObjectURL(imgBlob);
+            setProfileImage(imgUrl);
+        
+            console.log(response?.data);
+            setData(response?.data);
+            
+            setTextArea(response?.data?.description)
+            if(data?.description != null && data?.description !== "") setTextArea(data?.description);
+        } catch (error) {
+            console.error('Error fetching profile image:', error);
+        }
+        
     } 
+
+
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt.decode(token);
+    console.log(decodedToken)
+
     useEffect(() => {
         SendInfo();
     },[]);
-    
+
 
     const handleTextareaChange = (event) => {
         setTextArea(event.target.value)
@@ -50,15 +76,25 @@ function ProfileForm() {
     }, [isTextAreaClicked])
 
     const isTextAreaEmpty = () => {
-        return textArea.trim() === ''
+        return textArea?.trim() === ''
     }
 
     const handleEditToggle = () => {
         setIsTextAreaClicked(true)
     }
 
-    const handleSave = () => {
+    const handleSave = async () => {
         setIsTextAreaClicked(false) // Убираем фокус при сохранении
+        
+
+        await axios.patch(`http://localhost:3000/profile/update`, {
+            description: textArea,
+        }, {
+            headers: { 
+                'Content-Type': 'multipart/form-data',
+                'authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+        })
     }
 
 
@@ -75,21 +111,21 @@ function ProfileForm() {
             const reader = new FileReader();
             reader.onloadend = async () => {
                 setProfileImage(reader.result);
-
+    
+                const formData = new FormData();
+                formData.append('image', file); // Используйте сам файл
+    
+                await axios.patch(`http://localhost:3000/profile/update`, formData, {
+                    headers: { 
+                        'Content-Type': 'multipart/form-data',
+                        'authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                });
             };
             reader.readAsDataURL(file); 
-            const formData = new FormData();
-            if (profileImage) {
-                formData.append('image', reader.result); 
-            }
-            await axios.patch(`http://localhost:3000/profile/update`, formData, {
-                headers: { 
-                    'Content-Type': 'multipart/form-data',
-                    'authorization': `Bearer ${localStorage.getItem('token')}`
-                },
-            });
         }
     };
+    
 
     const handleImageClick = () => {
         if (fileInputRef.current) {
@@ -118,8 +154,12 @@ function ProfileForm() {
                         />                    
                     </div>
                     <div className={styles.name__block__about}>
-                        <div className={styles.name__block__about__family__name}>Древов Даниил Николаевич</div>
-                        <div className={styles.name__block__about__status}>Довереное лицо</div>
+                        <div className={styles.name__block__about__family__name}>{decodedToken?.surname} {decodedToken?.name} {decodedToken?.patronymic}</div>
+                        <div className={`${decodedToken?.role === 'Student' 
+                            ? styles.name__block__about__status__red 
+                            : decodedToken?.role === 'Confidant'
+                            ? styles.name__block__about__status__blue
+                            : styles.name__block__about__status}`}>{decodedToken?.role === 'Student' ? 'Студент' : decodedToken?.role === 'Confidant' ? 'Доверенное лицо' : 'Неизвестная роль'}</div>
                     </div>
                 </div>
 

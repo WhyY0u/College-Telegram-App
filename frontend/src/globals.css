@@ -50,3 +50,15 @@ body {
     padding: 30px 20px;
     margin: 0 auto;
 }
+
+.empty-date::-webkit-inner-spin-button,
+.empty-date::-webkit-calendar-picker-indicator {
+    display: none; /* Скрывает элементы для браузеров на базе WebKit */
+}
+
+.empty-date {
+    appearance: none; /* Убирает стандартный стиль */
+    background: transparent; /* Убирает фон */
+}
+
+

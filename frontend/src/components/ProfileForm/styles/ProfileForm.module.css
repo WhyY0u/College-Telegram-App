@@ -53,7 +53,7 @@
 }
 
 .name__block__about__status {
-    color: rgba(19, 45, 209, 0.51);
+    color: rgba(83, 83, 84, 0.51);
     font-family: Inter;
     font-size: 10px;
     font-weight: 600;
@@ -64,6 +64,29 @@
     max-width: fit-content;
 }
 
+.name__block__about__status__red {
+    color: rgba(230, 13, 13, 0.46);
+    font-family: Inter;
+    font-size: 10px;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 10px;
+    border-radius: 10px;
+    max-width: fit-content;
+}
+
+.name__block__about__status__blue {
+    color: rgba(19, 45, 209, 0.51);
+    font-family: Inter;
+    font-size: 11px;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 10px;
+    border-radius: 10px;
+    max-width: fit-content;
+}
 
 .text__area__block__block {
     display: flex;
