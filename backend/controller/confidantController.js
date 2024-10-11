@@ -6,6 +6,7 @@ const { validationResult } = require('express-validator');
 const file = require('../utils/fileUtils');
 const { News } = require('../model/newsModel');
 const { Event } = require('../model/eventModel');
+const DateUtils = require('../utils/dateUtils')
 
 const getTicketsHandle = async (req, res) => {
     const { page, limit } = req.query;
@@ -107,7 +108,8 @@ const saveEventHandle = async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     try {
-    const newEvent = new Event({ date: new Date(), heading, description, start, place, likes: [] });
+    const dat = DateUtils.getCurrentDateInPavlodar();
+    const newEvent = new Event({ date: new Date(dat), heading, description, start, place, likes: [] });
     try {
       
    
@@ -143,7 +145,8 @@ const saveEventHandle = async (req, res) => {
     }
 
     try {
-        const newNews = new News({ date: new Date(), heading, description, likes: [] });
+        const dat = DateUtils.getCurrentDateInPavlodar();
+        const newNews = new News({ date: new Date(dat), heading, description, likes: [] });
 
         if (files && files.length > 0) {
             const imgs = await file.saveImages(files, "imgNews"); 

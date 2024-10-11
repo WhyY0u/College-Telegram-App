@@ -1,9 +1,12 @@
 const likeUtils = require('./likeUtils');
 const News = require('../model/newsModel');
 const Image = require('./fileUtils');
+const dateUtils = require('./dateUtils')
+
 const getAllNews = async (user) => {
     const user_id = user._id;
-    const currentDate = new Date();
+    const date = dateUtils.getCurrentDateInPavlodar();
+    const currentDate = new Date(date);
     const oneWeekAgo = new Date(currentDate);
     oneWeekAgo.setDate(currentDate.getDate() + 7); 
 
