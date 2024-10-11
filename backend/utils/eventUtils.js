@@ -6,9 +6,10 @@ const dateUtils = require('./dateUtils')
 const getAllEvent = async (user) => {
     const user_id = user._id;
     const date = dateUtils.getCurrentDateInPavlodar();
-    const oneWeekAgo = new Date(date);
-    oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-
+    const currentDate = new Date(date);
+    const oneWeekAgo = new Date(currentDate);
+    oneWeekAgo.setDate(currentDate.getDate() - 7); 
+    
     const eventsToDelete = await Event.Event.find({ start: { $lt: oneWeekAgo } });
     const imagesToDelete = eventsToDelete.flatMap(event => event.images);
     await deleteImage(imagesToDelete);

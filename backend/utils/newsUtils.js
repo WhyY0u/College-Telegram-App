@@ -8,14 +8,18 @@ const getAllNews = async (user) => {
     const date = dateUtils.getCurrentDateInPavlodar();
     const currentDate = new Date(date);
     const oneWeekAgo = new Date(currentDate);
-    oneWeekAgo.setDate(currentDate.getDate() + 7); 
+    
+    oneWeekAgo.setDate(currentDate.getDate() - 7); 
 
-    const newsToDelete = await  News.News.find({ date: { $lt: oneWeekAgo } });
+    const newsToDelete = await News.News.find({ date: { $lt: oneWeekAgo } });
+    
     const imagesToDelete = newsToDelete.flatMap(news => news.images);
-    await deleteImage(imagesToDelete);
-    await News.News.deleteMany({ date: { $gt: currentDate } });
 
-    const news = await News.News.find({ date: { $lte: oneWeekAgo } }); 
+    await News.News.deleteMany({ date: { $lt: oneWeekAgo } });
+
+    await deleteImage(imagesToDelete);
+
+    const news = await News.News.find({ date: { $gte: oneWeekAgo } }); 
     
     return news.map(newr => ({
         _id: newr._id,
@@ -28,6 +32,7 @@ const getAllNews = async (user) => {
         type: "Новость",
     }));
 }
+
 const deleteImage = async (imageIds) => {
     await Promise.all(imageIds.map(images => {
         if(images != null && images != "") return Image.deleteImage("imgNews", images); 
