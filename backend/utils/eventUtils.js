@@ -1,10 +1,12 @@
 const likeUtils = require('./likeUtils');
 const Event = require('../model/eventModel');
 const Image = require('../utils/fileUtils')
+const dateUtils = require('./dateUtils')
 
 const getAllEvent = async (user) => {
     const user_id = user._id;
-    const oneWeekAgo = new Date();
+    const date = dateUtils.getCurrentDateInPavlodar();
+    const oneWeekAgo = new Date(date);
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
     const eventsToDelete = await Event.Event.find({ start: { $lt: oneWeekAgo } });
