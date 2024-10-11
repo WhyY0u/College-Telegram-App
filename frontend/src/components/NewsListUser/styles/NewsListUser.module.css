@@ -13,12 +13,17 @@
     gap: 20px;
 }
 
+.news__list__user__text__on__today {
+    display: flex;
+    justify-content: center;
+}
+
 .on__today__block__text {
     color: rgba(126, 126, 126, 0.35);
-    justify-content: center;
     text-align: center;
     font-family: 'Inter';
     font-size: 10px;
+    max-width: fit-content;
     border: 1px solid rgba(255, 255, 255, 0.03);
     background: rgba(0, 0, 0, 0.17);
     border-radius: 6px;

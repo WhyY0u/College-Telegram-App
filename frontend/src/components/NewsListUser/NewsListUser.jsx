@@ -61,7 +61,9 @@ function NewsListUser() {
   return (
     <div className={styles.news__list__user}>
       <div className={`${styles.news__list__user__container} _container`}>
-      <div className={styles.on__today__block__text}>На Сегодня</div>
+        <div className={styles.news__list__user__text__on__today}>
+          <div className={styles.on__today__block__text}>На Сегодня</div>
+        </div>
       {todayItems?.map((item, index) => (
          item.type === "Новость" ? (<News key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} />) : (<Event key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} start={item.start} place={item.place}/>)
        ))}
