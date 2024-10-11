@@ -1,10 +1,13 @@
 require("dotenv").config();
-
+const TelegramBot = require('node-telegram-bot-api');
+const BotUtils = require('./utils/botUtils')
 const express = require("express");
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const User = require('./model/userModel');
 const cors = require('cors');
+
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 const middleware = require('./middleware/middleware');
 const authoRouter = require("./router/authRouter");
@@ -21,11 +24,11 @@ const PORT = process.env.PORT || 3000;
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.error('MongoDB connection error:', err)); 
 
-/*const dbURI = `mongodb://localhost:27017/kit`;
- mongoose.connect(dbURI)
-.then(() => console.log('MongoDB connected'))
-.catch(err => console.error('MongoDB connection error:', err));
-*/
+// const dbURI = `mongodb://localhost:27017/kit`;
+//  mongoose.connect(dbURI)
+// .then(() => console.log('MongoDB connected'))
+// .catch(err => console.error('MongoDB connection error:', err));
+
 const app = express();
 
 const corsOptions = {
@@ -44,6 +47,7 @@ app.use('/confidant', middleware.RoleAndAuthoMiddleware(User.Role.Confidant), co
 app.use('/image', middleware.authMiddleware, imageRouter);
 app.use('/news', middleware.authMiddleware, newsRouter);
 app.use('/profile', middleware.authMiddleware, profileRouter);
+
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on http://0.0.0.0:${PORT}`);
