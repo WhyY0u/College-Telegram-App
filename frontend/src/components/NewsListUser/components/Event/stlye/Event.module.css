@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    width: 300px;
 }
 
 .on__today__block__text {
@@ -13,6 +14,7 @@
     background: rgba(0, 0, 0, 0.17);
     border-radius: 6px;
     padding: 6px;
+    width: 300px;
 }
 
 .card__block {
@@ -20,6 +22,7 @@
     border: 1px solid rgba(255, 255, 255, 0.03);
     border-radius: 10px;
     margin-bottom: 10px;
+    width: 300px;
 }
 
 .card__block__text {
@@ -142,7 +145,7 @@
     font-weight: 600;
     font-size: 16px;
     color: rgba(222, 222, 222, 0.66);
-    padding: 7px;
+    padding: 7px 3px;
     background-color: rgba(0, 0, 0, 0.17);
     border: 1px solid rgba(255, 255, 255, 0.03);
     border-radius: 5px;
@@ -194,8 +197,7 @@
     display: flex;
     justify-content: center;
 }
-word-wrap: break-word; /* для старых браузеров */
-    overflow-wrap: break-word;
+
 .image__macro__img {
     width: 290px;
     height: 400px;

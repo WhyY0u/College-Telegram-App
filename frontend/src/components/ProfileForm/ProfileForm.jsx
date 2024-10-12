@@ -6,7 +6,7 @@ import styles from './styles/ProfileForm.module.css'
 import question_mark from '../../../images/question_mark.svg'
 
 function ProfileForm() {
-    const [textArea, setTextArea] = useState(null)
+    const [textArea, setTextArea] = useState('')
     const textareaRef = useRef(null)
     const [profileImage, setProfileImage] = useState(question_mark); // Состояние для изображения
     const [isTextAreaClicked, setIsTextAreaClicked] = useState(false)

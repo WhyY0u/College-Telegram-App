@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './stlye/Event.module.css'
 import schedule from '../../../../../images/artworks-yHzRp6XJGtqtLAM2-0z0kIQ-t500x500.jpg';
 import ithub from '../../../../../images/ithub.jpg'
 import homelander from '../../../../../images/NewsListUser/Event/homelander.png';
 import arrow_left from '../../../../../images/NewsListUser/Event/arrow_left.svg';
 import download_icon from '../../../../../images/NewsListUser/Event/download_icon.svg';
+import axios from 'axios';
 
 function Event({date, description, heading, img, place, start}) {
   const newDate = new Date(date);
   const newDateStart = new Date(start);
-  
 
+  // newDate.setHours(newDate.getUTCHours());
+  // newDateStart.setHours(newDateStart.getUTCHours());
+
+  console.log(start);
   const formatDate = () => {
       const day = String(newDate.getUTCDate()).padStart(2, '0');
       const month = String(newDate.getUTCMonth() + 1).padStart(2, '0'); 
@@ -23,12 +27,40 @@ function Event({date, description, heading, img, place, start}) {
   };
   const now = new Date();
 
-  const isToday = newDateStart.getUTCFullYear() === now.getFullYear() &&
-  newDateStart.getUTCMonth() === now.getMonth() &&
-  newDateStart.getUTCDate() === now.getDate();
+  const isToday = newDateStart.getFullYear() === now.getFullYear() &&
+  newDateStart.getMonth() === now.getMonth() &&
+  newDateStart.getDate() === now.getDate();
 
   const [images, setImages] = useState(img || []);
   const [current, setCurrent] = useState(-1);
+
+  const fetchImgs = async () => {
+    try {
+      const imgUrls = []; // Временный массив для хранения URL изображений
+  
+      for (let i = 0; i < img.length; i++) {
+        const response = await axios.get(`http://localhost:3000/image/getEventImg/${img[i]}`, {
+          responseType: 'blob',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        
+        const imgBlob = new Blob([response.data], { type: response.headers['content-type'] });
+        const imgUrl = URL.createObjectURL(imgBlob);
+        imgUrls.push(imgUrl); // Добавляем URL в временный массив
+      }
+  
+      setImages(imgUrls); // Устанавливаем состояние один раз после завершения цикла
+    } catch (error) {
+      console.error("Ошибка при получении изображений:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchImgs();
+  }, [img]);
 
   const handleImageClicked = (index) => {
     setCurrent(index)
@@ -43,6 +75,7 @@ function Event({date, description, heading, img, place, start}) {
   }
 
   const displayedImages = areImagesMoreThanLimit();
+
 
   return (
     <div className={`${styles.news__list__user__on__today__block} ${styles.on__today__block}`}>
@@ -74,7 +107,7 @@ function Event({date, description, heading, img, place, start}) {
         <div className={styles.card__extra__time}>
           <span>Время проведения</span>
           <p>{ isToday
-  ? `Сегодня в ${newDateStart.toLocaleString('ru-RU', { hour: '2-digit', minute: '2-digit', hour12: false , timeZone: 'UTC'})}`
+  ? `Сегодня в ${newDateStart.toLocaleString('ru-RU', { hour: '2-digit', minute: '2-digit', hour12: false })}`
   : formatDateToDay(newDateStart)}</p>
         </div>
         <div className={styles.card__extra__place}>
