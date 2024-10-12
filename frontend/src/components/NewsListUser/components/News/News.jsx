@@ -15,7 +15,7 @@ function News({description, heading, date, img}) {
 
     const fetchImgs = async () => {
       try {
-        const imgUrls = []; // Временный массив для хранения URL изображений
+        const imgUrls = []; 
     
         for (let i = 0; i < img.length; i++) {
           const response = await axios.get(`http://localhost:3000/image/getNewsImg/${img[i]}`, {
@@ -28,10 +28,10 @@ function News({description, heading, date, img}) {
           
           const imgBlob = new Blob([response.data], { type: response.headers['content-type'] });
           const imgUrl = URL.createObjectURL(imgBlob);
-          imgUrls.push(imgUrl); // Добавляем URL в временный массив
+          imgUrls.push(imgUrl); 
         }
     
-        setImages(imgUrls); // Устанавливаем состояние один раз после завершения цикла
+        setImages(imgUrls);
       } catch (error) {
         console.error("Ошибка при получении изображений:", error);
       }

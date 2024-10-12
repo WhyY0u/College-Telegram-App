@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 import { createRequire } from 'module';
 import fs from 'fs';
 
@@ -16,11 +16,19 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      process: require.resolve('process/browser'),
+      process: 'process/browser',
     },
   },
   define: {
-    'process.env': {},
+    'process.env': {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'), 
+      HTTPS: JSON.stringify(process.env.HTTPS || 'false'),
+    },
+    process: {
+      env: {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+        HTTPS: JSON.stringify(process.env.HTTPS || 'false'),
+      },
+    },
   },
 });
-
