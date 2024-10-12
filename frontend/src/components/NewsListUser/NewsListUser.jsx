@@ -20,7 +20,6 @@ function NewsListUser() {
       })
 
       setData(response?.data)
-      console.log(data)
 
     } catch (error) {
       console.error(error)
@@ -30,30 +29,38 @@ function NewsListUser() {
   useEffect(() => {
     fetchAll()
   }, [])
-
   useEffect(() => {
-    if(data) {
-    const today = new Date();
-    const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    const endOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+    if (data) {
+      const startOfDay = new Date();
+      startOfDay.setHours(0, 0, 0, 0); 
 
-    const filteredItems = data.filter(item => {
-      const itemDate = item.type === 'Новость' ? new Date(item.date) : new Date(item.start);
-      return itemDate >= startOfDay && itemDate < endOfDay;
-    });
-
-    const sortedItems = filteredItems.sort((a, b) => {
-      const dateA = a.type === 'Новость' ? new Date(a.date) : new Date(a.start);
-      const dateB = b.type === 'Новость' ? new Date(b.date) : new Date(b.start);
-      return dateA - dateB;
-    });
-
-    setTodayItems(sortedItems);
-
-    const remainingItems = data.filter(item => !sortedItems.includes(item));
-    setFilteredData(remainingItems);
-  }
+  
+      const filteredItems = data.filter(item => {
+        const dateT = item.type === 'Новость' ? new Date(item.date) : new Date(item.start);
+        
+        const isToday = dateT.getUTCFullYear() === startOfDay.getFullYear() &&
+        dateT.getUTCMonth() === startOfDay.getMonth() &&
+        dateT.getUTCDate() === startOfDay.getDate();
+        if(isToday && item.type === 'Новость') {
+           console.log(item.date);
+        }
+        return isToday; 
+      });
+  
+      const sortedItems = filteredItems.sort((a, b) => {
+        const dateAT = a.type === 'Новость' ? new Date(a.date) : new Date(a.start);
+        const dateBT = b.type === 'Новость' ? new Date(b.date) : new Date(b.start);
+        return dateAT - dateBT;
+      });
+  
+      setTodayItems(sortedItems);
+  
+      const remainingItems = data.filter(item => !sortedItems.includes(item));
+      setFilteredData(remainingItems);
+    }
   }, [data]);
+  
+  
 
 
     

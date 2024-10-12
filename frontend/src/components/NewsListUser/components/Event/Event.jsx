@@ -10,25 +10,22 @@ function Event({date, description, heading, img, place, start}) {
   const newDate = new Date(date);
   const newDateStart = new Date(start);
   
-  newDate.setHours(newDate.getHours() + 4);
-  newDateStart.setHours(newDateStart.getHours() + 4);
 
-  console.log(start);
   const formatDate = () => {
-      const day = String(newDate.getDate()).padStart(2, '0');
-      const month = String(newDate.getMonth() + 1).padStart(2, '0'); 
-      const year = newDate.getFullYear();
+      const day = String(newDate.getUTCDate()).padStart(2, '0');
+      const month = String(newDate.getUTCMonth() + 1).padStart(2, '0'); 
+      const year = newDate.getUTCFullYear();
       return `${day}.${month}.${year}`;
   };
   const formatDateToDay = () => {
-    const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
+    const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC' };
     return newDateStart.toLocaleString('ru-RU', options).replace(',', '');
   };
   const now = new Date();
 
-  const isToday = newDateStart.getFullYear() === now.getFullYear() &&
-  newDateStart.getMonth() === now.getMonth() &&
-  newDateStart.getDate() === now.getDate();
+  const isToday = newDateStart.getUTCFullYear() === now.getFullYear() &&
+  newDateStart.getUTCMonth() === now.getMonth() &&
+  newDateStart.getUTCDate() === now.getDate();
 
   const [images, setImages] = useState(img || []);
   const [current, setCurrent] = useState(-1);
@@ -77,7 +74,7 @@ function Event({date, description, heading, img, place, start}) {
         <div className={styles.card__extra__time}>
           <span>Время проведения</span>
           <p>{ isToday
-  ? `Сегодня в ${newDateStart.toLocaleString('ru-RU', { hour: '2-digit', minute: '2-digit', hour12: false })}`
+  ? `Сегодня в ${newDateStart.toLocaleString('ru-RU', { hour: '2-digit', minute: '2-digit', hour12: false , timeZone: 'UTC'})}`
   : formatDateToDay(newDateStart)}</p>
         </div>
         <div className={styles.card__extra__place}>
