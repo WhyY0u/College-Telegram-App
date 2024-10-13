@@ -8,6 +8,8 @@ import arrow_right from '../../../images/arrow_right.svg';
 import date from '../../../images/NewsCreationPage/date.svg';
 import plus_icon from '../../../images/NewsCreationPage/plus_icon.svg';
 
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
+
 function NewsCreationForm() {
     const navigate = useNavigate()
 
@@ -116,10 +118,9 @@ function NewsCreationForm() {
             formData.append('images', image); // Добавляем каждый файл в FormData
         });
 
-        console.log("Images to be sent:", images); // Проверяем содержимое массива перед отправкой
 
         try {
-            await axios.post(`http://localhost:3000/confidant/saveNews`, formData, {
+            await axios.post(`http://${backendServer}/confidant/saveNews`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -144,7 +145,7 @@ function NewsCreationForm() {
         });
 
         try {
-            await axios.post(`http://localhost:3000/confidant/saveEvent`, formData, {
+            await axios.post(`http://${backendServer}/confidant/saveEvent`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'authorization': `Bearer ${localStorage.getItem('token')}`,

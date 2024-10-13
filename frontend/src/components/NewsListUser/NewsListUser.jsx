@@ -5,6 +5,7 @@ import News from './components/News/News';
 
 import axios from 'axios';
 
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
 
 function NewsListUser() {
   const [data, setData] = useState(null)
@@ -12,7 +13,7 @@ function NewsListUser() {
   const [filteredData, setFilteredData] = useState(data);
   const fetchAll = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/news/get`, {
+      const response = await axios.get(`http://${backendServer}/news/get`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
@@ -41,9 +42,6 @@ function NewsListUser() {
         const isToday = dateT.getUTCFullYear() === startOfDay.getFullYear() &&
         dateT.getUTCMonth() === startOfDay.getMonth() &&
         dateT.getUTCDate() === startOfDay.getDate();
-        if(isToday && item.type === 'Новость') {
-           console.log(item.date);
-        }
         return isToday; 
       });
   

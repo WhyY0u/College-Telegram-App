@@ -6,6 +6,9 @@ import plus_icon from '../../../images/plus_icon.svg';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
+
 function TicketCreationForm() {
     const [inputValue, setInputValue] = useState('');
     const [textArea, setTextArea] = useState('');
@@ -74,14 +77,13 @@ function TicketCreationForm() {
             formData.append('image', imageFile); // Добавляем файл изображения
         }
 
-        axios.post(`http://localhost:3000/user/createticket`, formData, {
+        axios.post(`http://${backendServer}/user/createticket`, formData, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'multipart/form-data', // Указываем тип контента
             },
         })
         .then(response => {
-            console.log(response?.data);
             navigate('/main-page-user');
         })
         .catch(error => console.error(error));

@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken'
 import styles from './styles/ProfileForm.module.css'
 import question_mark from '../../../images/question_mark.svg'
 
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
+
 function ProfileForm() {
     const [textArea, setTextArea] = useState('')
     const textareaRef = useRef(null)
@@ -17,14 +19,18 @@ function ProfileForm() {
 
     const SendInfo = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/profile/get`, {
+            const response = await axios.get(`http://${backendServer}/profile/get`, {
                 headers: { 
                     'Content-Type': 'application/json', 
                     'authorization': `Bearer ${localStorage.getItem('token')}`
                 },
             });
         
-            const imgResponse = await axios.get(`http://localhost:3000/image/getProfileImg/${encodeURIComponent(response?.data?.image)}`, {
+            setData(response?.data);
+            
+            setTextArea(response?.data?.description)
+
+            const imgResponse = await axios.get(`http://${backendServer}/image/getProfileImg/${encodeURIComponent(response?.data?.image)}`, {
                 responseType: 'blob',
                 headers: { 
                     'Content-Type': 'application/json', 
@@ -35,12 +41,8 @@ function ProfileForm() {
             const imgBlob = new Blob([imgResponse.data], { type: 'image/png' });
             const imgUrl = URL.createObjectURL(imgBlob);
             setProfileImage(imgUrl);
-        
-            console.log(response?.data);
-            setData(response?.data);
-            
-            setTextArea(response?.data?.description)
-            if(data?.description != null && data?.description !== "") setTextArea(data?.description);
+    
+
         } catch (error) {
             console.error('Error fetching profile image:', error);
         }
@@ -50,7 +52,6 @@ function ProfileForm() {
 
     const token = localStorage.getItem('token');
     const decodedToken = jwt.decode(token);
-    console.log(decodedToken)
 
     useEffect(() => {
         SendInfo();
@@ -87,7 +88,7 @@ function ProfileForm() {
         setIsTextAreaClicked(false) // Убираем фокус при сохранении
         
 
-        await axios.patch(`http://localhost:3000/profile/update`, {
+        await axios.patch(`http://${backendServer}/profile/update`, {
             description: textArea,
         }, {
             headers: { 
@@ -115,7 +116,7 @@ function ProfileForm() {
                 const formData = new FormData();
                 formData.append('image', file); // Используйте сам файл
     
-                await axios.patch(`http://localhost:3000/profile/update`, formData, {
+                await axios.patch(`http://${backendServer}/profile/update`, formData, {
                     headers: { 
                         'Content-Type': 'multipart/form-data',
                         'authorization': `Bearer ${localStorage.getItem('token')}`

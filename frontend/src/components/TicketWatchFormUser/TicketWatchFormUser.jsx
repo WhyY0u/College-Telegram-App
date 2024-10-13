@@ -5,6 +5,9 @@ import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { statusColorChecker, typeColorChecker } from '../../utils/ColorsChecker/ColorsChecker'
 
+
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
+
 function TicketWatchFormUser() {
     const { id } = useParams()
     const [data, setData] = useState(null)
@@ -31,14 +34,13 @@ function TicketWatchFormUser() {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/user/ticket/${id}`, {
+                const response = await axios.get(`http://${backendServer}/user/ticket/${id}`, {
                     headers: { 
                         'Content-Type': 'application/json', 
                         'authorization': `Bearer ${localStorage.getItem('token')}`
                     },
                 });
                 setData(response?.data)
-                console.log(response)
             } catch(error) {
                 console.error(error)
             }
@@ -50,7 +52,7 @@ function TicketWatchFormUser() {
     useEffect(() => {
         const fetchImage = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/image/getTicket/${id}`, {
+                const response = await axios.get(`http://${backendServer}/image/getTicket/${id}`, {
                     responseType: 'blob', // Указываем, что ожидаем Blob (изображение)
                     headers: { 
                         'Content-Type': 'application/json', 
@@ -58,7 +60,6 @@ function TicketWatchFormUser() {
                     },
                 });
                 const url = URL.createObjectURL(response.data);
-                console.log(url)
                 setImageUrl(url); 
             } catch (error) {
                 console.error(error);
