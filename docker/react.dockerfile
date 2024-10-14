@@ -9,6 +9,8 @@ RUN rm -rf backend docker
 
 WORKDIR /app/frontend
 
+COPY front/.env .env
+
 RUN npm install
 RUN npm run build
 

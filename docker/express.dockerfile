@@ -10,7 +10,7 @@ RUN rm -rf docker
 WORKDIR /app/backend
 RUN npm install
 
-COPY .env .env
+COPY back/.env .env
 
 EXPOSE 3000
 
