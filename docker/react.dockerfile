@@ -18,15 +18,8 @@ FROM nginx:alpine
 
 COPY --from=build /app/frontend/dist /usr/share/nginx/html
 
-RUN mkdir -p /etc/ssl/certs /etc/ssl/private
-
-COPY server.cert /etc/ssl/certs/selfsigned.crt
-COPY server.key /etc/ssl/private/selfsigned.key
-
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 5173
-EXPOSE 8443
-
 
 CMD ["nginx", "-g", "daemon off;"]
