@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: react.dockerfile
     ports:
-      - "5173:5173"
+      - "27017:27017"
     depends_on:
       - backend
 
