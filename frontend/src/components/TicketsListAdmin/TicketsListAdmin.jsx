@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import TicketNavigate from './components/TicketNavigate/TicketNavigate';
 import NotFoundTicket from './components/NotFoundTicket/NotFoundTicket';
 
+
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
+
 function TicketsListAdmin({ searchQuery, sortType }) {
     const [data, setData] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +28,7 @@ function TicketsListAdmin({ searchQuery, sortType }) {
 
     const fetchData = async (page) => {
         try {
-            const response = await axios.get(`http://localhost:3000/confidant/tickets?page=${page}&limit=${limit}`, {
+            const response = await axios.get(`http://${backendServer}/confidant/tickets?page=${page}&limit=${limit}`, {
                 headers: { 
                     'Content-Type': 'application/json', 
                     'authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -37,8 +40,6 @@ function TicketsListAdmin({ searchQuery, sortType }) {
                 ...ticket,
                 status: ticket.status === 'Отправлено' && ticket.status !== STATUS.expectation ? STATUS.expectation : ticket.status,
             }));
-            console.log('tickets:', response?.data?.tickets);
-            console.log('Updated tickets:', ticketsWithUpdatedStatus);
 
             setData(ticketsWithUpdatedStatus);
             setTotalPages(response?.data?.totalPages);

@@ -6,6 +6,9 @@ import styles from './styles/LoginForm.module.css';
 import Unregistered from './components/Unregistered/Unregistered';
 import EyeIcon from '../EyeIcon/EyeIcon';
 
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
+
+
 function LoginForm() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isClicked, setClicked] = useState(false);
@@ -40,14 +43,14 @@ function LoginForm() {
     login: inputValue,
     password: passwordValue,
 }
+
 const handleSignIn = (event) => {
     event.preventDefault()
-    axios.post(`http://localhost:3000/auth/login`, {
+    axios.post(`http://${backendServer}/auth/login`, {
         ...loginGet
     })
     .then(response => {
       localStorage.setItem('token', response?.data)
-      console.log(response?.data)
       navigate('/');
     })
     .catch(setError(true))

@@ -15,16 +15,17 @@ import NewsPageUser from './pages/NewsPageUser/NewsPageUser';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import NewsCreationPage from './pages/NewsCreationPage/NewsCreationPage';
 
+
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
+
 function App() {
   const token = localStorage.getItem('token');
-  console.log(token);
   const [isAuth, setAuth] = useState(false);
   
   const navigate = useNavigate();
   useEffect(() => {
   if(isAuth != undefined) {
-    console.log(token)
-  axios.post('http://localhost:3000/auth/checktoken', 
+  axios.post(`http://${backendServer}/auth/checktoken`, 
     {
       headers: { 
           'Content-Type': 'application/json', 
@@ -32,7 +33,6 @@ function App() {
       },
   },
   ).then(setAuth(true)).catch(error => {
-    console.log(error);
     setAuth(false);
   });
   } else {

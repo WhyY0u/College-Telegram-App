@@ -10,7 +10,6 @@ function NewsPageUser() {
 
   const token = localStorage.getItem('token');
   const decodedToken = jwt.decode(token);
-  console.log(decodedToken?.role)
 
   return (
     <div className={styles.news__page__user}>

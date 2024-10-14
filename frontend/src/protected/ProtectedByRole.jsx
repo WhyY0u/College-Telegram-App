@@ -10,7 +10,6 @@ const switchByRole = (role) => {
 const ProtectedByRole = ({isRole}) => {
     const token = localStorage.getItem('token');
     const role = jwt.decode(token)?.role;
-    console.log(role)
     return isRole == role ? <Outlet /> : switchByRole(role);
 }
 export default ProtectedByRole

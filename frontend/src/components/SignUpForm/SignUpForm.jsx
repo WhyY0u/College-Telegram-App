@@ -6,6 +6,7 @@ import styles from "./styles/SignUpForm.module.css"
 import { useSignUpStates } from './hooks/useSignUpStates'
 import SignedIn from './components/SignedIn/SignedIn'
 
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
 
 function SignUpForm() {
 
@@ -58,12 +59,11 @@ const handleRegister = (event) => {
         alert('Неверное подтверждение пароля')
         return
     }
-    axios.post(`http://localhost:3000/auth/register`, {
+    axios.post(`http://${backendServer}/auth/register`, {
         ...loginGet,
     })
     .then(response => {
         localStorage.setItem('token', response?.data)
-        console.log(response?.data)
         navigate('/main-page-user')
     })
     .catch(error => console.error(error))

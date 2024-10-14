@@ -6,6 +6,9 @@ import big_right_arrow from '../../../images/big_right_arrow.svg'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
+
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
+
 function TicketWatchFormAdmin() {
 
     const { id } = useParams()
@@ -22,10 +25,6 @@ function TicketWatchFormAdmin() {
     const handleSelect = (option) => {
         setSelected(option)
     }
-
-    useEffect(() => {
-        console.log(selected);
-    }, [selected]);
     
     
     const handleTextareaChange = (event) => {
@@ -71,7 +70,7 @@ function TicketWatchFormAdmin() {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/confidant/ticket/${id}`, {
+                const response = await axios.get(`http://${backendServer}/confidant/ticket/${id}`, {
                     headers: { 
                         'Content-Type': 'application/json', 
                         'authorization': `Bearer ${localStorage.getItem('token')}`
@@ -79,7 +78,6 @@ function TicketWatchFormAdmin() {
                 });
                 setData(response?.data)
                 setTextArea(response?.data?.comment || ''); // Устанавливаем текст комментария при загрузке данных
-                console.log(response)
             } catch(error) {
                 console.error(error)
             }
@@ -91,7 +89,7 @@ function TicketWatchFormAdmin() {
     useEffect(() => {
         const fetchImage = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/image/getTicket/${id}`, {
+                const response = await axios.get(`http://${backendServer}/image/getTicket/${id}`, {
                     responseType: 'blob', // Указываем, что ожидаем Blob (изображение)
                     headers: { 
                         'Content-Type': 'application/json', 
@@ -99,7 +97,6 @@ function TicketWatchFormAdmin() {
                     },
                 });
                 const url = URL.createObjectURL(response.data);
-                console.log(url)
                 setImageUrl(url); 
             } catch (error) {
                 console.error(error);
@@ -112,7 +109,7 @@ function TicketWatchFormAdmin() {
 
     const handleSave = async () => {
         try {
-            await axios.put(`http://localhost:3000/confidant/saveticket`, {
+            await axios.put(`http://${backendServer}/confidant/saveticket`, {
                 id: id,
                 comment: textArea,
                 status: selected === 'Ожидание' ? 'Отправлено' : selected || data?.status,
@@ -123,7 +120,7 @@ function TicketWatchFormAdmin() {
                 },
             });
             
-            const response = await axios.get(`http://localhost:3000/confidant/ticket/${id}`, {
+            const response = await axios.get(`http://${backendServer}/confidant/ticket/${id}`, {
                 headers: { 
                     'Content-Type': 'application/json', 
                     'authorization': `Bearer ${localStorage.getItem('token')}`

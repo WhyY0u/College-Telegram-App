@@ -3,6 +3,10 @@ import styles from './styles/News.module.css'
 import arrow_left from '../../../../../images/NewsListUser/Event/arrow_left.svg';
 import download_icon from '../../../../../images/NewsListUser/Event/download_icon.svg';
 import axios from 'axios';
+
+
+const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
+
 function News({description, heading, date, img}) {
     const newDate = new Date(date);
     const formatDate = () => {
@@ -18,7 +22,7 @@ function News({description, heading, date, img}) {
         const imgUrls = []; 
     
         for (let i = 0; i < img.length; i++) {
-          const response = await axios.get(`http://localhost:3000/image/getNewsImg/${img[i]}`, {
+          const response = await axios.get(`http://${backendServer}/image/getNewsImg/${img[i]}`, {
             responseType: 'blob',
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,
