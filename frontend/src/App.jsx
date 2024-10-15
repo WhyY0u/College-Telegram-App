@@ -1,19 +1,21 @@
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import './globals.css'
-import Signin from './pages/Signin/Signin'
-import Signup from './pages/Signup/Signup';
-import MainPageUser from './pages/MainPageUser/MainPageUser';
-import TicketCreationPageUser from './pages/TicketCreationPageUser/TicketCreationPageUser';
-import TicketWatchPageUser from './pages/TicketWatchPageUser/TicketWatchPageUser'
-import MainPageAdmin from './pages/MainPageAdmin/MainPageAdmin';
-import TicketWatchPageAdmin from './pages/TicketWatchPageAdmin/TicketWatchPageAdmin';
 import ProtectedRoutes from './protected/Protected'
 import axios from 'axios';
 import ProtectedByRole from './protected/ProtectedByRole';
-import NewsPageUser from './pages/NewsPageUser/NewsPageUser';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
-import NewsCreationPage from './pages/NewsCreationPage/NewsCreationPage';
+import BouncingBallsAsync from './components/BouncingBalls/BoundcingBallsAsync/BouncingBallsAsync';
+import SignupAsync from './pages/Signup/SignupAsync/SignupAsync';
+import SigninAsync from './pages/Signin/SigninAsync/SigninAsync';
+import MainPageUserAsync from './pages/MainPageUser/MainPageUserAsync/MainPageUserAsync';
+import TicketCreationPageUserAsync from './pages/TicketCreationPageUser/TicketCreationPageUserAsync/TicketCreationPageUserAsync';
+import TicketWatchPageUserAsync from './pages/TicketWatchPageUser/TicketWatchPageUserAsync/TicketWatchPageUserAsync';
+import TicketWatchPageAdminAsync from './pages/TicketWatchPageAdmin/TicketWatchPageAdminAsync/TicketWatchPageAdminAsync';
+import MainPageAdminAsync from './pages/MainPageAdmin/MainPageAdminAsync/MainPageAdminAsync';
+import NewsCreationPageAsync from './pages/NewsCreationPage/NewsCreationPageAsync/NewsCreationPageAsync';
+import NewsPageUserAsync from './pages/NewsPageUser/NewsPageUserAsync/NewsPageUserAsync';
+import ProfilePageAsync from './pages/ProfilePage/ProfilePageAsync/ProfilePageAsync';
+import Loader from './components/Loader/Loader';
 
 
 const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
@@ -40,32 +42,35 @@ function App() {
   }
  },[]);
   return (
-    <div className="wrapper">
-      <Routes>
-      <Route element={<ProtectedByRole isAuth={!isAuth}/>}>
-        <Route path="/" element={<Signin />} />
-        <Route path="signup" element={<Signup />} />
-      </Route>
-    <Route element={<ProtectedRoutes isAuth={isAuth}/>}>
-    
-      <Route element={<ProtectedByRole isRole={'Student'}/>}>
-          <Route path="main-page-user" element={<MainPageUser />} />
-          <Route path="ticket-creation-page-user" element={<TicketCreationPageUser />} />
-          <Route path="ticket-watch-page-user/:id" element={<TicketWatchPageUser />} />
+    <Suspense fallback={<Loader />}>
+      <div className="wrapper">
+        <Routes>
+        <Route element={<ProtectedByRole isAuth={!isAuth}/>}>
+          <Route path="/" element={<SigninAsync />} />
+          <Route path="signup" element={<SignupAsync />} />
+        </Route>
+      <Route element={<ProtectedRoutes isAuth={isAuth}/>}>
+      
+        <Route element={<ProtectedByRole isRole={'Student'}/>}>
+            <Route path="main-page-user" element={<MainPageUserAsync />} />
+            <Route path="ticket-creation-page-user" element={<TicketCreationPageUserAsync />} />
+            <Route path="ticket-watch-page-user/:id" element={<TicketWatchPageUserAsync />} />
+        </Route>
+
+        <Route element={<ProtectedByRole isRole={'Confidant'}/>}>
+            <Route path="ticket-watch-page-admin/:id" element={<TicketWatchPageAdminAsync />} />
+            <Route path="main-page-admin" element={<MainPageAdminAsync />} />
+            <Route path="news-creation-page" element={<NewsCreationPageAsync />} />
+        </Route>
+
+        <Route path="news-page-user" element={<NewsPageUserAsync />} />
+        <Route path="profile-page" element={<ProfilePageAsync />} />
       </Route>
 
-      <Route element={<ProtectedByRole isRole={'Confidant'}/>}>
-          <Route path="ticket-watch-page-admin/:id" element={<TicketWatchPageAdmin />} />
-          <Route path="main-page-admin" element={<MainPageAdmin />} />
-          <Route path="news-creation-page" element={<NewsCreationPage />} />
-      </Route>
-
-      <Route path="news-page-user" element={<NewsPageUser />} />
-      <Route path="profile-page" element={<ProfilePage />} />
-    </Route>
-
-  </Routes>
-    </div>
+      </Routes>
+      <BouncingBallsAsync />
+      </div>
+    </Suspense>
   )
 }
 

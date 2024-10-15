@@ -6,6 +6,13 @@
     gap: 30px;
 }
 
+.profile__form__loader__position {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    bottom: 140px;
+}
+
 .profile__form__name__block {
     display: flex;
     gap: 10px;

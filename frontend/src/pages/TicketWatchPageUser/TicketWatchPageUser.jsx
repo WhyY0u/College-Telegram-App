@@ -16,7 +16,6 @@ function TicketWatchPageUser() {
         <div className={`${styles.ticket__watch__page__user__navigation__container} _container`}>
           <Navigation />
         </div>
-        <BouncingBalls />
     </div>
   )
 }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import TicketNavigate from './components/TicketNavigate/TicketNavigate';
 import NotFoundTicket from './components/NotFoundTicket/NotFoundTicket';
+import Loader from '../Loader/Loader';
 
 
 const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
@@ -12,6 +13,7 @@ function TicketsListAdmin({ searchQuery, sortType }) {
     const [data, setData] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    const [isLoading, setIsLoading] = useState(false)
     const limit = 5;
 
     const TYPES = Object.freeze({
@@ -27,7 +29,10 @@ function TicketsListAdmin({ searchQuery, sortType }) {
     });
 
     const fetchData = async (page) => {
+        setIsLoading(true)
         try {
+
+
             const response = await axios.get(`${backendServer}/confidant/tickets?page=${page}&limit=${limit}`, {
                 headers: { 
                     'Content-Type': 'application/json', 
@@ -45,6 +50,8 @@ function TicketsListAdmin({ searchQuery, sortType }) {
             setTotalPages(response?.data?.totalPages);
         } catch (error) {
             console.error(error);
+        } finally {
+            setIsLoading(false)
         }
     };
 
@@ -117,37 +124,46 @@ function TicketsListAdmin({ searchQuery, sortType }) {
         <div className={styles.ticket__list__admin}>
             <div className={`${styles.ticket__list__admin__container}`}>
                 <div className={styles.ticket__list__admin__items__container}>
-                    {sortedTickets?.map((ticket, index) => (
-                        <Link key={index} to={`/ticket-watch-page-admin/${ticket?._id}`}>
-                            <div className={`${styles.ticket__list__admin__item} ${styles.item}`}>
-                                <div className={styles.item__name__block}>
-                                    <h6 className={styles.item__name__block__title}>Название</h6>
-                                    <p className={styles.item__name__block__title__name}>{truncateText(ticket?.heading)}</p>
+                    {isLoading ? (
+                        <div className={styles.ticket__list__admin__loader__position}>
+                            <Loader />
+                        </div>
+                    ) : (
+                        sortedTickets?.map((ticket, index) => (
+                            <Link key={index} to={`/ticket-watch-page-admin/${ticket?._id}`}>
+                                <div className={`${styles.ticket__list__admin__item} ${styles.item}`}>
+                                    <div className={styles.item__name__block}>
+                                        <h6 className={styles.item__name__block__title}>Название</h6>
+                                        <p className={styles.item__name__block__title__name}>{truncateText(ticket?.heading)}</p>
+                                    </div>
+                                    <div className={styles.item__stick__element}></div>
+                                    <div className={styles.item__type__block}>
+                                        <h6 className={styles.item__type__block__title}>Тип</h6>
+                                        <p 
+                                            className={ ticket.type === 'Жалоба' ? styles.item__type__block__title__name__complaint : 
+                                                ticket.type === 'Предложение' ? styles.item__type__block__title__name__offer : '' }
+                                        >{ticket.type}</p>
+                                    </div>
+                                    <div className={styles.item__stick__element}></div>
+                                    <div className={styles.item__status__block}>
+                                        <h6 className={styles.item__status__block__title}>Статус</h6>
+                                        <p className={
+                                            ticket.status === STATUS.rejected ? styles.item__status__block__title__name__rejected :
+                                            ticket.status === STATUS.expectation ? styles.item__status__block__title__name__expectation :
+                                            ticket.status === STATUS.inProgress ? styles.item__status__block__title__name__inProgress :
+                                            ticket.status === STATUS.done ? styles.item__status__block__title__name__done :
+                                            '' }
+                                        >{ticket.status}</p>
+                                    </div>
                                 </div>
-                                <div className={styles.item__stick__element}></div>
-                                <div className={styles.item__type__block}>
-                                    <h6 className={styles.item__type__block__title}>Тип</h6>
-                                    <p 
-                                        className={ ticket.type === 'Жалоба' ? styles.item__type__block__title__name__complaint : 
-                                            ticket.type === 'Предложение' ? styles.item__type__block__title__name__offer : '' }
-                                    >{ticket.type}</p>
-                                </div>
-                                <div className={styles.item__stick__element}></div>
-                                <div className={styles.item__status__block}>
-                                    <h6 className={styles.item__status__block__title}>Статус</h6>
-                                    <p className={
-                                        ticket.status === STATUS.rejected ? styles.item__status__block__title__name__rejected :
-                                        ticket.status === STATUS.expectation ? styles.item__status__block__title__name__expectation :
-                                        ticket.status === STATUS.inProgress ? styles.item__status__block__title__name__inProgress :
-                                        ticket.status === STATUS.done ? styles.item__status__block__title__name__done :
-                                        '' }
-                                    >{ticket.status}</p>
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
+                            </Link>
+                        ))
+                    )}
                 </div>
-                {totalPages != 0 ? <TicketNavigate handlePageChange={handlePageChange} currentPage={currentPage} visiblePages={visiblePages} totalPages={totalPages}/>: <NotFoundTicket/>}
+                { isLoading 
+                    ? ''
+                    : totalPages != 0 ? <TicketNavigate handlePageChange={handlePageChange} currentPage={currentPage} visiblePages={visiblePages} totalPages={totalPages}/> : <NotFoundTicket/> 
+                }
             </div>
         </div>
     );

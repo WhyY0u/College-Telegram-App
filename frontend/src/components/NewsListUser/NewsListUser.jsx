@@ -4,6 +4,7 @@ import Event from './components/Event/Event';
 import News from './components/News/News';
 
 import axios from 'axios';
+import Loader from '../Loader/Loader';
 
 const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
 
@@ -11,8 +12,14 @@ function NewsListUser() {
   const [data, setData] = useState(null)
   const [todayItems, setTodayItems] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
+  const [isLoading, setIsLoading] = useState(false)
+
   const fetchAll = async () => {
+    setIsLoading(true)
+
+
     try {
+
       const response = await axios.get(`${backendServer}/news/get`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -24,6 +31,8 @@ function NewsListUser() {
 
     } catch (error) {
       console.error(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -65,19 +74,29 @@ function NewsListUser() {
   return (
     <div className={styles.news__list__user}>
       <div className={`${styles.news__list__user__container} _container`}>
+        {isLoading ? (
+          <div className={styles.news__list__user__loader__position}>
+            <Loader />
+          </div>
+        )
+        : (
+          <>
           <div className={styles.news__list__user__text__on__today}>
-           <div className={styles.on__today__block__text}>На Сегодня</div>
-         </div>
-      {todayItems?.map((item, index) => (
-         item.type === "Новость" ? (<News key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} />) : (<Event key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} start={item.start} place={item.place}/>)
-       ))}
-        <div className={`${styles.news__list__user__new__block} ${styles.new__block}`}>
-          <div className={styles.new__block__text}>Лента</div>
-          {filteredData?.map((item, index) => (
-         item.type === "Новость" ? (<News key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} />) : (<Event key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} start={item.start} place={item.place}/>)
-       ))}
-          
-        </div>
+            <div className={styles.on__today__block__text}>На Сегодня</div>
+          </div>
+          {todayItems?.map((item, index) => (
+            item.type === "Новость" ? (<News key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} />) : (<Event key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} start={item.start} place={item.place}/>)
+          ))}
+          <div className={`${styles.news__list__user__new__block} ${styles.new__block}`}>
+            <div className={styles.new__block__text}>Лента</div>
+            {filteredData?.map((item, index) => (
+              item.type === "Новость" ? (<News key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} />) : (<Event key={index} img={item.images} date={item.date} description={item.description} heading={item.heading} start={item.start} place={item.place}/>)
+            ))}
+            
+          </div>
+          </>
+        )}
+
 
         
       </div>

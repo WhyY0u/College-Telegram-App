@@ -6,6 +6,13 @@
     gap: 20px;
 }
 
+.ticket__watch__form__user__position {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    bottom: 140px;
+}
+
 .ticket__watch__form__user__headers__block {
     display: flex;
     justify-content: space-between;

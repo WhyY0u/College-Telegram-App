@@ -44,7 +44,7 @@ function Event({date, description, heading, img, place, start}) {
       const imgUrls = []; // Временный массив для хранения URL изображений
   
       for (let i = 0; i < img.length; i++) {
-        const response = await axios.get(`http://${backendServer}/image/getEventImg/${img[i]}`, {
+        const response = await axios.get(`${backendServer}/image/getEventImg/${img[i]}`, {
           responseType: 'blob',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`,

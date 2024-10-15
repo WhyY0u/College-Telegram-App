@@ -9,7 +9,6 @@ function NewsCreationPage() {
     <div className={styles.news__creation__page}>
         <HeaderWithLine />
         <NewsCreationForm />
-        <BouncingBalls />
     </div>
   )
 }

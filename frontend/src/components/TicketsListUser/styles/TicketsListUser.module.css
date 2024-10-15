@@ -15,6 +15,13 @@
     min-height: 350px;
 }
 
+.ticket__list__user__loader__position {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 140px;
+}
+
 .ticket__list__user__item {
     display: flex;
     background-color: rgba(0, 0, 0, 0.17);

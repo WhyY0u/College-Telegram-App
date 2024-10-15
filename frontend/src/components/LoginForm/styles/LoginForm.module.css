@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     gap: 35px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .form__input__container {
@@ -21,7 +21,7 @@
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83);
+    color: rgba(238, 219, 219, 0.83);
     z-index: -1;
 }
 
@@ -32,20 +32,20 @@
     top: -20px; /* начальная позиция */
     left: 6px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83);
+    color: rgba(238, 219, 219, 0.83);
     z-index: -1;
 }
 
 .form__inputs__login {
     width: 100%;
-    color: white;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid rgb(120, 133, 182, 0.03);
+    box-shadow: 0px 0px 5px rgb(120, 133, 182);
     font-family: "Inter";
     padding: 15px 10px;
     border-radius: 10px;
     font-size: 15px;
-       color: rgba(255, 255, 255, 0.693);
+    color: rgba(255, 255, 255, 0.693);
 }
 .form__inputs__password__block {
     position: relative; /* Добавляем относительное позиционирование */
@@ -61,7 +61,7 @@
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: rgba(238, 219, 219, 0.83);
     z-index: -1;
 }
 
@@ -72,7 +72,7 @@
     top: -20px; /* начальная позиция */
     left: 6px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: rgba(238, 219, 219, 0.83);
     z-index: -1;
 }
 
@@ -80,8 +80,9 @@
     width: 100%;
     color: white;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.03);
-       color: rgba(255, 255, 255, 0.693);
+    border: 1px solid rgb(120, 133, 182, 0.03);
+    box-shadow: 0px 0px 5px rgb(120, 133, 182);
+    color: rgba(255, 255, 255, 0.693);
     font-family: "Inter";
     padding: 15px 50px 15px 10px;
     border-radius: 10px;
@@ -96,7 +97,7 @@
 
 .form__inputs__login:hover {
     border: 1px solid rgb(68, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.4);
+    box-shadow: 0 0 10px rgba(68, 9, 199);
     transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
@@ -106,7 +107,7 @@
 
 .form__inputs__password:hover {
     border: 1px solid rgba(69, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.4);
+    box-shadow: 0 0 10px rgba(68, 9, 199);
     transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
@@ -149,7 +150,7 @@
     font-size: 17px;
     background-color: rgba(13, 13, 13, 0.28);
     color: #B3AFAF;
-    box-shadow: 0px 0px 10px rgba(13, 13, 13, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     transition: background-color 0.3s, box-shadow 0.3s ease-in;
     font-family: "Inter";
     font-weight: 600;

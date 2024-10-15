@@ -31,7 +31,6 @@ function MainPageAdmin() {
           sortType={sortType}
         />
         <Navigation />
-        <BouncingBalls />
     </div>
   )
 }

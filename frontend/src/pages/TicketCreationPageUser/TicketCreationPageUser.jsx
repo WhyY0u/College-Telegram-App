@@ -22,7 +22,6 @@ function TicketCreationPageUser() {
         <div className={`${styles.ticket__creation__page__user__navigation__container} _container`}>
           <Navigation />
         </div>
-        <BouncingBalls />
     </div>
   )
 }

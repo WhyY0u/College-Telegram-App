@@ -9,6 +9,13 @@
     gap: 30px;
 }
 
+.news__list__user__loader__position {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 140px;
+}
+
 .news__list__user__on__today__block {
     display: flex;
     flex-direction: column;

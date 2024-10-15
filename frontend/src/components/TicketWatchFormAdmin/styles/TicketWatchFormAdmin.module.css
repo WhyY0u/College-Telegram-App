@@ -4,6 +4,13 @@
     gap: 20px;
 }
 
+.ticket__watch__form__admin__loader__position {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    bottom: 140px;
+}
+
 .ticket__watch__form__admin__fullname__block,
 .ticket__watch__form__admin__headers__block {
     display: flex;
