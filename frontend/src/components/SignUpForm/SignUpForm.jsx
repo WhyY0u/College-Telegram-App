@@ -59,7 +59,7 @@ const handleRegister = (event) => {
         alert('Неверное подтверждение пароля')
         return
     }
-    axios.post(`http://${backendServer}/auth/register`, {
+    axios.post(`${backendServer}/auth/register`, {
         ...loginGet,
     })
     .then(response => {

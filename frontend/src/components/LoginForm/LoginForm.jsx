@@ -46,7 +46,7 @@ function LoginForm() {
 
 const handleSignIn = (event) => {
     event.preventDefault()
-    axios.post(`http://${backendServer}/auth/login`, {
+    axios.post(`${backendServer}/auth/login`, {
         ...loginGet
     })
     .then(response => {

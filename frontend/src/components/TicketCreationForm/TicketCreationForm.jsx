@@ -77,7 +77,7 @@ function TicketCreationForm() {
             formData.append('image', imageFile); // Добавляем файл изображения
         }
 
-        axios.post(`http://${backendServer}/user/createticket`, formData, {
+        axios.post(`${backendServer}/user/createticket`, formData, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'multipart/form-data', // Указываем тип контента

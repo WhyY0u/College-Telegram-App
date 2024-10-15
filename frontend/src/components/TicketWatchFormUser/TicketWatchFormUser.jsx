@@ -34,7 +34,7 @@ function TicketWatchFormUser() {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://${backendServer}/user/ticket/${id}`, {
+                const response = await axios.get(`${backendServer}/user/ticket/${id}`, {
                     headers: { 
                         'Content-Type': 'application/json', 
                         'authorization': `Bearer ${localStorage.getItem('token')}`
@@ -52,7 +52,7 @@ function TicketWatchFormUser() {
     useEffect(() => {
         const fetchImage = async () => {
             try {
-                const response = await axios.get(`http://${backendServer}/image/getTicket/${id}`, {
+                const response = await axios.get(`${backendServer}/image/getTicket/${id}`, {
                     responseType: 'blob', // Указываем, что ожидаем Blob (изображение)
                     headers: { 
                         'Content-Type': 'application/json', 

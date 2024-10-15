@@ -25,7 +25,7 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
   if(isAuth != undefined) {
-  axios.post(`http://${backendServer}/auth/checktoken`, 
+  axios.post(`${backendServer}/auth/checktoken`, 
     {
       headers: { 
           'Content-Type': 'application/json', 

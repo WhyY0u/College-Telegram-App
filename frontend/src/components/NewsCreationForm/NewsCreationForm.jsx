@@ -120,7 +120,7 @@ function NewsCreationForm() {
 
 
         try {
-            await axios.post(`http://${backendServer}/confidant/saveNews`, formData, {
+            await axios.post(`${backendServer}/confidant/saveNews`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -145,7 +145,7 @@ function NewsCreationForm() {
         });
 
         try {
-            await axios.post(`http://${backendServer}/confidant/saveEvent`, formData, {
+            await axios.post(`${backendServer}/confidant/saveEvent`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'authorization': `Bearer ${localStorage.getItem('token')}`,

@@ -16,7 +16,7 @@ function TicketsListUser() {
     const limit = 5;
     const fetchData = async (page) => {
         try {
-            const response = await axios.get(`http://${backendServer}/user/tickets?page=${page}&limit=${limit}`, {
+            const response = await axios.get(`${backendServer}/user/tickets?page=${page}&limit=${limit}`, {
                 headers: { 
                     'Content-Type': 'application/json', 
                     'authorization': `Bearer ${localStorage.getItem('token')}`

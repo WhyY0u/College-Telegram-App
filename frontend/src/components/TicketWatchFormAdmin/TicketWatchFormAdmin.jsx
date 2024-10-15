@@ -70,7 +70,7 @@ function TicketWatchFormAdmin() {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://${backendServer}/confidant/ticket/${id}`, {
+                const response = await axios.get(`${backendServer}/confidant/ticket/${id}`, {
                     headers: { 
                         'Content-Type': 'application/json', 
                         'authorization': `Bearer ${localStorage.getItem('token')}`
@@ -89,7 +89,7 @@ function TicketWatchFormAdmin() {
     useEffect(() => {
         const fetchImage = async () => {
             try {
-                const response = await axios.get(`http://${backendServer}/image/getTicket/${id}`, {
+                const response = await axios.get(`${backendServer}/image/getTicket/${id}`, {
                     responseType: 'blob', // Указываем, что ожидаем Blob (изображение)
                     headers: { 
                         'Content-Type': 'application/json', 
@@ -109,7 +109,7 @@ function TicketWatchFormAdmin() {
 
     const handleSave = async () => {
         try {
-            await axios.put(`http://${backendServer}/confidant/saveticket`, {
+            await axios.put(`${backendServer}/confidant/saveticket`, {
                 id: id,
                 comment: textArea,
                 status: selected === 'Ожидание' ? 'Отправлено' : selected || data?.status,
@@ -120,7 +120,7 @@ function TicketWatchFormAdmin() {
                 },
             });
             
-            const response = await axios.get(`http://${backendServer}/confidant/ticket/${id}`, {
+            const response = await axios.get(`${backendServer}/confidant/ticket/${id}`, {
                 headers: { 
                     'Content-Type': 'application/json', 
                     'authorization': `Bearer ${localStorage.getItem('token')}`

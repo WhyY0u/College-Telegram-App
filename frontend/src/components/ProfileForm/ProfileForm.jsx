@@ -19,7 +19,7 @@ function ProfileForm() {
 
     const SendInfo = async () => {
         try {
-            const response = await axios.get(`http://${backendServer}/profile/get`, {
+            const response = await axios.get(`${backendServer}/profile/get`, {
                 headers: { 
                     'Content-Type': 'application/json', 
                     'authorization': `Bearer ${localStorage.getItem('token')}`
@@ -30,7 +30,7 @@ function ProfileForm() {
             
             setTextArea(response?.data?.description)
 
-            const imgResponse = await axios.get(`http://${backendServer}/image/getProfileImg/${encodeURIComponent(response?.data?.image)}`, {
+            const imgResponse = await axios.get(`${backendServer}/image/getProfileImg/${encodeURIComponent(response?.data?.image)}`, {
                 responseType: 'blob',
                 headers: { 
                     'Content-Type': 'application/json', 
@@ -88,7 +88,7 @@ function ProfileForm() {
         setIsTextAreaClicked(false) // Убираем фокус при сохранении
         
 
-        await axios.patch(`http://${backendServer}/profile/update`, {
+        await axios.patch(`${backendServer}/profile/update`, {
             description: textArea,
         }, {
             headers: { 
@@ -116,7 +116,7 @@ function ProfileForm() {
                 const formData = new FormData();
                 formData.append('image', file); // Используйте сам файл
     
-                await axios.patch(`http://${backendServer}/profile/update`, formData, {
+                await axios.patch(`${backendServer}/profile/update`, formData, {
                     headers: { 
                         'Content-Type': 'multipart/form-data',
                         'authorization': `Bearer ${localStorage.getItem('token')}`

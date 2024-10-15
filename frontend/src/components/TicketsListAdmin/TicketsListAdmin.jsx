@@ -28,7 +28,7 @@ function TicketsListAdmin({ searchQuery, sortType }) {
 
     const fetchData = async (page) => {
         try {
-            const response = await axios.get(`http://${backendServer}/confidant/tickets?page=${page}&limit=${limit}`, {
+            const response = await axios.get(`${backendServer}/confidant/tickets?page=${page}&limit=${limit}`, {
                 headers: { 
                     'Content-Type': 'application/json', 
                     'authorization': `Bearer ${localStorage.getItem('token')}`,

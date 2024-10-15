@@ -13,7 +13,7 @@ function NewsListUser() {
   const [filteredData, setFilteredData] = useState(data);
   const fetchAll = async () => {
     try {
-      const response = await axios.get(`http://${backendServer}/news/get`, {
+      const response = await axios.get(`${backendServer}/news/get`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'multipart/form-data',
