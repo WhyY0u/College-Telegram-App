@@ -8,6 +8,7 @@ const User = require('./model/userModel');
 
 const cors = require('cors');
 
+const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 const middleware = require('./middleware/middleware');
 const authoRouter = require("./router/authRouter");
@@ -22,15 +23,6 @@ const PORT = process.env.PORT || 3000;
 const dbURI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.bym8p.mongodb.net/kit?retryWrites=true&w=majority&appName=Cluster0`;
 mongoose.connect(dbURI).then(() => console.log('MongoDB connected')).catch(err => console.error('MongoDB connection error:', err));
 
-//  const dbURI = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@mongo:27017/${process.env.DB_NAME}?authSource=admin`;
-//  mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
-//     .then(() => console.log('MongoDB connected'))
-//     .catch(err => console.error('MongoDB connection error:', err)); 
-
-// const dbURI = `mongodb://localhost:27017/kit`;
-//  mongoose.connect(dbURI)
-// .then(() => console.log('MongoDB connected'))
-// .catch(err => console.error('MongoDB connection error:', err));
 
 const app = express();
 
@@ -51,6 +43,19 @@ app.use('/api/image', middleware.authMiddleware, imageRouter);
 app.use('/api/news', middleware.authMiddleware, newsRouter);
 app.use('/api/profile', middleware.authMiddleware, profileRouter);
 
+
+bot.onText(/\/start/, async (msg) => {
+  const chatId = msg.chat.id;
+
+  const miniAppUrl = 'https://telegram-app.pbk.kz/';
+  await bot.sendMessage(chatId, 'Добро пожаловать в KitAitu! Мы готовы выслушать вас!', {
+    reply_markup: {
+       inline_keyboard: [
+       [{text: 'Открыть KitAitu', web_app: {url: miniAppUrl}}]
+       ]
+    }
+  })
+});
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on http://0.0.0.0:${PORT}`);

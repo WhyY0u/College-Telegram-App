@@ -14,16 +14,21 @@ import ProtectedByRole from './protected/ProtectedByRole';
 import NewsPageUser from './pages/NewsPageUser/NewsPageUser';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import NewsCreationPage from './pages/NewsCreationPage/NewsCreationPage';
-
+import { WebApp } from 'telegram-web-app';
 
 const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
 
 function App() {
   const token = localStorage.getItem('token');
   const [isAuth, setAuth] = useState(false);
-  
+
   const navigate = useNavigate();
   useEffect(() => {
+    WebApp.ready();
+
+    WebApp.setTitle('My Mini App');
+
+    WebApp.expand();
   if(isAuth != undefined) {
   axios.post(`${backendServer}/auth/checktoken`, 
     {
