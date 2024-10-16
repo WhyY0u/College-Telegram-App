@@ -1,6 +1,8 @@
 const ProfileUtils = require('../utils/profileUtils');
 const JwtUtils = require('../utils/jwtUtils');
 const file = require('../utils/fileUtils')
+const multer = require('multer');
+
 const getProfile = async (req, res) => {
     try {
        const currntuser = await JwtUtils.getUserByReq(req);
@@ -39,7 +41,7 @@ const updProfile = async (req, res) => {
           }
         }
       }
-      await ProfileUtils.update(getProfile._id, updProfile)
+      await ProfileUtils.update(getProfile?._id, updProfile)
       return res.status(200).send("Успешно");
     } catch (err) {
       console.error(err);

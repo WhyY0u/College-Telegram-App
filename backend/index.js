@@ -44,12 +44,12 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/auth', authoRouter);
-app.use('/user', middleware.RoleAndAuthoMiddleware(User.Role.Student), userRouter);
-app.use('/confidant', middleware.RoleAndAuthoMiddleware(User.Role.Confidant), confidantRouter);
-app.use('/image', middleware.authMiddleware, imageRouter);
-app.use('/news', middleware.authMiddleware, newsRouter);
-app.use('/profile', middleware.authMiddleware, profileRouter);
+app.use('/api/auth', authoRouter);
+app.use('/api/user', middleware.RoleAndAuthoMiddleware(User.Role.Student), userRouter);
+app.use('/api/confidant', middleware.RoleAndAuthoMiddleware(User.Role.Confidant), confidantRouter);
+app.use('/api/image', middleware.authMiddleware, imageRouter);
+app.use('/api/news', middleware.authMiddleware, newsRouter);
+app.use('/api/profile', middleware.authMiddleware, profileRouter);
 
 
 app.listen(PORT, '0.0.0.0', () => {

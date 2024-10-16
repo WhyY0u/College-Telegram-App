@@ -12,6 +12,4 @@ RUN npm install
 
 COPY back/.env .env
 
-EXPOSE 3000
-
 CMD ["npm", "run", "start"]

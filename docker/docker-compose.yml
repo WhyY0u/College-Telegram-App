@@ -14,7 +14,7 @@ services:
     build:
       context: .
       dockerfile: express.dockerfile
-    ports:
+    expose:
       - "3000:3000"
 
 
