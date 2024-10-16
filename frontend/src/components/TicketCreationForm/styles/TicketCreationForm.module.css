@@ -1,7 +1,28 @@
 
 
+.ticket__creation__form__validator {
+    opacity: 1;
+    transition: opacity 0.5s ease; /* Плавный переход */
+}
+  
+.ticket__creation__form__hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease; 
+    pointer-events: none; /* Чтобы не было взаимодействий, когда скрыто */
+}
+
+
 .form__name__type__block__input__container {
     position: relative;
+}
+
+.block__input__validator {
+    font-family: 'Inter';
+    font-size: 14px;
+    position: absolute;
+    color: rgba(238, 219, 219, 0.40);
+    right: 10px;
+    top: -20px;
 }
 
 .form__name__type__block {

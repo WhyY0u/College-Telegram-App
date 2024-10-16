@@ -13,6 +13,38 @@
     position: relative;
 }
 
+.login__form__login__validator {
+    opacity: 1;
+    transition: opacity 0.5s ease; /* Плавный переход */
+}
+  
+.login__form__hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease; 
+    pointer-events: none; /* Чтобы не было взаимодействий, когда скрыто */
+}
+
+.form__inputs__validator {
+    font-family: 'Inter';
+    font-size: 14px;
+    position: absolute;
+    color: rgba(238, 219, 219, 0.40);
+    right: 10px;
+    top: -20px;
+}
+
+.form__inputs__login {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid rgba(241, 241, 241, 0.56);
+    font-family: "Inter";
+    padding: 15px 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.693);
+}
+
+
 .form__inputs__placeholder {
     font-family: 'Inter';
     font-weight: 600;
@@ -36,22 +68,20 @@
     z-index: -1;
 }
 
-.form__inputs__login {
-    width: 100%;
-    background-color: transparent;
-    border: 1px solid rgb(120, 133, 182, 0.03);
-    box-shadow: 0px 0px 5px rgb(120, 133, 182);
-    font-family: "Inter";
-    padding: 15px 10px;
-    border-radius: 10px;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.693);
-}
 .form__inputs__password__block {
     position: relative; /* Добавляем относительное позиционирование */
     display: flex; /* Используем flexbox для выравнивания */
     align-items: center;
 }  
+
+.form__inputs__password__validator {
+    font-family: 'Inter';
+    font-size: 14px;
+    position: absolute;
+    color: rgba(238, 219, 219, 0.40);
+    right: 10px;
+    top: -20px;
+}
 
 .form__inputs__password__block__placeholder {
     position: absolute;
@@ -80,8 +110,7 @@
     width: 100%;
     color: white;
     background-color: transparent;
-    border: 1px solid rgb(120, 133, 182, 0.03);
-    box-shadow: 0px 0px 5px rgb(120, 133, 182);
+    border: 1px solid rgba(241, 241, 241, 0.56);
     color: rgba(255, 255, 255, 0.693);
     font-family: "Inter";
     padding: 15px 50px 15px 10px;
@@ -139,7 +168,7 @@
     font-size: 17px;
     background-color: rgb(28, 5, 81);
     color: #B3AFAF;
-    transition: background-color 0.3s  box-shadow 0.3s ease-in;
+    transition: background-color 0.3s ease-in,  box-shadow 0.3s ease-in;
     box-shadow: 0px 0px 10px rgba(28, 5, 81, 1);
     font-weight: 600;
 }
@@ -150,8 +179,8 @@
     font-size: 17px;
     background-color: rgba(13, 13, 13, 0.28);
     color: #B3AFAF;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: background-color 0.3s, box-shadow 0.3s ease-in;
+    border: 1px solid rgba(241, 241, 241, 0.56);
+    transition: background-color 0.3s ease-in, box-shadow 0.3s ease-in;
     font-family: "Inter";
     font-weight: 600;
     

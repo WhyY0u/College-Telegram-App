@@ -5,92 +5,241 @@ import EyeIcon from '../EyeIcon/EyeIcon'
 import styles from "./styles/SignUpForm.module.css"
 import { useSignUpStates } from './hooks/useSignUpStates'
 import SignedIn from './components/SignedIn/SignedIn'
+import Validator from '../Validator/Validator'
 
 const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
 
 function SignUpForm() {
 
     const navigate = useNavigate()
+    const [showValidator, setShowValidator] = useState(false)
+    const [isVisible, setIsVisible] = useState(false)
+    const [isFocused, setIsFocused] = useState({
+        name: false,
+        surname: false,
+        middlename: false,
+        input: false,
+        email: false,
+        passwordVal: false,
+        passwordConf: false,
+    })
 
-  const {
-    isPasswordVisible,
-    isPasswordConfVisible,
-    isClicked,
-    isConfClicked,
-    nameValue,
-    surnameValue,
-    middlenameValue,
-    inputValue,
-    emailValue,
-    passwordValue,
-    passwordConfValue,
-    setClicked,
-    setConfClicked,
-    handleNameChange,
-    handleSurnameChange,
-    handleMiddlenameChange,
-    handleInputChange,
-    handleEmailChange,
-    handlePasswordChange,
-    handlePasswordConfChange,
-    isNameEmpty,
-    isSurnameEmpty,
-    isMiddlenameEmpty,
-    isInputEmpty,
-    isEmailEmpty,
-    isPasswordEmpty,
-    isPasswordConfEmpty,
-    togglePasswordVisibility,
-    togglePasswordConfVisibility
-  } = useSignUpStates()
+    const [allErrors, setAllErrors] = useState('')
+    const [nameError, setNameError] = useState('')
+    const [surnameError, setSurnameError] = useState('')
+    const [middlenameError, setMiddlenameError] = useState('')
+    const [inputError, setInputError] = useState('')
+    const [emailError, setEmailError] = useState('')
+    const [passwordLengthError, setPasswordLengthError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
+
+    const {
+        isPasswordVisible,
+        isPasswordConfVisible,
+        isClicked,
+        isConfClicked,
+        nameValue,
+        surnameValue,
+        middlenameValue,
+        inputValue,
+        emailValue,
+        passwordValue,
+        passwordConfValue,
+        setClicked,
+        setConfClicked,
+        handleNameChange,
+        handleSurnameChange,
+        handleMiddlenameChange,
+        handleInputChange,
+        handleEmailChange,
+        handlePasswordChange,
+        handlePasswordConfChange,
+        isNameEmpty,
+        isSurnameEmpty,
+        isMiddlenameEmpty,
+        isInputEmpty,
+        isEmailEmpty,
+        isPasswordEmpty,
+        isPasswordConfEmpty,
+        togglePasswordVisibility,
+        togglePasswordConfVisibility
+    } = useSignUpStates()
 
 
-  const loginGet = {
-    login: inputValue,
-    email: emailValue,
-    name: nameValue,
-    surname: surnameValue,
-    patronymic: middlenameValue,
-    password: passwordValue,
-}
-const handleRegister = (event) => {
-    event.preventDefault()
-    if (passwordValue !== passwordConfValue) {
-        alert('Неверное подтверждение пароля')
-        return
+    const loginGet = {
+        login: inputValue,
+        email: emailValue,
+        name: nameValue,
+        surname: surnameValue,
+        patronymic: middlenameValue,
+        password: passwordValue,
     }
-    axios.post(`${backendServer}/auth/register`, {
-        ...loginGet,
-    })
-    .then(response => {
-        localStorage.setItem('token', response?.data)
-        navigate('/main-page-user')
-    })
-    .catch(error => console.error(error))
-}
 
+
+    const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+    const handleRegister = (event) => {
+        event.preventDefault()
+        setAllErrors('')
+        setNameError('')
+        setSurnameError('')
+        setMiddlenameError('')
+        setInputError('')
+        setEmailError('')
+        setPasswordLengthError('')
+        setPasswordError('')
+
+        if (isNameEmpty() || isSurnameEmpty() || isMiddlenameEmpty() || isInputEmpty() || isEmailEmpty() || isPasswordEmpty() || isPasswordConfEmpty()) {
+            setAllErrors('Все поля должны быть заполнены')
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        } 
+
+        if (nameValue.length < 3) {
+            setNameError('Имя должно содержать больше 3 символов')
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        if (surnameValue.length < 3) {
+            setSurnameError('Фамилия должна содержать больше 3 символов')
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        if (middlenameValue.length < 3) {
+            setMiddlenameError('Отчество должно содержать больше 3 символов')
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        if (inputValue.length < 3) {
+            setInputError('Логин должен содержать больше 3 символов')
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        if (!emailValue.match(isValidEmail)) {
+            setEmailError('Email должен быть корректным');
+            setIsVisible(true);
+            setTimeout(() => {
+                setIsVisible(false);
+            }, 3000);
+            return
+        }
+
+        if (passwordValue.length < 8) {
+            setPasswordLengthError('Пароль должен содержать больше 8 символов');
+            setIsVisible(true);
+            setTimeout(() => {
+                setIsVisible(false);
+            }, 3000);
+            return
+        }
+
+        if (passwordValue !== passwordConfValue) {
+            setPasswordError('Неверное подтверждение пароля');
+            setIsVisible(true);
+            setTimeout(() => {
+                setIsVisible(false);
+            }, 3000);
+            return
+        }
+        axios.post(`${backendServer}/auth/register`, {
+            ...loginGet,
+        })
+        .then(response => {
+            localStorage.setItem('token', response?.data)
+            navigate('/main-page-user')
+        })
+        .catch(error => {
+            console.error(error)
+            console.log(error?.response?.data?.errors[0]?.msg)
+        })
+    }
+
+
+    
+    const handleFocus = (field) => {
+        setIsFocused((prev) => ({...prev, [field]: true}))
+    }
+
+    const handleBlur = (field) => {
+        setIsFocused((prev) => ({...prev, [field]: false}))
+    }
 
 
   return (
     <div className={styles.signup__form}>
         <div className={`${styles.signup__form__container} _container`}>
-            <form className={`${styles.signup__form__form} ${styles.from}`}>
+            {allErrors &&
+                <Validator text={allErrors} className={`${isVisible ? styles.signup__form__login__validator : styles.signup__form__hidden}`} />     
+            }
+            {nameError &&
+                <Validator text={nameError} className={`${isVisible ? styles.signup__form__login__validator : styles.signup__form__hidden}`} />
+            }
+            {surnameError &&
+                <Validator text={surnameError} className={`${isVisible ? styles.signup__form__login__validator : styles.signup__form__hidden}`} />
+            }
+            {middlenameError &&
+                <Validator text={middlenameError} className={`${isVisible ? styles.signup__form__login__validator : styles.signup__form__hidden}`} />
+            }
+            {inputError &&
+                <Validator text={inputError} className={`${isVisible ? styles.signup__form__login__validator : styles.signup__form__hidden}`} />
+            }
+            {emailError &&
+                <Validator text={emailError} className={`${isVisible ? styles.signup__form__login__validator : styles.signup__form__hidden}`} />
+            }
+            {passwordLengthError &&
+                <Validator text={passwordLengthError} className={`${isVisible ? styles.signup__form__login__validator : styles.signup__form__hidden}`} />
+            }
+            {passwordError &&
+                <Validator text={passwordError} className={`${isVisible ? styles.signup__form__login__validator : styles.signup__form__hidden}`} />
+            }
+            <form className={`${styles.signup__form__form} ${styles.form}`}>
                 <div className={styles.form__inputs}>
                     <div className={styles.form__inputs__name__surname}>
                         <div className={styles.form__inputs__name__container}>
+                            {!isFocused.name || !isNameEmpty() &&
+                                <label className={styles.form__inputs__validator}>{nameValue.length < 3 && 'Мин. 3'}</label>                            
+                            }
                             <input 
                                 type="text" 
                                 className={styles.form__inputs__name} 
+                                onFocus={() => handleFocus('name')}
+                                onBlur={() => handleBlur('name')}
+                                maxLength={50}
                                 value={nameValue}
                                 onChange={handleNameChange}
                             />
                             <label className={`${ isNameEmpty() ? styles.form__inputs__name__placeholder : styles.form__inputs__name__placeholder__top}`}>Имя</label>
                         </div>
                         <div className={styles.form__inputs__surname__container}>
+                            {!isFocused.surname || !isSurnameEmpty() &&
+                                <label className={styles.form__inputs__validator}>{surnameValue.length < 3 && 'Мин. 3'}</label>                            
+                            }
                             <input  
-                                type="text" 
-                                className={styles.form__inputs__surname} 
+                                type="text"
+                                className={styles.form__inputs__surname}
+                                onFocus={() => handleFocus('surname')}
+                                onBlur={() => handleBlur('surname')}
                                 value={surnameValue}
+                                maxLength={50}
                                 onChange={handleSurnameChange}
                             />
                             <label className={`${ isSurnameEmpty() ? styles.form__inputs__surname__placeholder : styles.form__inputs__surname__placeholder__top }`}>Фамилия</label>
@@ -98,19 +247,31 @@ const handleRegister = (event) => {
                     </div>
                     <div className={styles.form__inputs__middlename__login}>
                         <div className={`${styles.form__inputs__middlename__container}`}>
+                            {!isFocused.middlename || !isMiddlenameEmpty() &&
+                                <label className={styles.form__inputs__validator}>{middlenameValue.length < 3 && 'Мин. 3'}</label>                            
+                            }
                             <input 
                                 type="text" 
                                 className={styles.form__inputs__middlename} 
                                 value={middlenameValue}
+                                onFocus={() => handleFocus('middlename')}
+                                onBlur={() => handleBlur('middlename')}
+                                maxLength={50}
                                 onChange={handleMiddlenameChange}
                             />
                             <label className={`${isMiddlenameEmpty() ? styles.form__inputs__middlename__placeholder : styles.form__inputs__middlename__placeholder__top}`}>Отчество</label>
                         </div>
                         <div className={`${styles.form__inputs__login__container}`}>
+                            {!isFocused.input || !isInputEmpty() &&
+                                <label className={styles.form__inputs__validator}>{inputValue.length < 3 && 'Мин. 3'}</label>                            
+                            }
                             <input 
                                 type="text" 
                                 className={styles.form__inputs__login} 
                                 value={inputValue}
+                                onFocus={() => handleFocus('input')}
+                                onBlur={() => handleBlur('input')}
+                                maxLength={30}
                                 onChange={handleInputChange}
                             />
                             <label className={`${isInputEmpty() ? styles.form__inputs__login__placeholder : styles.form__inputs__login__placeholder__top}`}>Логин</label>
@@ -121,17 +282,20 @@ const handleRegister = (event) => {
                             type="email" 
                             className={styles.form__inputs__mail} 
                             value={emailValue}
+                            maxLength={200}
                             onChange={handleEmailChange}
                         />
                         <label className={`${isEmailEmpty() ? styles.form__inputs__mail__placeholder : styles.form__inputs__mail__placeholder__top}`}>Почта</label>
                     </div>
                     <div className={styles.form__inputs__password__block}>
+                        {!isFocused.passwordVal || !isPasswordEmpty() &&
+                            <label className={styles.form__inputs__validator}>{passwordValue.length < 8 && 'Минимум 8 символов'}</label>                            
+                        }
                         <input
                             type={isPasswordVisible ? 'text' : 'password'}
-                            onBlur={() => setClicked(false)}
-                            onFocus={() => setClicked(true)}  
+                            onBlur={() => {setClicked(false), handleBlur('passwordVal')}}
+                            onFocus={() => {setClicked(true), handleFocus('passwordVal')}}  
                             className={styles.form__inputs__password}
-                            minLength={8}
                             maxLength={30}
                             value={passwordValue}
                             onChange={handlePasswordChange}
@@ -146,11 +310,14 @@ const handleRegister = (event) => {
                         </div>
                     </div>
                     <div className={styles.form__inputs__confirmation__password__block}>
+                        {!isFocused.passwordConf || !isPasswordConfEmpty() &&
+                            <label className={styles.form__inputs__validator}>{passwordConfValue.length < 8 && 'Мин. 8'}</label>
+                        }
                         <input
                             type={isPasswordConfVisible ? 'text' : 'password'} 
                             className={styles.form__inputs__confirmation__password}
-                            onBlur={() => setConfClicked(false)}
-                            onFocus={() => setConfClicked(true)}
+                            onBlur={() => {setClicked(false), handleBlur('passwordConf')}}
+                            onFocus={() => {setClicked(true), handleFocus('passwordConf')}}  
                             value={passwordConfValue}
                             minLength={8}
                             maxLength={30}
@@ -170,7 +337,6 @@ const handleRegister = (event) => {
                     <button
                         type='submit'
                         className={`${isNameEmpty() || isSurnameEmpty() || isInputEmpty() || isEmailEmpty() || isPasswordEmpty() || isPasswordConfEmpty() ? styles.form__signup__btn__black : styles.form__signup__btn}`}
-                        disabled={(isNameEmpty() || isSurnameEmpty() || isInputEmpty() || isEmailEmpty() || isPasswordEmpty() || isPasswordConfEmpty())}
                         onClick={handleRegister}
                     >Зарегистрироваться</button>
                 </div>

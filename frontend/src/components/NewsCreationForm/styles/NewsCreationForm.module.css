@@ -8,6 +8,17 @@
     margin: 0 auto;
 }
 
+.news__creation__form__validator {
+    opacity: 1;
+    transition: opacity 0.5s ease; /* Плавный переход */
+}
+  
+.news__creation__form__hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease; 
+    pointer-events: none; /* Чтобы не было взаимодействий, когда скрыто */
+}
+
 
 .news__creation__form__back__btn {
     background-color: rgba(0, 0, 0, 0.22);
@@ -37,6 +48,15 @@
 
 .form__inputs__header {
     position: relative;
+}
+
+.form__inputs__header__validator {
+    font-family: 'Inter';
+    font-size: 14px;
+    position: absolute;
+    color: rgba(238, 219, 219, 0.40);
+    right: 10px;
+    top: -20px;
 }
 
 .form__inputs__header__input {
@@ -255,13 +275,34 @@
     border-radius: 10px;
 }
 
+.text__area__block__block__validator {
+    font-family: 'Inter';
+    font-size: 14px;
+    position: absolute;
+    color: rgba(238, 219, 219, 0.40);
+    right: 10px;
+    top: 10px;
+}
+
 .text__area__block__block__text {
     font-family: 'Inter';
     width: 100%;
     font-size: 14px;
     position: absolute;
-    display: flex;
-    justify-content: center;
+    transform: translateX(37%);
+    transition: transform 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 10px 0px 10px 10px;
+    color: rgba(215, 215, 215, 0.72);
+}
+
+.text__area__block__block__text__left {
+    font-family: 'Inter';
+    width: 100%;
+    font-size: 14px;
+    position: absolute;
+    transform: translateX(0%);
+    transition: transform 0.3s ease;
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     padding: 10px 0px 10px 10px;
     color: rgba(215, 215, 215, 0.72);

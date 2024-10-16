@@ -1,4 +1,15 @@
 
+.signup__form__login__validator {
+    opacity: 1;
+    transition: opacity 0.5s ease; /* Плавный переход */
+}
+  
+.signup__form__hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease; 
+    pointer-events: none; /* Чтобы не было взаимодействий, когда скрыто */
+}
+
 .signup__form__form {
     margin-bottom: 70px;
 }
@@ -20,11 +31,10 @@
     background-color: transparent;
     border: 1px solid rgba(255, 255, 255, 0.03);
     max-width: 135px;
-    padding: 15px 10px;
-    color: white;
+    padding: 15px 10px; 
     border-radius: 10px;
     font-size: 15px;
-       color: rgba(255, 255, 255, 0.693);
+    color: rgba(255, 255, 255, 0.693);
 }
 
 .form__inputs__name:hover {
@@ -35,6 +45,15 @@
 
 .form__inputs__name__container {
     position: relative;
+}
+
+.form__inputs__validator {
+    font-family: 'Inter';
+    font-size: 14px;
+    position: absolute;
+    color: rgba(238, 219, 219, 0.40);
+    right: 10px;
+    top: -20px;
 }
 
 .form__inputs__name__placeholder {
@@ -51,7 +70,7 @@
 .form__inputs__name__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 14px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
@@ -71,7 +90,7 @@
 .form__inputs__surname {
     font-family: 'Inter';
     background-color: transparent;
-     border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.03);
     max-width: 135px;
     padding: 15px 10px;
     color: white;
@@ -95,7 +114,7 @@
 .form__inputs__surname__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 13.5px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
@@ -150,7 +169,7 @@
 .form__inputs__middlename__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 13.5px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
@@ -200,7 +219,7 @@
 .form__inputs__login__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 14px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
@@ -248,7 +267,7 @@
 .form__inputs__mail__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 14px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
@@ -299,7 +318,7 @@
 .form__inputs__password__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 14px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
@@ -355,7 +374,7 @@
 .form__inputs__confirmation__password__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 14px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
