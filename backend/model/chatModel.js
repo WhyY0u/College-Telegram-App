@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ChatChema = new mongoose.Schema({
-  chatId: { type: Date, required: true },
+  chatId: { type: String, required: true },
 });
 
 module.exports = {

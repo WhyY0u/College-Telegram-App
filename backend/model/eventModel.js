@@ -9,6 +9,7 @@ const EventSchema = new mongoose.Schema({
   images: { type: [String], required: false },
   start: { type: Date, required: true },
   place: { type: String, required: true },
+  send: {type: Boolean, required: false,  default: false }
 });
 
 module.exports = {

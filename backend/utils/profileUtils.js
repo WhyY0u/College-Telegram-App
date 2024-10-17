@@ -23,7 +23,7 @@ const update = async (id, updatedData) => {
       const result = await Profile.Profile.findByIdAndUpdate(id, updatedData, { new: true });
       return result;
   } catch (err) {
-      console.error('Ошибка при обновлении тикета:', err);
+      console.error('Ошибка при обновлении профиля:', err);
       throw err;
   }
 }
