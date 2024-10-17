@@ -211,7 +211,7 @@ function TicketWatchFormAdmin() {
                     <motion.div
                         className={styles.status__dropdown__btn}
                         onClick={toggleDropdown}
-                        animate={{ height: isOpen ? '110px' : '38px', width: isOpen ? '125px' : !isOpen && selected === null ? '170px' : isOpen && selected === null ? '170px' : '125px' }} // Измените '56px' на высоту кнопки
+                        animate={{ height: selected === null && isOpen  ? '135px' : isOpen ? '115px' : '38px', width: isOpen ? '125px' : !isOpen && selected === null ? '170px' : isOpen && selected === null ? '170px' : '125px' }} // Измените '56px' на высоту кнопки
                         transition={{ duration: 0.3 }}
                     >
                         <motion.div 

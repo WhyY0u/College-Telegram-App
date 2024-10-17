@@ -215,9 +215,9 @@ function SignUpForm() {
                 <div className={styles.form__inputs}>
                     <div className={styles.form__inputs__name__surname}>
                         <div className={styles.form__inputs__name__container}>
-                            {!isFocused.name || !isNameEmpty() &&
-                                <label className={styles.form__inputs__validator}>{nameValue.length < 3 && 'Мин. 3'}</label>                            
-                            }
+                           
+                                <label className={styles.form_input_validator_enable_animation + " " + (nameValue.length < 3 && (isFocused.name || !isNameEmpty()) ? styles.form__inputs__validator : styles.form__inputs__validator_hide)}>{'Мин. 3'}</label>                            
+                            
                             <input 
                                 type="text" 
                                 className={styles.form__inputs__name} 
@@ -230,9 +230,7 @@ function SignUpForm() {
                             <label className={`${ isNameEmpty() ? styles.form__inputs__name__placeholder : styles.form__inputs__name__placeholder__top}`}>Имя</label>
                         </div>
                         <div className={styles.form__inputs__surname__container}>
-                            {!isFocused.surname || !isSurnameEmpty() &&
-                                <label className={styles.form__inputs__validator}>{surnameValue.length < 3 && 'Мин. 3'}</label>                            
-                            }
+                            <label className={styles.form_input_validator_enable_animation + " " + (surnameValue.length < 3 && (isFocused.surname || !isSurnameEmpty()) ? styles.form__inputs__validator : styles.form__inputs__validator_hide)}>{'Мин. 3'}</label>                            
                             <input  
                                 type="text"
                                 className={styles.form__inputs__surname}
@@ -247,9 +245,7 @@ function SignUpForm() {
                     </div>
                     <div className={styles.form__inputs__middlename__login}>
                         <div className={`${styles.form__inputs__middlename__container}`}>
-                            {!isFocused.middlename || !isMiddlenameEmpty() &&
-                                <label className={styles.form__inputs__validator}>{middlenameValue.length < 3 && 'Мин. 3'}</label>                            
-                            }
+                        <label className={styles.form_input_validator_enable_animation + " " + (middlenameValue.length < 3 && (isFocused.middlename || !isMiddlenameEmpty()) ? styles.form__inputs__validator : styles.form__inputs__validator_hide)}>{'Мин. 3'}</label>                            
                             <input 
                                 type="text" 
                                 className={styles.form__inputs__middlename} 
@@ -262,9 +258,8 @@ function SignUpForm() {
                             <label className={`${isMiddlenameEmpty() ? styles.form__inputs__middlename__placeholder : styles.form__inputs__middlename__placeholder__top}`}>Отчество</label>
                         </div>
                         <div className={`${styles.form__inputs__login__container}`}>
-                            {!isFocused.input || !isInputEmpty() &&
-                                <label className={styles.form__inputs__validator}>{inputValue.length < 3 && 'Мин. 3'}</label>                            
-                            }
+                            <label className={styles.form_input_validator_enable_animation + " " + (inputValue.length < 3 && (isFocused.input || !isInputEmpty()) ? styles.form__inputs__validator : styles.form__inputs__validator_hide)}>{'Мин. 3'}</label>                            
+
                             <input 
                                 type="text" 
                                 className={styles.form__inputs__login} 
@@ -288,9 +283,8 @@ function SignUpForm() {
                         <label className={`${isEmailEmpty() ? styles.form__inputs__mail__placeholder : styles.form__inputs__mail__placeholder__top}`}>Почта</label>
                     </div>
                     <div className={styles.form__inputs__password__block}>
-                        {!isFocused.passwordVal || !isPasswordEmpty() &&
-                            <label className={styles.form__inputs__validator}>{passwordValue.length < 8 && 'Минимум 8 символов'}</label>                            
-                        }
+                    <label className={styles.form_input_validator_enable_animation + " " + (passwordValue.length < 3 && (isFocused.passwordVal || !isPasswordEmpty()) ? styles.form__inputs__validator : styles.form__inputs__validator_hide)}>{'Мин. 3'}</label>                            
+
                         <input
                             type={isPasswordVisible ? 'text' : 'password'}
                             onBlur={() => {setClicked(false), handleBlur('passwordVal')}}
@@ -310,9 +304,8 @@ function SignUpForm() {
                         </div>
                     </div>
                     <div className={styles.form__inputs__confirmation__password__block}>
-                        {!isFocused.passwordConf || !isPasswordConfEmpty() &&
-                            <label className={styles.form__inputs__validator}>{passwordConfValue.length < 8 && 'Мин. 8'}</label>
-                        }
+                    <label className={styles.form_input_validator_enable_animation + " " + (passwordConfValue.length < 3 && (isFocused.passwordConf || !isPasswordConfEmpty()) ? styles.form__inputs__validator : styles.form__inputs__validator_hide)}>{'Мин. 3'}</label>                            
+
                         <input
                             type={isPasswordConfVisible ? 'text' : 'password'} 
                             className={styles.form__inputs__confirmation__password}

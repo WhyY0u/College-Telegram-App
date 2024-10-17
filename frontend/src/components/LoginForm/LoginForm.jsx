@@ -130,9 +130,8 @@ const handleSignIn = (event) => {
         <form action="" className={`${styles.login__form__form} ${styles.form}`}>
           <div className={styles.form__inputs}>
             <div className={styles.form__input__container}>
-              { !isFocused.input || !isInputEmpty() && 
-                <label className={styles.form__inputs__validator}>{inputValue.length < 3 && 'Минимум 3 символа'}</label>
-              }
+               <label className={styles.form__inputs__password__validator + " " + (inputValue.length < 3 && (isFocused.input || !isInputEmpty()) ? styles.form__inputs__validator : styles.form__inputs__validator_hide)}>{'Минимум 3 символа'}</label>                            
+
               <input
                 type="text"
                 className={styles.form__inputs__login}
@@ -145,9 +144,9 @@ const handleSignIn = (event) => {
               <label className={`${ isInputEmpty() ? styles.form__inputs__placeholder : styles.form__inputs__placeholder__top}`}>Логин</label>
             </div>
             <div className={styles.form__inputs__password__block}>
-              { !isFocused.password || !isPasswordEmpty() && 
-                <label className={styles.form__inputs__password__validator}>{passwordValue.length < 8 && 'Минимум 8 символов'}</label>
-              }
+
+              <label className={styles.form__inputs__password__validator + " " + (passwordValue.length < 8 && (isFocused.password || !isPasswordEmpty()) ? styles.form__inputs__validator : styles.form__inputs__validator_hide)}>{'Минимум 8 символов'}</label>                            
+
               <input
                 type={isPasswordVisible ? 'text' : 'password'}
                 onBlur={() => {setClicked(false), handleBlur('password')}}

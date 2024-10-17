@@ -1,3 +1,4 @@
+
 .login__form__form {
     margin-bottom: 70px;
 }
@@ -15,13 +16,13 @@
 
 .login__form__login__validator {
     opacity: 1;
-    transition: opacity 0.5s ease; /* Плавный переход */
+    transition: opacity 0.5s ease; 
 }
   
 .login__form__hidden {
     opacity: 0;
     transition: opacity 0.5s ease; 
-    pointer-events: none; /* Чтобы не было взаимодействий, когда скрыто */
+    pointer-events: none; 
 }
 
 .form__inputs__validator {
@@ -36,24 +37,24 @@
 .form__inputs__login {
     width: 100%;
     background-color: transparent;
-    border: 1px solid rgba(241, 241, 241, 0.56);
+    border: 1px solid var( --border-color);
+    color: rgba(255, 255, 255, 0.693);
     font-family: "Inter";
     padding: 15px 10px;
     border-radius: 10px;
     font-size: 15px;
-    color: rgba(255, 255, 255, 0.693);
+    
 }
 
 
 .form__inputs__placeholder {
     font-family: 'Inter';
-    font-weight: 600;
     font-size: 15px;
     position: absolute;
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(238, 219, 219, 0.83);
+    color: var(--place-holder-color);
     z-index: -1;
 }
 
@@ -64,7 +65,7 @@
     top: -20px; /* начальная позиция */
     left: 6px;
     transition: 0.2s ease all;
-    color: rgba(238, 219, 219, 0.83);
+    color: rgba(238, 219, 219, 0.43);
     z-index: -1;
 }
 
@@ -75,23 +76,30 @@
 }  
 
 .form__inputs__password__validator {
+    transition: color 0.2s, top 0.2s ease-in;
     font-family: 'Inter';
     font-size: 14px;
     position: absolute;
-    color: rgba(238, 219, 219, 0.40);
     right: 10px;
-    top: -20px;
+}
+
+.form__inputs__validator {
+    color: rgba(238, 219, 219, 0.40);
+    top: -19px;
+}
+.form__inputs__validator_hide {
+    color: rgba(238, 219, 219, 0.0);
+    top: -14px;
 }
 
 .form__inputs__password__block__placeholder {
     position: absolute;
     font-family: 'Inter';
-    font-weight: 600;
     font-size: 15px;
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(238, 219, 219, 0.83);
+    color: var(--place-holder-color);
     z-index: -1;
 }
 
@@ -102,7 +110,7 @@
     top: -20px; /* начальная позиция */
     left: 6px;
     transition: 0.2s ease all;
-    color: rgba(238, 219, 219, 0.83);
+    color: rgba(238, 219, 219, 0.43);
     z-index: -1;
 }
 
@@ -110,7 +118,7 @@
     width: 100%;
     color: white;
     background-color: transparent;
-    border: 1px solid rgba(241, 241, 241, 0.56);
+    border: 1px solid var(--border-color);
     color: rgba(255, 255, 255, 0.693);
     font-family: "Inter";
     padding: 15px 50px 15px 10px;
@@ -119,24 +127,24 @@
 }
 
 .form__inputs__icon {
-    position: absolute; /* Позиционируем иконку абсолютно */
+    position: absolute;
     right: 10px;
-    cursor: pointer; /* Курсор указывает, что элемент кликабельный */
+    cursor: pointer;
 }
 
 .form__inputs__login:hover {
-    border: 1px solid rgb(68, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199);
+    border: 1px solid var(--input-hover-border);
+    box-shadow: 0 0 10px var(--input-hover-shadow);
     transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__login:hover + .form__inputs__placeholder {
-  top: -20px; /* Поднятие плейсхолдер */
+  top: -20px; 
 }
 
 .form__inputs__password:hover {
-    border: 1px solid rgba(69, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199);
+    border: 1px solid var(--input-hover-border);
+    box-shadow: 0 0 10px var(--input-hover-shadow);
     transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
@@ -147,7 +155,6 @@
 .form__inputs__forgot__password__btn {
     display: inline-block;
     font-family: "Inter";
-    font-weight: 500;
     color: rgba(177, 175, 175, 0.29);
     font-size: 12px;
     padding-left: 6px;
@@ -167,8 +174,9 @@
     border-radius: 10px;
     font-size: 17px;
     background-color: rgb(28, 5, 81);
+    border: 1px solid rgba(0,0,0,0);
     color: #B3AFAF;
-    transition: background-color 0.3s ease-in,  box-shadow 0.3s ease-in;
+    transition: background-color 0.3s ease-in,  border-color 0.3s ease-in,  box-shadow 0.3s ease-in;
     box-shadow: 0px 0px 10px rgba(28, 5, 81, 1);
     font-weight: 600;
 }
@@ -179,8 +187,9 @@
     font-size: 17px;
     background-color: rgba(13, 13, 13, 0.28);
     color: #B3AFAF;
-    border: 1px solid rgba(241, 241, 241, 0.56);
-    transition: background-color 0.3s ease-in, box-shadow 0.3s ease-in;
+    border: 1px solid var(--border-color);
+    box-shadow: 0px 0px 10px rgba(13, 13, 13, 0.28);
+    transition: background-color 0.3s ease-in,  border-color 0.3s ease-in,  box-shadow 0.3s ease-in;
     font-family: "Inter";
     font-weight: 600;
     

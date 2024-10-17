@@ -39,7 +39,12 @@ body {
     font-family: "Pixeloid Sans Regular";
     src: url("../fonts/ofont.ru_Pixeloid\ Sans.ttf");
 }
-
+:root {
+    --border-color: rgba(255, 255, 255, 0.1);
+    --input-hover-shadow: rgba(238, 238, 238, 0.1);
+    --input-hover-border: rgba(238, 238, 238, 0.3);
+    --place-holder-color: rgba(107, 107, 107, 0.83);
+}
 .wrapper {
     min-height: 100%;
     overflow: hidden;

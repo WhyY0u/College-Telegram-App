@@ -36,7 +36,7 @@
     max-width: 135px;
     color: white;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     font-family: "Inter";
     padding: 15px 10px;
     border-radius: 10px;
@@ -45,8 +45,8 @@
 }
 
 .block__input__input:hover {
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 0 10px rgba(74, 0, 238, 0.17);
+    border: 1px solid var(--input-hover-border);
+    box-shadow: 0 0 10px var(--input-hover-shadow);
     transition: border 0.2s ease-in;
 }
  
@@ -93,7 +93,7 @@
     font-weight: 600;
     color: rgba(107, 107, 107, 0.83);
     background: rgba(0, 0, 0, 0.01);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     padding: 15px 10px 15px 15px;
     border-radius: 10px;
     font-size: 12.5px;
@@ -176,7 +176,7 @@
     font-weight: 600;
     color: rgba(107, 107, 107, 0.83);
     font-size: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 15px 10px;
 }
@@ -232,7 +232,7 @@
 .block__textarea__textarea {
     color: white;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     font-family: "Inter";
     padding: 15px 10px;
     border-radius: 10px;
@@ -268,8 +268,8 @@
 }
 
 .block__textarea__textarea:hover {
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    box-shadow: 0 0 10px rgba(74, 0, 238, 0.17);
+    border: 1px solid var(--input-hover-border);
+    box-shadow: 0 0 8px var(--input-hover-shadow);
     transition: border 0.2s ease-in;
 }
 
@@ -297,6 +297,7 @@
     font-family: 'Inter';
     font-size: 16px;
     background-color: rgba(13, 13, 13, 0.28);
+    border: 1px solid var(--border-color);
     color: rgb(179, 175, 175);
     padding: 20px 30px;
     border-radius: 10px;
