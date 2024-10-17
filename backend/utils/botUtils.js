@@ -15,9 +15,13 @@ const saveChatID = async (id) => {
   }
 }
 
-const sendMessage = (message) => {
-    
+const sendAllMessage = async (message) => {
+  const chats = await Chat.Chat.find({});
+  const sendMessagesPromises = chats.map(chat => 
+    bot.sendMessage(chat.chatId, message) 
+  );
+  await Promise.all(sendMessagesPromises);
 }
 
 
-module.exports = {sendMessage, saveChatID}
+module.exports = {sendAllMessage, saveChatID}

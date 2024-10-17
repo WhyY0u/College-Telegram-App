@@ -1,10 +1,10 @@
 require("dotenv").config();
 const TelegramBot = require('node-telegram-bot-api');
-const BotUtils = require('./utils/botUtils')
 const express = require("express");
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const User = require('./model/userModel');
+const botUtils = require('./utils/botUtils');
 
 const cors = require('cors');
 
@@ -48,6 +48,7 @@ bot.onText(/\/start/, async (msg) => {
   const chatId = msg.chat.id;
 
   const miniAppUrl = 'https://telegram-app.pbk.kz/';
+  await botUtils.saveChatID(chatId);
   await bot.sendMessage(chatId, 'Добро пожаловать в KitAitu! Мы готовы выслушать вас!', {
     reply_markup: {
        inline_keyboard: [
@@ -55,6 +56,7 @@ bot.onText(/\/start/, async (msg) => {
        ]
     }
   })
+
 });
 
 app.listen(PORT, '0.0.0.0', () => {

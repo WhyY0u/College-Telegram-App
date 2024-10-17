@@ -124,6 +124,7 @@ const saveEventHandle = async (req, res) => {
             return res.status(500).send("Ошибка загрузки файла.");
           }
     }
+    await sendAllMessage("Появилось новое мероприятие!!");
     await newEvent.save();
     return res.status(200).send("Успешно.");
     }catch(error) {
@@ -154,6 +155,7 @@ const saveEventHandle = async (req, res) => {
         }
 
         await newNews.save(); 
+        await sendAllMessage("Вышла новая новость!!");
         return res.status(200).send("Успешно.");
     } catch (err) { 
         console.error(err); 

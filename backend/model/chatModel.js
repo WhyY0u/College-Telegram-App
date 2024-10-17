@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { Schema: LikesSchema } = require('./likesModel'); 
 
 const ChatChema = new mongoose.Schema({
   chatId: { type: Date, required: true },
