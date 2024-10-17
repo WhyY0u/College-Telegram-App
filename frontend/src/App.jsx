@@ -26,11 +26,8 @@ function App() {
 
   const navigate = useNavigate();
   useEffect(() => {
-    WebApp.ready();
-
-    WebApp.setTitle('My Mini App');
-
-    WebApp.expand();
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand();
   if(isAuth != undefined) {
   axios.post(`${backendServer}/auth/checktoken`, 
     {
