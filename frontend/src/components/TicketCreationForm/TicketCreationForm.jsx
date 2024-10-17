@@ -5,6 +5,7 @@ import arrow_right from '../../../images/arrow_right.svg';
 import plus_icon from '../../../images/plus_icon.svg';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Validator from '../Validator/Validator';
 
 
 const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
@@ -17,6 +18,16 @@ function TicketCreationForm() {
     const [selected, setSelected] = useState(null);
     const [imageFile, setImageFile] = useState(null);
     const [imageUrl, setImageUrl] = useState(null); // Состояние для URL изображения
+
+    const [isFocused, setIsFocused] = useState({
+        heading: false,
+        description: false,
+    })
+    const [isVisible, setIsVisible] = useState(false)
+    const [allErrors, setAllErrors] = useState('')
+    const [descriptionError, setDescriptionError] = useState('')
+    const [headingError, setHeadingError] = useState('')
+    const [imageError, setImageError] = useState('')
 
     const navigate = useNavigate();
 
@@ -69,6 +80,39 @@ function TicketCreationForm() {
 
     const handleSend = (event) => {
         event.preventDefault();
+        setAllErrors(''); // Сброс ошибок перед новой проверкой
+        setDescriptionError(''); 
+        setHeadingError('');
+        setImageError('');
+    
+        if (isInputEmpty() || isTextareaEmpty() || selected === null) {
+            setAllErrors('Заголовок, описание и тип должны быть заполнены');
+            setIsVisible(true);
+            setTimeout(() => setIsVisible(false), 3000);
+            return;
+        }
+    
+        if (inputValue.length < 5) {
+            setHeadingError('Заголовок должен быть больше 5 символов');
+            setIsVisible(true);
+            setTimeout(() => setIsVisible(false), 3000);
+            return;
+        }
+    
+        if (textArea.length < 35) {
+            setDescriptionError('Описание должно быть больше 35 символов');
+            setIsVisible(true);
+            setTimeout(() => setIsVisible(false), 3000);
+            return;
+        }
+
+        if (imageFile && imageFile.size > 2 * 1024 * 1024) { // 2 MB в байтах
+            setImageError('Размер изображения не должен превышать 2 МБ.');
+            setIsVisible(true);
+            setTimeout(() => setIsVisible(false), 3000);
+            return; // Выход, если файл слишком большой
+        }
+
         const formData = new FormData();
         formData.append('heading', value.heading);
         formData.append('description', value.description);
@@ -89,15 +133,48 @@ function TicketCreationForm() {
         .catch(error => console.error(error));
     };
 
+
+    const handleFocus = (field) => {
+        setIsFocused((prev) => ({
+            ...prev,
+            [field]: true
+        }))
+    }
+
+    const handleBlur = (field) => {
+        setIsFocused((prev) => ({
+            ...prev,
+            [field]: false
+        }))
+    }
+
     return (
         <div className={styles.ticket__creation__form}>
             <div className={`${styles.ticket__creation__form__container} _container`}>
+                {allErrors && 
+                    <Validator text={allErrors} className={`${isVisible ? styles.ticket__creation__form__validator : styles.ticket__creation__form__hidden}`} />                    
+                }
+                {headingError &&
+                    <Validator text={headingError} className={`${isVisible ? styles.ticket__creation__form__validator : styles.ticket__creation__form__hidden}`} />                    
+                }
+                {descriptionError &&
+                    <Validator text={descriptionError} className={`${isVisible ? styles.ticket__creation__form__validator : styles.ticket__creation__form__hidden}`} />                    
+                }
+                {imageError &&
+                    <Validator text={imageError} className={`${isVisible ? styles.ticket__creation__form__validator : styles.ticket__creation__form__hidden}`} />                    
+                }
                 <form className={`${styles.ticket__creation__form__form} ${styles.form}`}>
                     <div className={styles.form__name__type__block}>
                         <div className={`${styles.form__name__type__block__input__container} ${styles.block__input}`}>
+                            { !isFocused.heading || !isInputEmpty() && 
+                                <label className={styles.block__input__validator}>{inputValue.length < 5 && 'Мин. 5'}</label>
+                            }
                             <input 
                                 type="text"  
                                 value={inputValue}
+                                maxLength={20}
+                                onFocus={() => handleFocus('heading')}
+                                onBlur={() => handleBlur('heading')}
                                 onChange={handleInputChange}
                                 className={styles.block__input__input} 
                             />
@@ -180,10 +257,16 @@ function TicketCreationForm() {
                         }   
                     </div>
                     <div className={`${styles.form__name__type__block__textarea__container} ${styles.block__textarea}`}>
+                        { !isFocused.description || !isTextareaEmpty() && 
+                            <label className={styles.block__input__validator}>{textArea.length < 35 && 'Минимум 35 символов'}</label>
+                        }
                         <textarea 
                             ref={textareaRef}
                             value={textArea}
+                            onFocus={() => handleFocus('description')}
+                            onBlur={() => handleBlur('description')}
                             onChange={handleTextareaChange}
+                            maxLength={2000}
                             className={styles.block__textarea__textarea}
                         ></textarea>
                         <label className={`${isTextareaEmpty() ? styles.block__textarea__placeholder : styles.block__textarea__placeholder__top}`}>Описание</label>

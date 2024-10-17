@@ -7,6 +7,7 @@ import arrow_left from '../../../images/NewsCreationPage/arrow_left.svg';
 import arrow_right from '../../../images/arrow_right.svg';
 import date from '../../../images/NewsCreationPage/date.svg';
 import plus_icon from '../../../images/NewsCreationPage/plus_icon.svg';
+import Validator from '../Validator/Validator';
 
 const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
 
@@ -14,7 +15,7 @@ function NewsCreationForm() {
     const navigate = useNavigate()
 
     const [isOpen, setIsOpen] = useState(false);
-    const [selected, setSelected] = useState(null);
+    const [selected, setSelected] = useState('Новость');
 
     const [isHeaderClicked, setIsHeaderClicked] = useState(false);
     const [headerValue, setHeaderValue] = useState('');
@@ -24,35 +25,83 @@ function NewsCreationForm() {
 
     const [dateValue, setDateValue] = useState('');
     const dateInputRef = useRef(null);
+    const [currentDate] = useState(() => {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset()); 
+        return now.toISOString().slice(0, 16); // Формат YYYY-MM-DDTHH:MM
+    }); 
 
     const [textArea, setTextArea] = useState('')
     const textareaRef = useRef(null)
     const [isTextAreaClicked, setIsTextAreaClicked] = useState(false)
 
-    const fileInputRef = useRef(null)
+
+    const [isVisible, setIsVisible] = useState(false)
+    const [allErrors, setAllErrors] = useState('')
+    const [headingError, setHeadingError] = useState('')
+    const [placeError, setPlaceError] = useState('')
+    const [dateError, setDateError] = useState('')
+    const [descriptionError, setDescriptionError] = useState('')
+    const [imageError, setImageError] = useState('')
+    const [imageLimitError, setImageLimitError] = useState('')
+
+    const [isFocused, setIsFocused] = useState({
+        heading: false,
+        description: false,
+        place: false,
+        start: false,
+    })
 
     const [images, setImages] = useState([])
 
     const handleImageChange = async (event) => {
         const files = Array.from(event.target.files);
-        if (images.length + files.length <= 10) {
-            const newImages = [];
+        const newImages = [];
+        let isValid = true; // Флаг для проверки валидности всех загружаемых изображений
+        setImageError('');
+        setImageLimitError('');
     
-            for (const file of files) {
+        if (images.length + files.length > 10) {
+            setImageLimitError("Можно загрузить не более 10 изображений");
+            setIsVisible(true);
+            setTimeout(() => {
+                setIsVisible(false);
+            }, 3000);
+            return; // Прерываем выполнение, если превышен лимит
+        }
+    
+        const validFiles = []; // Массив для хранения валидных файлов
+        for (const file of files) {
+            if (file.size > 2 * 1024 * 1024) { // 2 MB в байтах
+                isValid = false; // Устанавливаем флаг в false, если файл превышает размер
+                setImageError(`Изображение ${file.name} превышает 2 МБ.`);
+                setIsVisible(true);
+                setTimeout(() => {
+                    setIsVisible(false);
+                }, 3000);
+                continue; // Пропускаем добавление этого файла
+            }
+            validFiles.push(file); // Добавляем валидные файлы
+        }
+    
+        // Загружаем валидные файлы
+        const imageLoadPromises = validFiles.map((file) => {
+            return new Promise((resolve) => {
                 const reader = new FileReader();
                 reader.onloadend = () => {
                     newImages.push(reader.result);
-                    if (newImages.length === files.length) {
-                        setImages(prevImages => [...prevImages, ...files]); // Сохраняем файлы
-                        setImagePreviews(prev => [...prev, ...newImages]); // Для предварительного просмотра
-                    }
+                    resolve(); // Уведомляем, что загрузка завершена
                 };
                 reader.readAsDataURL(file);
-            }
-        } else {
-            alert("Можно загрузить не более 10 изображений");
-        }
+            });
+        });
+    
+        await Promise.all(imageLoadPromises); // Ждем, пока все файлы загрузятся
+        setImages(prevImages => [...prevImages, ...validFiles]); // Сохраняем валидные файлы
+        setImagePreviews(prev => [...prev, ...newImages]); // Для предварительного просмотра
     };
+    
+    
 
     const [imagePreviews, setImagePreviews] = useState([]);
 
@@ -108,9 +157,55 @@ function NewsCreationForm() {
     };
 
 
+    const handleFocus = (field) => {
+        setIsFocused((prev) => ({
+            ...prev,
+            [field]: true,
+        }))
+    }
+
+    const handleBlur = (field) => {
+        setIsFocused((prev) => ({
+            ...prev,
+            [field]: false,
+        }))
+    }
+
 
     const handleSaveNews = async (event) => {
         event.preventDefault();
+        setAllErrors('')
+        setHeadingError('')
+        setDescriptionError('')
+        
+
+        if (isHeaderEmpty() || isTextAreaEmpty()) {
+            setAllErrors("Заголовок и описание должны быть заполнены")
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        if (headerValue.length < 5) {
+            setHeadingError("Заголовок должен содержать не меньше 5 символов")
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        if (textArea.length < 35) {
+            setDescriptionError("Описание должно содержать не меньше 35 символов")
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
         const formData = new FormData();
         formData.append('heading', headerValue);
         formData.append('description', textArea);
@@ -135,6 +230,60 @@ function NewsCreationForm() {
 
     const handleSaveEvents = async (event) => {
         event.preventDefault();
+        setAllErrors('')
+        setHeadingError('')
+        setPlaceError('')
+        setDateError('')
+        setDescriptionError('')
+        
+
+        if (isHeaderEmpty() || isTextAreaEmpty() || isPlaceEmpty() || dateValue.trim() === '') {
+            setAllErrors("Все поля должны быть заполнены")
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        if (headerValue.length < 5) {
+            setHeadingError("Заголовок должен содержать не меньше 5 символов")
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        if (textArea.length < 35) {
+            setDescriptionError("Описание должно содержать не меньше 35 символов")
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        if (placeValue.length < 1) {
+            setPlaceError("Место должно содержать не меньше 1 символа")
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        if (dateValue.trim() === "") {
+            setDateError("Дата не должна быть пустой")
+            setIsVisible(true)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 3000)
+            return
+        }
+
+        
+
         const formData = new FormData();
         formData.append('heading', headerValue);
         formData.append('description', textArea);
@@ -160,6 +309,29 @@ function NewsCreationForm() {
     return (
         <div className={styles.news__creation__form}>
             <div className={`${styles.news__creation__form__container}`}>
+
+                {headingError &&
+                    <Validator text={headingError} className={`${isVisible ? styles.news__creation__form__validator : styles.news__creation__form__hidden}`} />                    
+                }
+                {allErrors &&
+                    <Validator text={allErrors} className={`${isVisible ? styles.news__creation__form__validator : styles.news__creation__form__hidden}`} />                                        
+                }
+                {descriptionError &&
+                    <Validator text={descriptionError} className={`${isVisible ? styles.news__creation__form__validator : styles.news__creation__form__hidden}`} />                                        
+                }
+                {placeError &&
+                    <Validator text={placeError} className={`${isVisible ? styles.news__creation__form__validator : styles.news__creation__form__hidden}`} />                                        
+                }
+                {dateError &&
+                    <Validator text={dateError} className={`${isVisible ? styles.news__creation__form__validator : styles.news__creation__form__hidden}`} />                                        
+                }
+                {imageError &&
+                    <Validator text={imageError} className={`${isVisible ? styles.news__creation__form__validator : styles.news__creation__form__hidden}`} />                                        
+                }
+                {imageLimitError &&
+                    <Validator text={imageLimitError} className={`${isVisible ? styles.news__creation__form__validator : styles.news__creation__form__hidden}`} />                                        
+                }
+
                 <Link to={'/news-page-user'} className={styles.news__creation__form__back__btn}>
                     <img src={arrow_left} alt="arrow left" />
                 </Link>
@@ -168,11 +340,15 @@ function NewsCreationForm() {
                     <div className={styles.form__inputs}>
                         <div className={styles.form__inputs__first__block}>
                             <div className={styles.form__inputs__header}>
+                                {!isFocused.heading || !isHeaderEmpty() &&
+                                    <label className={styles.form__inputs__header__validator}>{headerValue.length < 5 && 'Мин. 5'}</label>                            
+                                }
                                 <input
                                     value={headerValue}
                                     onChange={handleHeaderChange}
-                                    onBlur={() => setIsHeaderClicked(false)}
-                                    onFocus={() => setIsHeaderClicked(true)}
+                                    onBlur={() => {setIsHeaderClicked(false), handleBlur('heading')}}
+                                    onFocus={() => {setIsHeaderClicked(true), handleFocus('heading')}}
+                                    maxLength={20}
                                     className={styles.form__inputs__header__input}
                                     type="text"
                                 />
@@ -245,8 +421,9 @@ function NewsCreationForm() {
                                 <input
                                     value={placeValue}
                                     onChange={handlePlaceChange}
-                                    onBlur={() => setIsPlaceClicked(false)}
-                                    onFocus={() => setIsPlaceClicked(true)}
+                                    onBlur={() => {setIsPlaceClicked(false)}}
+                                    onFocus={() => {setIsPlaceClicked(true)}}
+                                    maxLength={30}
                                     className={styles.form__inputs__place__input}
                                     type="text"
                                 />
@@ -263,6 +440,7 @@ function NewsCreationForm() {
                                     ref={dateInputRef}
                                     className={styles.form__inputs__date__datetime}
                                     type='datetime-local'
+                                    min={currentDate}
                                     value={dateValue}
                                     onChange={handleDateChange}
                                 />
@@ -291,19 +469,26 @@ function NewsCreationForm() {
                 <div className={`${styles.form__form__textarea__block} ${styles.text__area__block}`}>
                     <div className={styles.text__area__block__block}>
                         <div className={`${styles.text__area__block__block_text__block}`}>
+                            {!isFocused.description || !isTextAreaEmpty() &&
+                                <label className={styles.text__area__block__block__validator}>{textArea.length < 35 && 'Минимум 35 символов'}</label>                            
+                            }
                             <div 
-                                className={styles.text__area__block__block__text}
+                                className={ isTextAreaEmpty() ? styles.text__area__block__block__text : styles.text__area__block__block__text__left}
                             >
-                                <span className={`${isTextAreaClicked ? styles.text__area__block__block__text__left__span : styles.text__area__block__block__text__span}`}>Описание</span>
+                                <span className={`${isTextAreaClicked || !isTextAreaEmpty() ? styles.text__area__block__block__text__left__span : styles.text__area__block__block__text__span}`}>Описание</span>
                             </div>      
                         </div>
                         <textarea 
                             ref={textareaRef}
                             value={textArea}
-                            onBlur={() => setIsTextAreaClicked(false)}
+                            maxLength={2000}
+                            onBlur={() => {
+                                setIsTextAreaClicked(false),
+                                handleBlur('description')
+                            }}
                             onFocus={() => {
-                                setIsTextAreaClicked(true)
-
+                                setIsTextAreaClicked(true),
+                                handleFocus('description')
                             }}
                             onChange={handleTextareaChange}
                             className={styles.text__area__block__block__textarea}
@@ -311,7 +496,7 @@ function NewsCreationForm() {
                         ></textarea>
                         <div className={styles.text__area__block__block__placeholder__block}>
                             <label className={`${isTextAreaClicked || textArea ? styles.text__area__block__block__placeholder__down : styles.text__area__block__block__placeholder}`}>
-                                Напишите информацию о себе
+                                Ввведите описание
                             </label>
                         </div>
                     </div> 

@@ -22,7 +22,7 @@ function News({description, heading, date, img}) {
         const imgUrls = []; 
     
         for (let i = 0; i < img.length; i++) {
-          const response = await axios.get(`http://${backendServer}/image/getNewsImg/${img[i]}`, {
+          const response = await axios.get(`${backendServer}/image/getNewsImg/${img[i]}`, {
             responseType: 'blob',
             headers: {
               'Authorization': `Bearer ${localStorage.getItem('token')}`,

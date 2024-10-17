@@ -16,7 +16,6 @@ function NewsPageUser() {
         <HeaderWithLine />
         <NewsListUser />
         <Navigation add={decodedToken.role == "Confidant"} to={'/news-creation-page'} />
-        <BouncingBalls />
     </div>
   )
 }

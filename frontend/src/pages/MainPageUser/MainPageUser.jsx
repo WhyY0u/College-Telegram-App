@@ -15,7 +15,6 @@ function MainPageUser() {
         <div className={`${styles.main__page__user__navigation__container} _container`}>
           <Navigation add={true} to={'/ticket-creation-page-user'} />
         </div>
-        <BouncingBalls />
     </div>
   )
 }

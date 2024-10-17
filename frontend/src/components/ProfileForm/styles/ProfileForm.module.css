@@ -1,9 +1,15 @@
 
-
 .profile__form__container {
     display: flex;
     flex-direction: column;
     gap: 30px;
+}
+
+.profile__form__loader__position {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    bottom: 140px;
 }
 
 .profile__form__name__block {
@@ -16,7 +22,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(196, 196, 196, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     backdrop-filter: blur(10px);
     width: 109px;
@@ -46,7 +52,7 @@
     font-size: 11px;
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     padding: 10px;
     border-radius: 10px;
     max-width: fit-content;
@@ -58,7 +64,7 @@
     font-size: 10px;
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     padding: 10px;
     border-radius: 10px;
     max-width: fit-content;
@@ -70,19 +76,19 @@
     font-size: 10px;
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     padding: 10px;
     border-radius: 10px;
     max-width: fit-content;
 }
 
 .name__block__about__status__blue {
-    color: rgba(19, 45, 209, 0.51);
+    color: rgba(26, 68, 185, 0.808);
     font-family: Inter;
     font-size: 11px;
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     padding: 10px;
     border-radius: 10px;
     max-width: fit-content;
@@ -103,7 +109,7 @@
     position: absolute;
     display: flex;
     justify-content: flex-start;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--border-color);
     padding: 10px 0px 10px 10px;
     color: rgba(215, 215, 215, 0.72);
 }
@@ -132,7 +138,7 @@
 
 .text__area__block__block__textarea {
     background: rgba(0, 0, 0, 0.17);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     color: rgba(200, 200, 200, 0.53);
     font-family: Inter;
     font-size: 12px;
@@ -185,7 +191,7 @@
 
 .buttons__block__edit__button__btn {
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     color: rgba(200, 200, 200, 0.58);
     font-family: Inter;
@@ -196,7 +202,7 @@
 
 .buttons__block__logout__button__btn {
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     color: rgba(255, 0, 0, 0.58);
     font-family: Inter;

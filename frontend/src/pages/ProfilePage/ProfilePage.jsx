@@ -13,7 +13,6 @@ function ProfilePage() {
         <div className={`${styles.profile__page__navigation__container} _container`}>
           <Navigation />
         </div>
-        <BouncingBalls />
     </div>
   )
 }

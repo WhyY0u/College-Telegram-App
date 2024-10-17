@@ -4,6 +4,7 @@ import axios from 'axios'
 import jwt from 'jsonwebtoken'
 import styles from './styles/ProfileForm.module.css'
 import question_mark from '../../../images/question_mark.svg'
+import Loader from '../Loader/Loader'
 
 const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
 
@@ -14,11 +15,14 @@ function ProfileForm() {
     const [isTextAreaClicked, setIsTextAreaClicked] = useState(false)
     const fileInputRef = useRef(null)
     const [data, setData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate()
 
 
     const SendInfo = async () => {
+        setIsLoading(true)
         try {
+
             const response = await axios.get(`${backendServer}/profile/get`, {
                 headers: { 
                     'Content-Type': 'application/json', 
@@ -45,6 +49,8 @@ function ProfileForm() {
 
         } catch (error) {
             console.error('Error fetching profile image:', error);
+        } finally {
+            setIsLoading(false)
         }
         
     } 
@@ -137,69 +143,77 @@ function ProfileForm() {
     return (
         <div className={styles.profile__form}>
             <div className={`${styles.profile__form__container} _container`}>
-                <div className={`${styles.profile__form__name__block} ${styles.name__block}`}>
-                    <div onClick={handleImageClick} className={`${ profileImage === question_mark ? styles.name__block__image : styles.name__block__image__main}`}>
-                            <img
-                                className={`${profileImage === question_mark ? styles.name__block__image__img : styles.name__block__image__img__main}`}
-                                src={profileImage}
-                                alt="Profile"
-                                style={{ cursor: 'pointer' }} // Указатель курсора для интерактивности
-                            />
-                        <input
-                            id="file-upload"
-                            ref={fileInputRef}
-                            type="file"
-                            accept="image/*" // Принимаем только изображения
-                            onChange={handleImageChange}
-                            style={{ display: 'none' }} // Скрываем input
-                        />                    
+                {isLoading ? (
+                    <div className={styles.profile__form__loader__position}>
+                        <Loader />  
                     </div>
-                    <div className={styles.name__block__about}>
-                        <div className={styles.name__block__about__family__name}>{decodedToken?.surname} {decodedToken?.name} {decodedToken?.patronymic}</div>
-                        <div className={`${decodedToken?.role === 'Student' 
-                            ? styles.name__block__about__status__red 
-                            : decodedToken?.role === 'Confidant'
-                            ? styles.name__block__about__status__blue
-                            : styles.name__block__about__status}`}>{decodedToken?.role === 'Student' ? 'Студент' : decodedToken?.role === 'Confidant' ? 'Доверенное лицо' : 'Неизвестная роль'}</div>
-                    </div>
-                </div>
+                ) : (
+                    <>
+                        <div className={`${styles.profile__form__name__block} ${styles.name__block}`}>
+                            <div onClick={handleImageClick} className={`${ profileImage === question_mark ? styles.name__block__image : styles.name__block__image__main}`}>
+                                    <img
+                                        className={`${profileImage === question_mark ? styles.name__block__image__img : styles.name__block__image__img__main}`}
+                                        src={profileImage}
+                                        alt="Profile"
+                                        style={{ cursor: 'pointer' }} // Указатель курсора для интерактивности
+                                    />
+                                <input
+                                    id="file-upload"
+                                    ref={fileInputRef}
+                                    type="file"
+                                    accept="image/*" // Принимаем только изображения
+                                    onChange={handleImageChange}
+                                    style={{ display: 'none' }} // Скрываем input
+                                />                    
+                            </div>
+                            <div className={styles.name__block__about}>
+                                <div className={styles.name__block__about__family__name}>{decodedToken?.surname} {decodedToken?.name} {decodedToken?.patronymic}</div>
+                                <div className={`${decodedToken?.role === 'Student' 
+                                    ? styles.name__block__about__status__red 
+                                    : decodedToken?.role === 'Confidant'
+                                    ? styles.name__block__about__status__blue
+                                    : styles.name__block__about__status}`}>{decodedToken?.role === 'Student' ? 'Студент' : decodedToken?.role === 'Confidant' ? 'Доверенное лицо' : 'Неизвестная роль'}</div>
+                            </div>
+                        </div>
 
-                <div className={`${styles.profile__form__form__admin__textarea__block} ${styles.text__area__block}`}>
-                    <div className={styles.text__area__block__block}>
-                        <div className={`${styles.text__area__block__block_text__block}`}>
-                            <div 
-                                className={styles.text__area__block__block__text}
-                            >
-                                <span className={`${isTextAreaClicked ? styles.text__area__block__block__text__left__span : styles.text__area__block__block__text__span}`}>О себе</span>
-                            </div>      
+                        <div className={`${styles.profile__form__form__admin__textarea__block} ${styles.text__area__block}`}>
+                            <div className={styles.text__area__block__block}>
+                                <div className={`${styles.text__area__block__block_text__block}`}>
+                                    <div 
+                                        className={styles.text__area__block__block__text}
+                                    >
+                                        <span className={`${isTextAreaClicked ? styles.text__area__block__block__text__left__span : styles.text__area__block__block__text__span}`}>О себе</span>
+                                    </div>      
+                                </div>
+                                <textarea 
+                                    ref={textareaRef}
+                                    value={textArea}
+                                    disabled={!isTextAreaClicked} 
+                                    onChange={handleTextareaChange}
+                                    className={styles.text__area__block__block__textarea}
+                                    
+                                ></textarea>
+                                <div className={styles.text__area__block__block__placeholder__block}>
+                                    {isTextAreaEmpty() ?  <label className={`${isTextAreaClicked || !isTextAreaEmpty() ? styles.text__area__block__block__placeholder__down : styles.text__area__block__block__placeholder}`}>
+                                        Напишите информацию о себе
+                                    </label> : ''}
+                                
+                                </div>
+                            </div> 
                         </div>
-                        <textarea 
-                            ref={textareaRef}
-                            value={textArea}
-                            disabled={!isTextAreaClicked} 
-                            onChange={handleTextareaChange}
-                            className={styles.text__area__block__block__textarea}
-                            
-                        ></textarea>
-                        <div className={styles.text__area__block__block__placeholder__block}>
-                            {isTextAreaEmpty() ?  <label className={`${isTextAreaClicked || !isTextAreaEmpty() ? styles.text__area__block__block__placeholder__down : styles.text__area__block__block__placeholder}`}>
-                                Напишите информацию о себе
-                            </label> : ''}
-                           
+                        
+                        <div className={`${styles.profile__form__buttons__block} ${styles.buttons__block}`}>
+                            <div className={styles.buttons__block__edit__button}>
+                                <button onClick={isTextAreaClicked ? handleSave : handleEditToggle} className={styles.buttons__block__edit__button__btn}>
+                                    {isTextAreaClicked ? 'Сохранить' : 'Редактировать'}
+                                </button>
+                            </div>
+                            <div className={styles.buttons__block__logout__button}>
+                                <button onClick={handleLogOut} className={styles.buttons__block__logout__button__btn}>Выйти</button>
+                            </div>
                         </div>
-                    </div> 
-                </div>
-                
-                <div className={`${styles.profile__form__buttons__block} ${styles.buttons__block}`}>
-                    <div className={styles.buttons__block__edit__button}>
-                        <button onClick={isTextAreaClicked ? handleSave : handleEditToggle} className={styles.buttons__block__edit__button__btn}>
-                            {isTextAreaClicked ? 'Сохранить' : 'Редактировать'}
-                        </button>
-                    </div>
-                    <div className={styles.buttons__block__logout__button}>
-                        <button onClick={handleLogOut} className={styles.buttons__block__logout__button__btn}>Выйти</button>
-                    </div>
-                </div>
+                    </>
+                )}
             </div>
         </div>
     )

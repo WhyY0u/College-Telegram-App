@@ -1,3 +1,18 @@
+:root {
+    --input-hover-shadow: rgba(238, 238, 238, 0.1);
+    --input-hover-border: rgba(238, 238, 238, 0.3);
+    --place-holder-color: rgba(107, 107, 107, 0.83);
+}
+.signup__form__login__validator {
+    opacity: 1;
+    transition: opacity 0.5s ease; /* Плавный переход */
+}
+  
+.signup__form__hidden {
+    opacity: 0;
+    transition: opacity 0.5s ease; 
+    pointer-events: none; /* Чтобы не было взаимодействий, когда скрыто */
+}
 
 .signup__form__form {
     margin-bottom: 70px;
@@ -18,25 +33,39 @@
 .form__inputs__name {
     font-family: 'Inter';
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.03);
     max-width: 135px;
-    padding: 15px 10px;
-    color: white;
+    padding: 15px 10px; 
     border-radius: 10px;
     font-size: 15px;
-       color: rgba(255, 255, 255, 0.693);
+    border: 1px solid var( --border-color);
+    color: rgba(255, 255, 255, 0.693);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__name:hover {
-    border: 1px solid rgb(68, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.4);
-    transition: border 0.2s ease-in;
+    border: 1px solid var( --input-hover-border);
+    box-shadow: 0 0 10px var(--input-hover-shadow);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__name__container {
     position: relative;
 }
-
+.form_input_validator_enable_animation {
+    transition: color 0.2s, top 0.2s ease-in;
+    font-family: 'Inter';
+    font-size: 14px;
+    position: absolute;
+    right: 10px;
+}
+.form__inputs__validator {
+    color: rgba(238, 219, 219, 0.40);
+    top: -19px;
+}
+.form__inputs__validator_hide {
+    color: rgba(238, 219, 219, 0.0);
+    top: -14px;
+}
 .form__inputs__name__placeholder {
     position: absolute;
     font-family: 'Inter';
@@ -44,18 +73,18 @@
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__name__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 14px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
@@ -71,13 +100,14 @@
 .form__inputs__surname {
     font-family: 'Inter';
     background-color: transparent;
-     border: 1px solid rgba(255, 255, 255, 0.03);
     max-width: 135px;
     padding: 15px 10px;
     color: white;
     border-radius: 10px;
     font-size: 15px;
+    border: 1px solid var( --border-color);
     color: rgba(255, 255, 255, 0.693);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 
 }
 
@@ -88,25 +118,25 @@
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__surname__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 13.5px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__surname:hover {
-    border: 1px solid rgb(68, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.4);
-    transition: border 0.2s ease-in;
+    border: 1px solid var( --input-hover-border);
+    box-shadow: 0 0 10px var(--input-hover-shadow);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__surname:hover + .form__inputs__surname__placeholder {
@@ -126,12 +156,13 @@
     width: 100%;
     font-family: 'Inter';
     background-color: transparent;
-     border: 1px solid rgba(255, 255, 255, 0.03);
     padding: 15px 10px;
     color: white;
     max-width: 135px;
     border-radius: 10px;
     font-size: 15px;
+    transition: border 0.2s, box-shadow 0.2s ease-in;
+    border: 1px solid var( --border-color);
     color: rgba(255, 255, 255, 0.693);
 
 }
@@ -143,26 +174,26 @@
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__middlename__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 13.5px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 
 .form__inputs__middlename:hover {
-    border: 1px solid rgb(68, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.4);
-    transition: border 0.2s ease-in;
+    border: 1px solid var( --input-hover-border);
+    box-shadow: 0 0 10px var(--input-hover-shadow);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__middlename:hover + .form__inputs__middlename__placeholder {
@@ -177,13 +208,14 @@
     width: 100%;
     font-family: 'Inter';
     background-color: transparent;
-     border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var( --border-color);
     padding: 15px 10px;
     color: white;
     max-width: 135px;
     border-radius: 10px;
     font-size: 15px;
     color: rgba(255, 255, 255, 0.693);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__login__placeholder {
@@ -193,25 +225,25 @@
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__login__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 14px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__login:hover {
-    border: 1px solid rgb(68, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.4);
-    transition: border 0.2s ease-in;
+    border: 1px solid var( --input-hover-border);
+    box-shadow: 0 0 10px var(--input-hover-shadow);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__login:hover + .form__inputs__login__placeholder {
@@ -226,12 +258,13 @@
     width: 100%;
     font-family: 'Inter';
     background-color: transparent;
-     border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var( --border-color);
     padding: 15px 10px;
     color: white;
     border-radius: 10px;
     font-size: 15px;
     color: rgba(255, 255, 255, 0.693);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__mail__placeholder {
@@ -241,25 +274,25 @@
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__mail__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 14px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__mail:hover {
-    border: 1px solid rgb(68, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.4);
-    transition: border 0.2s ease-in;
+    border: 1px solid var( --input-hover-border);
+    box-shadow: 0 0 10px var(--input-hover-shadow);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__mail:hover + .form__inputs__mail__placeholder {
@@ -277,12 +310,13 @@
     width: 100%;
     font-family: 'Inter';
     background-color: transparent;
-     border: 1px solid rgba(255, 255, 255, 0.03);
+      border: 1px solid var( --border-color);
     padding: 15px 50px 15px 10px;
     color: white;
     border-radius: 10px;
     font-size: 15px;
     color: rgba(255, 255, 255, 0.693);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__password__placeholder {
@@ -292,25 +326,25 @@
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__password__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 14px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__password:hover {
-    border: 1px solid rgb(68, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.4);
-    transition: border 0.2s ease-in;
+    border: 1px solid var( --input-hover-border);
+    box-shadow: 0 0 10px var(--input-hover-shadow);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__password:hover + .form__inputs__password__placeholder {
@@ -333,12 +367,13 @@
     width: 100%;
     font-family: 'Inter';
     background-color: transparent;
-     border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid var( --border-color);
     padding: 15px 50px 15px 10px;
     color: white;
     border-radius: 10px;
     font-size: 15px;
     color: rgba(255, 255, 255, 0.693);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__confirmation__password__placeholder {
@@ -348,25 +383,25 @@
     top: 16px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__confirmation__password__placeholder__top {
     position: absolute;
     font-family: 'Inter';
-    font-size: 15px;
+    font-size: 14px;
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: rgba(107, 107, 107, 0.83); 
+    color: var(--place-holder-color); 
     z-index: -1;
 }
 
 .form__inputs__confirmation__password:hover {
-    border: 1px solid rgb(68, 9, 199, 0.597);
-    box-shadow: 0 0 10px rgba(68, 9, 199, 0.4);
-    transition: border 0.2s ease-in;
+    border: 1px solid var( --input-hover-border);
+    box-shadow: 0 0 10px var(--input-hover-shadow);
+    transition: border 0.2s, box-shadow 0.2s ease-in;
 }
 
 .form__inputs__confirmation__password:hover + .form__inputs__confirmation__password__placeholder {
@@ -405,6 +440,7 @@
     background-color: rgba(13, 13, 13, 0.28);
     color: #B3AFAF;
     transition: background-color 0.3s ease-in;
+    border: 1px solid var(--border-color);
     box-shadow: 0px 0px 10px rgba(13, 13, 13, 0.28);
     font-weight: 600;
 }

@@ -1,0 +1,19 @@
+
+
+.validator {
+    position: fixed;
+    top: 60px; /* Положение от верхнего края */
+    left: 50%; /* Положение по горизонтали на 50% */
+    transform: translateX(-50%); /* Сдвигаем элемент влево на 50% его ширины */
+    background-color: rgba(59, 57, 57, 0.83);
+    padding: 15px;
+    min-width: 300px;
+    z-index: 1000; /* Убедитесь, что валидатор выше других элементов */
+}
+
+.validator__text {
+    font-family: Inter;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(200, 200, 200)
+}

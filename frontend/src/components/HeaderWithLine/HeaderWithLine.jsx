@@ -15,7 +15,7 @@ function HeaderWithLine() {
     <header className={styles.header__with__line}>
         <div className={`${styles.header__with__line__container} _container`}>
             <h2 className={styles.header__with__line__title}><span className={styles.header__with__line__letter}>K</span>IT</h2>
-            <h2 className={styles.header__with__line__description}>Mini App</h2>
+            <h2 className={styles.header__with__line__description}>AITU</h2>
             {/* <button onClick={() => Logout()}>Log out</button> */}
         </div>
     </header>
