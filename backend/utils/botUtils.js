@@ -19,10 +19,13 @@ const saveChatID = async (id) => {
 
 setInterval(async () => {
   const now = new Date();
+  const fiveHoursLater = new Date(now.getTime() + 5 * 60 * 60 * 1000);
+
   const events = await Event.Event.find({
     send: false,
-    start: { $lt: new Date(now.getTime() + 5 * 60 * 1000), $gt: now }
+    start: { $lt: new Date(fiveHoursLater.getTime() + 5 * 60 * 1000), $gt: fiveHoursLater }
   });
+
   if (events.length > 0) {
     const sendChat = events.map(async event => {
       try {
@@ -41,6 +44,7 @@ setInterval(async () => {
   }
 
 }, 60 * 1000);
+
 
 const sendAllMessage = async (message) => {
   const chats = await Chat.Chat.find({});
