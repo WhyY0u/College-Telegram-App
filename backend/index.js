@@ -56,7 +56,6 @@ botUtils.bot.onText(/\/start/, async (msg) => {
 });
 botUtils.bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
-  console.log(chatId);
   await botUtils.saveChatID(chatId);
 
 });

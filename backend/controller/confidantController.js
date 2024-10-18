@@ -139,7 +139,6 @@ const saveEventHandle = async (req, res) => {
   
   const saveNewsHandle = async (req, res) => {
     const { heading, description } = req.body; 
-    console.log(req.query);
     const files = req.files; 
     const errors = validationResult(req);
 

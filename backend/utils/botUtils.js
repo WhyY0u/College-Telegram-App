@@ -23,7 +23,6 @@ setInterval(async () => {
     send: false,
     start: { $lt: new Date(now.getTime() + 5 * 60 * 1000), $gt: now }
   });
-
   if (events.length > 0) {
     const sendChat = events.map(async event => {
       try {
@@ -32,7 +31,6 @@ setInterval(async () => {
           `\n⏳ *Начнется через*: 5 минут` +
           `\n📍 *Место*: '${event.place}'`
         );
-
         await Event.Event.findByIdAndUpdate(event._id, { send: true }, { new: true });
       } catch (error) {
         console.error(`Ошибка при обработке события ${event._id}:`, error);
