@@ -7,6 +7,7 @@ const NewsSchema = new mongoose.Schema({
   description: { type: String, required: true },
   likes: { type: [LikesSchema], default: [] }, 
   images: { type: [String], required: false },
+  send: {type: Boolean, required: false, default: false}
 });
 
 module.exports = {

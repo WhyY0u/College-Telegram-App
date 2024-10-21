@@ -7,6 +7,8 @@ const file = require('../utils/fileUtils');
 const { News } = require('../model/newsModel');
 const { Event } = require('../model/eventModel');
 const DateUtils = require('../utils/dateUtils')
+const botUtils = require('../utils/botUtils')
+
 
 const getTicketsHandle = async (req, res) => {
     const { page, limit } = req.query;
@@ -124,7 +126,7 @@ const saveEventHandle = async (req, res) => {
             return res.status(500).send("Ошибка загрузки файла.");
           }
     }
-    await sendAllMessage("Появилось новое мероприятие!!");
+    await botUtils.sendAllMessage("*Появилось новое мероприятие!!*");
     await newEvent.save();
     return res.status(200).send("Успешно.");
     }catch(error) {
@@ -137,7 +139,6 @@ const saveEventHandle = async (req, res) => {
   
   const saveNewsHandle = async (req, res) => {
     const { heading, description } = req.body; 
-    console.log(req.query);
     const files = req.files; 
     const errors = validationResult(req);
 
@@ -155,7 +156,7 @@ const saveEventHandle = async (req, res) => {
         }
 
         await newNews.save(); 
-        await sendAllMessage("Вышла новая новость!!");
+        await botUtils.sendAllMessage("*Вышла новая новость!!*");
         return res.status(200).send("Успешно.");
     } catch (err) { 
         console.error(err); 

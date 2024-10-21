@@ -6,7 +6,6 @@ const multer = require('multer');
 const getProfile = async (req, res) => {
     try {
        const currntuser = await JwtUtils.getUserByReq(req);
-       console.log(currntuser);
        const profile = await ProfileUtils.getProfileByID(currntuser._id);
        if(profile == null) {
         return res.status(403).send("Профиль не найден");

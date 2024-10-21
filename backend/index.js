@@ -1,5 +1,4 @@
 require("dotenv").config();
-const TelegramBot = require('node-telegram-bot-api');
 const express = require("express");
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
@@ -8,7 +7,6 @@ const botUtils = require('./utils/botUtils');
 
 const cors = require('cors');
 
-const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
 const middleware = require('./middleware/middleware');
 const authoRouter = require("./router/authRouter");
@@ -44,12 +42,10 @@ app.use('/api/news', middleware.authMiddleware, newsRouter);
 app.use('/api/profile', middleware.authMiddleware, profileRouter);
 
 
-bot.onText(/\/start/, async (msg) => {
+botUtils.bot.onText(/\/start/, async (msg) => {
   const chatId = msg.chat.id;
-
   const miniAppUrl = 'https://telegram-app.pbk.kz/';
-  await botUtils.saveChatID(chatId);
-  await bot.sendMessage(chatId, 'Добро пожаловать в KitAitu! Мы готовы выслушать вас!', {
+  await botUtils.bot.sendMessage(chatId, 'Добро пожаловать в KitAitu! Мы готовы выслушать вас!', {
     reply_markup: {
        inline_keyboard: [
        [{text: 'Открыть KitAitu', web_app: {url: miniAppUrl}}]
@@ -58,7 +54,11 @@ bot.onText(/\/start/, async (msg) => {
   })
 
 });
+botUtils.bot.on("message", async (msg) => {
+  const chatId = msg.chat.id;
+  await botUtils.saveChatID(chatId);
 
+});
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
