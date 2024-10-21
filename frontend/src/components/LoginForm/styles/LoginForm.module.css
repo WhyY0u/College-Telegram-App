@@ -36,9 +36,9 @@
 
 .form__inputs__login {
     width: 100%;
-    background-color: transparent;
+    background-color: var(--input-background-color);
     border: 1px solid var( --border-color);
-    color: rgba(255, 255, 255, 0.693);
+    color: var(--place-holder-color);
     font-family: "Inter";
     padding: 15px 10px;
     border-radius: 10px;
@@ -65,7 +65,7 @@
     top: -20px; /* начальная позиция */
     left: 6px;
     transition: 0.2s ease all;
-    color: rgba(238, 219, 219, 0.43);
+    color: var(--place-holder-top-color);
     z-index: -1;
 }
 
@@ -117,9 +117,9 @@
 .form__inputs__password {
     width: 100%;
     color: white;
-    background-color: transparent;
+    background-color: var(--input-background-color);
     border: 1px solid var(--border-color);
-    color: rgba(255, 255, 255, 0.693);
+    color: var(--place-holder-color);
     font-family: "Inter";
     padding: 15px 50px 15px 10px;
     border-radius: 10px;
@@ -173,11 +173,9 @@
     padding: 20px 70px;
     border-radius: 10px;
     font-size: 17px;
-    background-color: rgb(28, 5, 81);
-    border: 1px solid rgba(0,0,0,0);
-    color: #B3AFAF;
+    background-color: rgb(38, 160, 14);
+    color: #FFFFFF;
     transition: background-color 0.3s ease-in,  border-color 0.3s ease-in,  box-shadow 0.3s ease-in;
-    box-shadow: 0px 0px 10px rgba(28, 5, 81, 1);
     font-weight: 600;
 }
 

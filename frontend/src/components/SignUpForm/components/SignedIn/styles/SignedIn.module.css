@@ -24,21 +24,25 @@
 }
 
 .signedin__text__block__question {
-    color: rgba(162, 161, 162, 0.61);
+    font-family: "Inter";
+    text-align: center;
+    color: rgba(162, 161, 162, 0.70);
+    font-size: 16px;
 }
 
 .signedin__text__block__parg {
-    color: rgba(162, 161, 162, 0.41);
+    font-family: "Inter";
+    color: rgba(162, 161, 162, 0.50);
     max-width: 190px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 400;
 }
 
 .signedin__button__signin {
     font-family: 'Inter';
     padding: 12px 35px;
-    background-color: rgb(28, 5, 81);
-    color: rgb(179, 175, 175);
+    background-color: rgb(38, 160, 14);
+    color: #FFFFFF;
     font-size: 14px;
     border-radius: 10px;
     font-weight: 600;

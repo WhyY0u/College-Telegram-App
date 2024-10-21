@@ -5,6 +5,8 @@ import BouncingBalls from '../../components/BouncingBalls/BouncingBalls'
 import SearchAndSortAdmin from '../../components/SearchAndSortAdmin/SearchAndSortAdmin'
 import TicketsListAdmin from '../../components/TicketsListAdmin/TicketsListAdmin'
 import Navigation from '../../components/Navigation/Navigation'
+import Background from '../../components/BackgroundGlobal/Background'
+import ithub from '../../../images/ithub.jpg'
 
 function MainPageAdmin() {
 
@@ -21,17 +23,22 @@ function MainPageAdmin() {
 
   return (
     <div className={styles.main_page__admin}>
-        <HeaderWithLine />
-        <SearchAndSortAdmin 
-          onSearch={handleSeacrh} 
-          onSort={handleSort}
-        />
-        <TicketsListAdmin 
-          searchQuery={searchQuery} 
-          sortType={sortType}
-        />
-        <Navigation />
-    </div>
+        <Background src={ithub}>
+          <HeaderWithLine />
+          <SearchAndSortAdmin 
+            onSearch={handleSeacrh} 
+            onSort={handleSort}
+          />
+          <TicketsListAdmin 
+            searchQuery={searchQuery} 
+            sortType={sortType}
+          />
+        </Background>
+        <div className={`${styles.main_page__admin__navigation__container} _container`}>
+            <Navigation />
+        </div>
+      </div>
+
   )
 }
 

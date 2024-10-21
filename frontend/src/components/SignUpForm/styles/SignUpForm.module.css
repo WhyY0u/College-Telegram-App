@@ -1,8 +1,4 @@
-:root {
-    --input-hover-shadow: rgba(238, 238, 238, 0.1);
-    --input-hover-border: rgba(238, 238, 238, 0.3);
-    --place-holder-color: rgba(107, 107, 107, 0.83);
-}
+
 .signup__form__login__validator {
     opacity: 1;
     transition: opacity 0.5s ease; /* Плавный переход */
@@ -32,7 +28,7 @@
 
 .form__inputs__name {
     font-family: 'Inter';
-    background-color: transparent;
+    background-color: var(--input-background-color);
     max-width: 135px;
     padding: 15px 10px; 
     border-radius: 10px;
@@ -60,10 +56,12 @@
 }
 .form__inputs__validator {
     color: rgba(238, 219, 219, 0.40);
+    font-size: 12px;
     top: -19px;
 }
 .form__inputs__validator_hide {
     color: rgba(238, 219, 219, 0.0);
+    font-size: 12px;
     top: -14px;
 }
 .form__inputs__name__placeholder {
@@ -84,7 +82,7 @@
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: var(--place-holder-color); 
+    color: var(--place-holder-top-color); 
     z-index: -1;
 }
 
@@ -99,7 +97,7 @@
 
 .form__inputs__surname {
     font-family: 'Inter';
-    background-color: transparent;
+    background-color: var(--input-background-color);
     max-width: 135px;
     padding: 15px 10px;
     color: white;
@@ -129,7 +127,7 @@
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: var(--place-holder-color); 
+    color: var(--place-holder-top-color); 
     z-index: -1;
 }
 
@@ -155,7 +153,7 @@
 .form__inputs__middlename {
     width: 100%;
     font-family: 'Inter';
-    background-color: transparent;
+    background-color: var(--input-background-color);
     padding: 15px 10px;
     color: white;
     max-width: 135px;
@@ -185,7 +183,7 @@
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: var(--place-holder-color); 
+    color: var(--place-holder-top-color); 
     z-index: -1;
 }
 
@@ -207,7 +205,7 @@
 .form__inputs__login {
     width: 100%;
     font-family: 'Inter';
-    background-color: transparent;
+    background-color: var(--input-background-color);
     border: 1px solid var( --border-color);
     padding: 15px 10px;
     color: white;
@@ -236,7 +234,7 @@
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: var(--place-holder-color); 
+    color: var(--place-holder-top-color); 
     z-index: -1;
 }
 
@@ -257,7 +255,7 @@
 .form__inputs__mail {
     width: 100%;
     font-family: 'Inter';
-    background-color: transparent;
+    background-color: var(--input-background-color);
     border: 1px solid var( --border-color);
     padding: 15px 10px;
     color: white;
@@ -285,7 +283,7 @@
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: var(--place-holder-color); 
+    color: var(--place-holder-top-color); 
     z-index: -1;
 }
 
@@ -309,7 +307,7 @@
 .form__inputs__password {
     width: 100%;
     font-family: 'Inter';
-    background-color: transparent;
+    background-color: var(--input-background-color);
       border: 1px solid var( --border-color);
     padding: 15px 50px 15px 10px;
     color: white;
@@ -337,7 +335,7 @@
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: var(--place-holder-color); 
+    color: var(--place-holder-top-color); 
     z-index: -1;
 }
 
@@ -366,7 +364,7 @@
 .form__inputs__confirmation__password {
     width: 100%;
     font-family: 'Inter';
-    background-color: transparent;
+    background-color: var(--input-background-color);
     border: 1px solid var( --border-color);
     padding: 15px 50px 15px 10px;
     color: white;
@@ -394,7 +392,7 @@
     top: -20px; /* начальная позиция */
     left: 10px;
     transition: 0.2s ease all;
-    color: var(--place-holder-color); 
+    color: var(--place-holder-top-color); 
     z-index: -1;
 }
 
@@ -425,10 +423,9 @@
     padding: 20px 40px;
     border-radius: 10px;
     font-size: 16px;
-    background-color: rgb(28, 5, 81);
-    color: #B3AFAF;
+    background-color: rgb(38, 160, 14);
+    color: #FFFFFF;
     transition: background-color 0.3s ease-in;
-    box-shadow: 0px 0px 10px rgba(28, 5, 81, 1);
     font-weight: 600;
 }
 

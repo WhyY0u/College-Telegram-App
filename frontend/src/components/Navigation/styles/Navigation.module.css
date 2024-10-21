@@ -13,10 +13,10 @@
     display: flex;
     align-items: center;
     gap: 25px;
-    border: 1px solid var(--border-color);
     border-radius: 10px;
 
     backdrop-filter: blur(10px) saturate(0.5); 
+    background-color: rgba(0, 0, 0, 0.40);
 }
 .add_enabled_padding {
     padding: 0px 10px;  
@@ -62,7 +62,7 @@
 }
 
 .navigation__tickets__block__img {
-    opacity: 0.2;
+    opacity: 0.5;
     width: 24px;
     height: 24px;
 }
@@ -118,7 +118,7 @@
 }
 
 .navigation__news__block__img {
-    opacity: 0.2;
+    opacity: 0.5;
     width: 25px;
     height: 25px;
 }
@@ -193,7 +193,7 @@
 }
 
 .navigation__schedule__block__img {
-    opacity: 0.2;
+    opacity: 0.5;
     width: 25px;
     height: 25px;
 }
@@ -250,7 +250,7 @@
 }
 
 .navigation__profile__block__img {
-    opacity: 0.2;
+    opacity: 0.5;
     width: 25px;
     height: 25px;
 }

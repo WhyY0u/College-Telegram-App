@@ -52,7 +52,7 @@ function SearchAndSortAdmin({ onSearch, onSort }) {
                 <motion.div
                     className={styles.dropdown__btn}
                     onClick={toggleDropdown}
-                    animate={{ height: isOpen ? '90px' : '40px', width: isOpen ? '115px' : '115px'}} // Измените '56px' на высоту кнопки
+                    animate={{ height: isOpen ? '85px' : '40px', width: isOpen ? '115px' : '115px'}} // Измените '56px' на высоту кнопки
                     transition={{ duration: 0.3 }}
                 >
                     <div
