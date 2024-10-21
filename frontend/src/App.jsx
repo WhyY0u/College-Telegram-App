@@ -18,6 +18,7 @@ import ProfilePageAsync from './pages/ProfilePage/ProfilePageAsync/ProfilePageAs
 import Loader from './components/Loader/Loader';
 import Background from './components/BackgroundGlobal/Background';
 import ithub from '../images/ithub.jpg'
+import LazyLoader from './components/LazyLoader/LazyLoader';
 
 
 const backendServer = import.meta.env.VITE_BACKEND_SERVER || 'localhost:3000'
@@ -46,8 +47,7 @@ function App() {
   }
  },[]);
   return (
-    <Suspense fallback={<Loader />}>
-      <Background src={ithub}>
+    <Suspense fallback={<LazyLoader />}>
         <div className="wrapper">
           <Routes>
           <Route element={<ProtectedByRole isAuth={!isAuth}/>}>
@@ -74,7 +74,6 @@ function App() {
 
         </Routes>
         </div>
-      </Background>
     </Suspense>
   )
 }

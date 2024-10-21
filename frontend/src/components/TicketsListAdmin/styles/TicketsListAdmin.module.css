@@ -26,7 +26,7 @@
 
 .ticket__list__admin__item {
     display: flex;
-    background-color: rgba(0, 0, 0, 0.17);
+    background-color: rgba(0, 0, 0, 0.50);
     border: 1px solid var(--border-color);
     padding: 10px 10px;
     border-radius: 10px;
@@ -54,7 +54,7 @@
     font-family: 'Inter';
     font-weight: 300;
     font-size: 11px;
-    color: rgba(155, 150, 150, 0.63);
+    color: rgba(155, 150, 150);
 }
 
 .item__stick__element {
@@ -83,13 +83,15 @@
 .item__type__block__title__name__complaint {
     font-family: 'Inter';
     font-size: 11px;
-    color: rgba(255, 0, 0, 0.70);
+    font-weight: 600;
+    color: rgba(255, 0, 0);
 }
 
 .item__type__block__title__name__offer {
     font-family: 'Inter';
     font-size: 11px;
-    color: rgba(0, 141, 255, 0.70);
+    font-weight: 600;
+    color: rgba(0, 141, 255);
 }
 
 
@@ -111,25 +113,28 @@
 .item__status__block__title__name__rejected {
     font-family: 'Inter';
     font-size: 11px;
-    color: rgba(235, 4, 4, 0.69);
+    font-weight: 600;
+    color: rgba(255, 0, 0);
 }
 
 .item__status__block__title__name__expectation {
     font-family: 'Inter';
     font-size: 11px;
-    color: rgba(234, 237, 43, 0.69);
+    font-weight: 600;
+    color: rgba(234, 237, 43);
 }
 
 .item__status__block__title__name__inProgress {
     font-family: 'Inter';
     font-size: 11px;
-    color: rgba(4, 131, 235, 0.69);
+    font-weight: 600;
+    color: rgba(0, 141, 255);
 }
 
 .item__status__block__title__name__done {
     font-family: 'Inter';
     font-size: 11px;
-    color: rgba(4, 235, 36, 0.69);
+    color: rgba(4, 235, 36);
 }
 
 .item__name__block,

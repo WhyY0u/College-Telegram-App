@@ -1,4 +1,8 @@
 
+.profile__form {
+    padding-bottom: 30px;
+}
+
 .profile__form__container {
     display: flex;
     flex-direction: column;
@@ -22,7 +26,7 @@
     justify-content: center;
     align-items: center;
     background-color: rgba(196, 196, 196, 0.02);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 10px;
     backdrop-filter: blur(10px);
     width: 109px;
@@ -47,12 +51,12 @@
 }
 
 .name__block__about__family__name {
-    color: rgba(200, 200, 200, 0.62);
+    color: rgba(200, 200, 200, 0.80);
     font-family: Inter;
     font-size: 11px;
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 10px;
     border-radius: 10px;
     max-width: fit-content;
@@ -64,31 +68,31 @@
     font-size: 10px;
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 10px;
     border-radius: 10px;
     max-width: fit-content;
 }
 
 .name__block__about__status__red {
-    color: rgba(230, 13, 13, 0.46);
+    color: rgba(255, 0, 0);
     font-family: Inter;
     font-size: 10px;
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 10px;
     border-radius: 10px;
     max-width: fit-content;
 }
 
 .name__block__about__status__blue {
-    color: rgba(26, 68, 185, 0.808);
+    color: rgba(0, 141, 255);
     font-family: Inter;
     font-size: 11px;
     font-weight: 600;
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 10px;
     border-radius: 10px;
     max-width: fit-content;
@@ -109,7 +113,7 @@
     position: absolute;
     display: flex;
     justify-content: flex-start;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     padding: 10px 0px 10px 10px;
     color: rgba(215, 215, 215, 0.72);
 }
@@ -138,7 +142,7 @@
 
 .text__area__block__block__textarea {
     background: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     color: rgba(200, 200, 200, 0.53);
     font-family: Inter;
     font-size: 12px;
@@ -163,7 +167,7 @@
 .text__area__block__block__placeholder {
     font-family: 'Inter';
     font-size: 13px;
-    color: rgba(200, 200, 200, 0.29);
+    color: rgba(179, 175, 175, 0.70);
     padding-top: 20px;
     z-index: -1;
     transform: translateY(0px);
@@ -174,7 +178,7 @@
 .text__area__block__block__placeholder__down {
     font-family: 'Inter';
     font-size: 11px;
-    color: rgba(200, 200, 200, 0.29);
+    color: rgba(179, 175, 175, 0.70);
     padding-top: 20px;
     z-index: -1;
     transform: translateY(20px);
@@ -191,9 +195,9 @@
 
 .buttons__block__edit__button__btn {
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 10px;
-    color: rgba(200, 200, 200, 0.58);
+    color: rgba(200, 200, 200, 0.80);
     font-family: Inter;
     font-size: 13px;
     font-weight: 600;
@@ -202,9 +206,9 @@
 
 .buttons__block__logout__button__btn {
     background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 10px;
-    color: rgba(255, 0, 0, 0.58);
+    color: rgba(255, 0, 0, 0.70);
     font-family: Inter;
     font-size: 13px;
     font-weight: 600;

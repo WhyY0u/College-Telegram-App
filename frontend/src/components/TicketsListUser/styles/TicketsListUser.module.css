@@ -81,6 +81,7 @@
 .item__type__block__title__name {
     font-family: 'Inter';
     font-size: 11px;
+    font-weight: 600;
 }
 
 
@@ -97,6 +98,7 @@
     font-weight: 600;
     font-size: 14px;
     color: rgba(215, 215, 215, 0.72);
+    font-weight: 600;
 }
 
 .item__status__block__title__name {

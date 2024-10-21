@@ -1,4 +1,7 @@
 
+.ticket__creation__form {
+    padding-bottom: 25px;
+}
 
 .ticket__creation__form__validator {
     opacity: 1;
@@ -35,7 +38,7 @@
 .block__input__input {
     max-width: 135px;
     color: white;
-    background-color: transparent;
+    background-color: var(--input-background-color);
     border: 1px solid var(--border-color);
     font-family: "Inter";
     padding: 15px 10px;
@@ -54,7 +57,7 @@
 .block__input__placeholder {
     position: absolute;
     font-family: 'Inter';
-    color: rgba(107, 107, 107, 0.83);
+    color: var(--place-holder-color);
     font-weight: 600;
     top: 16px;
     left: 10px;
@@ -67,7 +70,7 @@
     position: absolute;
     font-family: 'Inter';
     font-weight: 600;
-    color: rgba(107, 107, 107, 0.83);
+    color: var(--place-holder-top-color);
     top: -20px;
     left: 4px;
     z-index: -1;
@@ -92,7 +95,7 @@
     font-family: 'Inter';
     font-weight: 600;
     color: rgba(107, 107, 107, 0.83);
-    background: rgba(0, 0, 0, 0.01);
+    background-color: var(--input-background-color);
     border: 1px solid var(--border-color);
     padding: 15px 10px 15px 15px;
     border-radius: 10px;
@@ -121,14 +124,14 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    color: rgba(255, 0, 0, 0.70);
+    color: rgba(255, 0, 0);
 }
 
 .dropdown__btn__text__blue {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    color: rgba(0, 141, 255, 0.70);
+    color: rgba(0, 141, 255);
 }
 
 .dropdown__btn__img {
@@ -150,13 +153,13 @@
 .dropdown__options__item__red {
     font-family: "Inter";
     font-size: 12px;
-    color: rgba(255, 0, 0, 0.43);
+    color: rgba(255, 0, 0);
 }
 
 .dropdown__options__item__blue {
     font-family: "Inter";
     font-size: 12px;
-    color: rgba(0, 141, 255, 0.43);
+    color: rgba(0, 141, 255);
 }
 
 
@@ -176,6 +179,7 @@
     font-weight: 600;
     color: rgba(107, 107, 107, 0.83);
     font-size: 14px;
+    background-color: var(--input-background-color);    
     border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 15px 10px;
@@ -231,7 +235,7 @@
 
 .block__textarea__textarea {
     color: white;
-    background-color: transparent;
+    background-color: var(--input-background-color);
     border: 1px solid var(--border-color);
     font-family: "Inter";
     padding: 15px 10px;
@@ -246,7 +250,7 @@
 .block__textarea__placeholder {
     position: absolute;
     font-family: 'Inter';
-    color: rgba(107, 107, 107, 0.83);
+    color: var(--place-holder-color);
     top: 16px;
     left: 10px;
     z-index: -1;
@@ -259,7 +263,7 @@
     position: absolute;
     font-family: 'Inter';
     font-weight: 600;
-    color: rgba(107, 107, 107, 0.83);
+    color: var(--place-holder-top-color);
     top: -20px;
     left: 6px;
     z-index: -1;
@@ -285,9 +289,8 @@
 .send__btn__block__btn {
     font-family: 'Inter';
     font-size: 16px;
-    background-color: rgb(28, 5, 81);
-    box-shadow: 0px 0px 5px rgb(28, 5, 81);
-    color: rgb(179, 175, 175);
+    background-color: rgb(38, 160, 14);
+    color: #FFFFFF;
     padding: 20px 30px;
     border-radius: 10px;
     transition: background-color 0.3s ease-in;

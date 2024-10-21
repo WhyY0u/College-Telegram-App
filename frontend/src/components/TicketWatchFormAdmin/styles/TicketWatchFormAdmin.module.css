@@ -1,6 +1,9 @@
-:root {
-    --border-color: rgba(255, 255, 255, 0.1);
+
+
+.ticket__watch__form__admin {
+    padding-bottom: 30px;
 }
+
 .ticket__watch__form__admin__container {
     display: flex;
     flex-direction: column;
@@ -29,8 +32,8 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
-    background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 10px;
     padding: 10px 5px;
     text-align: center;
@@ -47,66 +50,68 @@
 .type__block__header,
 .status__block__header {
     font-family: 'Inter';
-    color: rgba(215, 215, 215, 0.72);
+    color: rgba(215, 215, 215);
     font-size: 14px;
 }
 
-.surname__block__parg,
-.name__block__parg,
-.patronymic__block__parg,
+
 .title__block__parg{
     font-family: 'Inter';
-    color: rgba(155, 150, 150, 0.63);
+    color: rgb(186, 184, 184);
     font-size: 11px;
 }
 
 .status__block__parg__rejected {
     font-family: 'Inter';
-    color: rgba(235, 4, 4, 0.69);
+    font-weight: 600;
+    color: rgba(255, 0, 0);
     font-size: 11px;
 }
 
 .status__block__parg__expectation {
     font-family: 'Inter';
-    color: rgba(234, 237, 43, 0.69);
+    color: rgba(234, 237, 43);
     font-size: 11px;
 }
 
 .status__block__parg__inProgress {
     font-family: 'Inter';
-    color: rgba(43, 103, 237, 0.69);
+    color: rgba(0, 141, 255);
     font-size: 11px;
 }
 
 .status__block__parg__done {
     font-family: 'Inter';
-    color: rgba(4, 235, 36, 0.69);
+    color: rgba(4, 235, 36);
     font-size: 11px;
 }
 
 .type__block__parg__red {
     font-family: 'Inter';
-    color: rgba(255, 0, 0, 0.70);
+    color: rgba(255, 0, 0);
+    font-weight: 600;
     font-size: 11px;
 }
 
 .type__block__parg__blue {
     font-family: 'Inter';
-    color: rgba(0, 141, 255, 0.70);
+    color: rgba(0, 141, 255);
+    font-weight: 600;
     font-size: 11px;
 }
 
 .surname__block__parg,
 .name__block__parg,
 .patronymic__block__parg {
-    font-size: 11px;    
-    color: rgba(139, 136, 136, 0.63);
+    font-family: 'Inter';
+    color: rgb(169, 166, 166);
+    font-size: 11px; 
 }
 
 
 .ticket__watch__form__admin__desc__block {
-    background-color: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 10px;
 }
 
@@ -126,7 +131,7 @@
     font-family: 'Inter';
     font-size: 13px;
     font-weight: 400;
-    color: rgba(200, 200, 200, 0.53);
+    color: rgb(169, 166, 166);
     padding: 10px;
     word-wrap: break-word; 
     overflow-wrap: break-word;
@@ -172,7 +177,7 @@
 
 .status__dropdown__btn {
     background: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 10px;
     border-radius: 10px;
     overflow: hidden;
@@ -208,25 +213,25 @@
 .dropdown__options__item__red {
     font-family: 'Inter';
     font-size: 12px;
-    color: rgba(173, 11, 11, 0.69);
+    color: rgba(255, 0, 0);
 }
 
 .dropdown__options__item__blue {
     font-family: 'Inter';
     font-size: 12px;
-    color: rgba(43, 103, 237, 0.69);
+    color: rgba(0, 141, 255);
 }
 
 .dropdown__options__item__green {
     font-family: 'Inter';
     font-size: 12px;
-    color: rgba(4, 235, 36, 0.69);
+    color: rgba(4, 235, 36);
 }
 
 .dropdown__options__item__yellow {
     font-family: 'Inter';
     font-size: 12px;
-    color: rgba(234, 237, 43, 0.69);
+    color: rgba(234, 237, 43);
 }
 
 .dropdown__options__item {
@@ -273,7 +278,7 @@
     right: -300px;
     transition: right 0.3s ease;
     font-family: 'Inter';
-    color: rgba(179, 175, 175, 0.49);
+    color: rgba(179, 175, 175, 0.70);
     font-size: 12px;
     padding-top: 10px;
     overflow: hidden;
@@ -284,7 +289,7 @@
     right: 10px;
     transition: right 0.3s ease;
     font-family: 'Inter';
-    color: rgba(179, 175, 175, 0.49);
+    color: rgba(179, 175, 175, 0.70);
     font-size: 12px;
     padding-top: 10px;
     overflow: hidden;
@@ -292,7 +297,7 @@
 
 .text__area__block__block__textarea {
     background: rgba(0, 0, 0, 0.17);
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     color: rgba(200, 200, 200, 0.63);
     min-height: 140px;
     padding: 50px 10px 10px 10px;
@@ -316,7 +321,7 @@
 .text__area__block__block__placeholder {
     font-family: 'Inter';
     font-size: 13px;
-    color: rgba(200, 200, 200, 0.53);
+    color: rgba(200, 200, 200, 0.80);
     padding-top: 20px;
     z-index: -1;
     transform: translateY(0px);
@@ -327,7 +332,7 @@
 .text__area__block__block__placeholder__down {
     font-family: 'Inter';
     font-size: 13px;
-    color: rgba(200, 200, 200, 0.53);
+    color: rgba(200, 200, 200, 0.80);
     padding-top: 20px;
     z-index: -1;
     transform: translateY(20px);
@@ -346,8 +351,9 @@
     font-family: 'Inter';
     font-weight: 600;
     font-size: 17px;
-    color: rgb(179, 175, 175);
+    color: rgb(255, 255, 255);
     background-color: rgb(81, 5, 5);
+    box-shadow: 0px 0px 10px rgb(81, 5, 5);
     border-radius: 10px;
     padding: 20px 30px;
 }
@@ -356,8 +362,8 @@
     font-family: 'Inter';
     font-weight: 600;
     font-size: 17px;
-    color: rgb(179, 175, 175);
-    background-color: rgb(21, 5, 81);
+    color: rgb(255, 255, 255);
+    background-color: rgb(38, 160, 14);
     border-radius: 10px;
     padding: 10px;
 }
