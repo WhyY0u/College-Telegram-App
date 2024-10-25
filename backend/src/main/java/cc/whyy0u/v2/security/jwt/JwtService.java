@@ -27,8 +27,7 @@ public class JwtService {
         return extractClaim(token, Claims::getSubject);
     }
 
-    
-    public String generateTokenRefresh(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         if (userDetails instanceof CustomUserDetails customUserDetails) {
             claims.put("id", customUserDetails.getEntity().getId());
@@ -36,21 +35,9 @@ public class JwtService {
             claims.put("patronymic", customUserDetails.getEntity().getPatronymic());
             claims.put("name", customUserDetails.getEntity().getName());
             claims.put("role", customUserDetails.getEntity().getRole());
-        }
-        return generateTokenRefresh(claims, userDetails);
-    }
-
-    public String generateTokenTemp(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<>();
-        if (userDetails instanceof CustomUserDetails customUserDetails) {
-            claims.put("id", customUserDetails.getEntity().getId());
-            claims.put("role", customUserDetails.getEntity().getRole());
-            claims.put("surname", customUserDetails.getEntity().getSurname());
-            claims.put("patronymic", customUserDetails.getEntity().getPatronymic());
-            claims.put("name", customUserDetails.getEntity().getName());
 
         }
-        return generateTokenTemp(claims, userDetails);
+        return generateToken(claims, userDetails);
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
@@ -65,18 +52,14 @@ public class JwtService {
     }
 
 
-    private String generateTokenRefresh(Map<String, Object> extraClaims, UserDetails userDetails) {
-        return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
+    private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
+        return Jwts.builder()
+                .setClaims(extraClaims)
+                .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 100000 * 60 * 24))
-                .signWith(getSigningKey(), SignatureAlgorithm.HS512).compact();
-    }
-
-    private String generateTokenTemp(Map<String, Object> extraClaims, UserDetails userDetails) {
-        return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 100000 * 15))
-                .signWith(getSigningKey(), SignatureAlgorithm.HS512).compact();
+                .setExpiration(new Date(Long.MAX_VALUE)) 
+                .signWith(getSigningKey(), SignatureAlgorithm.HS512)
+                .compact();
     }
 
 

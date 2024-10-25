@@ -4,7 +4,10 @@ public enum Role {
     Student,
     SpecialGroup,
     LaboratoryAssistant,
+    CulinaryStaff,
+    Curator,
     Teacher,
+    DepartmentHead,
     Administrator,
     Director,
 }
