@@ -5,7 +5,7 @@ CREATE TABLE users (
     name VARCHAR(50) NOT NULL,
     patronymic VARCHAR(50) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
-    pin_code VARCHAR(256) NOT NULL,
+    pin_code VARCHAR(256),
     phone VARCHAR(10) UNIQUE,
     birth_date DATE, 
     is_registered BOOLEAN NOT NULL DEFAULT FALSE,
@@ -14,7 +14,7 @@ CREATE TABLE users (
 
 CREATE TABLE user_tokens (
     user_id BIGINT NOT NULL,
-    token VARCHAR(255) NOT NULL,
+    token VARCHAR(512) NOT NULL,
     device VARCHAR(255),
     PRIMARY KEY (user_id, token),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE

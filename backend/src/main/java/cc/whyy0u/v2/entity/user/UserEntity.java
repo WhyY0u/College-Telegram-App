@@ -40,10 +40,10 @@ public class UserEntity {
     @Column(name = "patronymic", nullable = false, length = 50)
     private String patronymic;
 
-    @Column(name = "email", unique = true, nullable = false, length = 150)
+    @Column(name = "email", unique = true, nullable = true, length = 150)
     private String email;
 
-    @Column(name = "pin_code", nullable = false, length = 256)
+    @Column(name = "pin_code", nullable = true, length = 256)
     private String pinCode;
 
     @Column(name = "phone", unique = true, nullable = true, length = 10)
@@ -61,7 +61,7 @@ public class UserEntity {
 
     @ElementCollection
     @CollectionTable(name = "user_tokens", joinColumns = @JoinColumn(name = "user_id"))
-    @MapKeyColumn(name = "token")
+    @MapKeyColumn(name = "token", length = 512)
     @Column(name = "device")
     private Map<String, Device> tokenDeviceMap = new HashMap<>();
 }

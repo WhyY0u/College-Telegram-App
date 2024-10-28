@@ -40,6 +40,8 @@ public class AuthenticationService {
         UserEntity entity = userService.findByIIN(request.getIin()); 
         String jwt = jwtService.generateToken(new CustomUserDetails(entity));
         entity.getTokenDeviceMap().put(jwt, new Device(ipAddress, os));
+        if(!entity.isRegistered()) entity.setRegistered(true);
+        userService.saveEntity(entity);
         return new SignInResponce(jwt, entity.isRegistered()); 
     }
 }

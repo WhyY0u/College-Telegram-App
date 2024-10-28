@@ -8,7 +8,11 @@ import lombok.Data;
 public class Device {
     private String ipAddress;
     private DeviceType deviceType;
-    
+
+    public Device() {
+        
+    }
+
     public Device(String ipAddress, DeviceType deviceType) {
         this.ipAddress = ipAddress;
         this.deviceType = deviceType;

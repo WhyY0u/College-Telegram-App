@@ -11,8 +11,13 @@ import jakarta.mail.internet.MimeMessage;
 @Service
 public class EmailService {
 
-    @Autowired
+
     private JavaMailSender mailSender;
+
+    @Autowired
+    public EmailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
 
     public void sendHtmlEmail(String toEmail, String subject, String htmlBody) throws MessagingException {
         MimeMessage mimeMessage = mailSender.createMimeMessage();

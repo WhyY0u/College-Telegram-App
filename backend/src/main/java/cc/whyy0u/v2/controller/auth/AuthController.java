@@ -44,9 +44,9 @@ public class AuthController {
        UserEntity userEntity =  userService.findByIIN(request.getIin());
        if(userEntity != null) {
         if(userEntity.isRegistered()) {
-           return ResponseEntity.ok("No");
-        } else {
            return ResponseEntity.ok("Yes");
+        } else {
+           return ResponseEntity.ok("No");
         }
     }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Пользватель не найден");
@@ -57,18 +57,21 @@ public class AuthController {
          UserEntity userEntity =  userService.findByIIN(request.getIin());
          if(userEntity != null) {
             if(userEntity.isRegistered()) {
-                String code = RandomUtils.generateRandomPinCode(6);
-                String htmlBody = "<h1>Привет!</h1><p>Это <strong>тестовое</strong> письмо с HTML форматированием.</p>";
-                try {
-                    email.sendHtmlEmail(request.getEmail(), "Test", htmlBody);
-                    userEntity.setPinCode(encoder.encode(code));
-                    userService.saveEntity(userEntity);
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                }
+                return ResponseEntity.badRequest().body("Пользвателю уже был сгенирирован код.");
 
             } else {
-               return ResponseEntity.ok("Yes");
+                String code = RandomUtils.generateRandomPinCode(6);
+                String htmlBody = "<h1>"+ code + "</h1>";
+                try {
+                    email.sendHtmlEmail(request.getEmail(), "Код доступа", htmlBody);
+                    userEntity.setPinCode(encoder.encode(code));
+                    userService.saveEntity(userEntity);
+                    return ResponseEntity.ok("Код был отправлен на почту.");
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                    return ResponseEntity.badRequest().body("Ошибка при отправке на почту");
+                }
+               
             }
         }
          return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Пользватель не найден");
@@ -76,10 +79,12 @@ public class AuthController {
 
     @PostMapping("/login/pin")
     public ResponseEntity<?> loginPinCode(@RequestBody LoginPinCodeRequest request,  HttpServletRequest httpRequest) {
-        if(userService.findByIIN(request.getIin()).getPinCode() == null && userService.findByIIN(request.getIin()).getPinCode().length() == 0) {
+        UserEntity entity = userService.findByIIN(request.getIin());
+        if(entity.getPinCode() == null  || entity.getPinCode().length() == 0) {
           return ResponseEntity.badRequest().body("Пользватель еще не зарегистрировался.");
         }
         String userAgent = httpRequest.getHeader("User-Agent");
+
         DeviceType os = OSUtils.getOperatingSystem(userAgent);
         String ipAddress = httpRequest.getHeader("X-Forwarded-For");
         if (ipAddress == null || ipAddress.isEmpty()) {

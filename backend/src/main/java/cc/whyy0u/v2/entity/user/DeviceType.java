@@ -7,5 +7,5 @@ public enum DeviceType {
     Unix,
     Linux,
     Android,
-    iPhone
+    iOS
 }
