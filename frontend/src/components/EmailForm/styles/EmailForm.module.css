@@ -1,0 +1,71 @@
+
+
+.email__form__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.email__form__email__block {
+    position: relative;
+}
+
+.email__block__input {
+    font-family: "Inter";
+    width: 100%;
+    background-color: var(--input-background-color);
+    color: var(--input--color);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.email__block__placeholder {
+    font-family: "Inter";
+    font-size: 15px;
+    position: absolute;
+    left: 16px;
+    top: 15px;
+    color: var(--place-holder-color);
+    transition: 0.2s ease all;
+    z-index: -1;
+}
+
+.email__block__placeholder__top {
+    font-family: "Inter";
+    font-size: 15px;
+    position: absolute;
+    left: 16px;
+    top: -20px;
+    transition: 0.2s ease all;
+    z-index: -1;
+    color: var(--place-holder-top-color);
+}
+
+.email__form__button {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.button__btn {
+    background: rgb(38, 160, 14);
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    font-family: Inter;
+    font-size: 20px;
+    padding: 20px 50px;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.button__btn__inactive {
+    color: rgb(255, 255, 255);
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 600;
+    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.33);
+    padding: 20px 50px;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}

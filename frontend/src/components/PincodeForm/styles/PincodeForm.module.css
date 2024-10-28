@@ -1,0 +1,93 @@
+
+.pincode__form {
+    padding-top: 60px;
+}
+
+.pincode__form__recognizing__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recognizing__block__recognition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.recognition__text {
+    color: rgba(255, 255, 255, 0.47);
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.recognizing__block__dots {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 30px;
+}
+
+.dots__item__filled {
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    color: transparent;
+}
+
+.dots__item {
+    width: 18px;
+    height: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    background: transparent;
+}
+
+
+.pincode__form__numbers__block {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.numbers__block__block {
+    display: flex;
+    gap: 50px;
+    margin-bottom: 30px;
+}
+
+.numbers__block__block__text {
+    transform: translateX(10px);
+}
+
+.numbers__block__item {
+    color: rgb(255, 255, 255);
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 200;
+    background: rgba(0, 0, 0, 0.38);
+    border-radius: 10px;
+    padding: 10px 20px;
+    align-self: center;
+}
+
+.numbers__block__item__text {
+    font-size: 20px;
+    font-weight: 200;
+    padding: 15px 15px;
+    align-self: center;
+}
+
+.numbers__block__item__text__back {
+    transform: translateX(10px);
+}
+
+.numbers__block__item__text__delete {
+    transform: translateX(-20px);
+}

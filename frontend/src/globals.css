@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+    user-select: none;
+}
+*,*:before,*:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display: block;}
+
+
+input,button,textarea{font-family:inherit;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner {padding:0;border:0;}
+a, a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
+
+body {
+    color: white;
+    background-color: #02040F;
+}
+
+:root {
+    --border-color: rgb(191, 191, 191);
+    --input-hover-shadow: rgba(66, 255, 29, 0.25);
+    --input-hover-border: rgb(66, 255, 29);
+    --place-holder-color: rgba(255, 255, 255, 0.6);
+    --place-holder-top-color: rgba(238, 219, 219, 0.43);
+    --input-background-color: rgba(0, 0, 0, 0.5);
+    --input--color: rgba(255, 255, 255, 0.9);
+}
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+}
+
+._container {
+    max-width: 345px;
+    padding: 30px 20px;
+    margin: 0 auto;
+}
+
+.empty-date::-webkit-inner-spin-button,
+.empty-date::-webkit-calendar-picker-indicator {
+    display: none; /* Скрывает элементы для браузеров на базе WebKit */
+}
+
+.empty-date {
+    appearance: none; /* Убирает стандартный стиль */
+    background: transparent; /* Убирает фон */
+}
+
+
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
