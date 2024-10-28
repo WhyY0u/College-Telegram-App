@@ -1,10 +1,12 @@
-CREATE TABLE users (
+CREATE DATABASE IF NOT EXISTS college;
+USE college;
+
+CREATE TABLE IF NOT EXISTS users (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     iin VARCHAR(20) NOT NULL UNIQUE,
     surname VARCHAR(50) NOT NULL,
     name VARCHAR(50) NOT NULL,
     patronymic VARCHAR(50) NOT NULL,
-    email VARCHAR(150) NOT NULL UNIQUE,
     pin_code VARCHAR(256),
     phone VARCHAR(10) UNIQUE,
     birth_date DATE, 
@@ -12,7 +14,8 @@ CREATE TABLE users (
     role ENUM('Student', 'Teacher', 'Admin') NOT NULL DEFAULT 'Student'
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-CREATE TABLE user_tokens (
+
+CREATE TABLE IF NOT EXISTS user_tokens (
     user_id BIGINT NOT NULL,
     token VARCHAR(512) NOT NULL,
     device VARCHAR(255),

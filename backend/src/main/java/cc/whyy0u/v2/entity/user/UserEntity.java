@@ -40,9 +40,6 @@ public class UserEntity {
     @Column(name = "patronymic", nullable = false, length = 50)
     private String patronymic;
 
-    @Column(name = "email", unique = true, nullable = true, length = 150)
-    private String email;
-
     @Column(name = "pin_code", nullable = true, length = 256)
     private String pinCode;
 
