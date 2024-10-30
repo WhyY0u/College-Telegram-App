@@ -43,7 +43,7 @@ function IinForm() {
                     onChange={handleIinChange}
                     className={styles.iin__block__input} 
                 />
-                <label 
+                <label
                     className={!isIinEmpty() || isFocused.iin ? styles.iin__block__placeholder__top  : styles.iin__block__placeholder}
                 >Введите ИИН</label>
             </div>

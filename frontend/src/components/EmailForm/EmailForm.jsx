@@ -45,7 +45,7 @@ function EmailForm() {
                 />
                 <label 
                     className={!isEmailEmpty() || isFocused.email ? styles.email__block__placeholder__top  : styles.email__block__placeholder}
-                >Введите ИИН</label>
+                >Введите Email</label>
             </div>
 
             <div className={`${styles.email__form__button} ${styles.button}`}>
