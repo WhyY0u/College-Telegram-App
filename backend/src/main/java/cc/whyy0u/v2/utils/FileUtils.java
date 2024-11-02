@@ -11,8 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtils {
     private static final String DEV_DIRECTORY = System.getProperty("user.dir") + "/img"; 
-    private static final String RELEASE_DIRECTORY = "/path/to/release/images/"; 
-    public static final String VERSION = "dev";
+    private static final String RELEASE_DIRECTORY = "/app/images/";
+    public static final String VERSION = "release";
 
     public static String saveImage(MultipartFile file) throws IOException {
         String directoryPath;
