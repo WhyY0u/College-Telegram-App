@@ -22,6 +22,7 @@ import cc.whyy0u.v2.utils.OSUtils;
 import cc.whyy0u.v2.utils.RandomUtils;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v2/auth")
@@ -40,7 +41,7 @@ public class AuthController {
     EmailService email;
 
     @PostMapping("/check/register")
-    public ResponseEntity<?> isRegister(@RequestBody IsRegisterRequest request) {
+    public ResponseEntity<?> isRegister(@Valid @RequestBody IsRegisterRequest request) {
        UserEntity userEntity =  userService.findByIIN(request.getIin());
        if(userEntity != null) {
         if(userEntity.isRegistered()) {
@@ -49,11 +50,11 @@ public class AuthController {
            return ResponseEntity.ok("No");
         }
     }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Пользватель не найден");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Походу вы не являетесь студентом коледжа.");
     }
 
     @PostMapping("/generateCode")
-    public ResponseEntity<?> generateCode(@RequestBody SendCodeRequest request) {
+    public ResponseEntity<?> generateCode(@Valid @RequestBody SendCodeRequest request) {
          UserEntity userEntity =  userService.findByIIN(request.getIin());
          if(userEntity != null) {
             if(userEntity.isRegistered()) {
@@ -74,12 +75,13 @@ public class AuthController {
                
             }
         }
-         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Пользватель не найден");
+         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Походу вы не являетесь студентом коледжа.");
      }
 
     @PostMapping("/login/pin")
-    public ResponseEntity<?> loginPinCode(@RequestBody LoginPinCodeRequest request,  HttpServletRequest httpRequest) {
+    public ResponseEntity<?> loginPinCode(@Valid @RequestBody LoginPinCodeRequest request,  HttpServletRequest httpRequest) {
         UserEntity entity = userService.findByIIN(request.getIin());
+        if(entity == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Походу вы не являетесь студентом коледжа.");
         if(entity.getPinCode() == null  || entity.getPinCode().length() == 0) {
           return ResponseEntity.badRequest().body("Пользватель еще не зарегистрировался.");
         }

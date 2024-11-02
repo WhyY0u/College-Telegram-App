@@ -13,7 +13,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import cc.whyy0u.v2.security.jwt.JwtAuthenticationFilter;
 import cc.whyy0u.v2.service.user.CustomUserDetailsService;
 
 @Configuration
@@ -21,11 +23,13 @@ import cc.whyy0u.v2.service.user.CustomUserDetailsService;
 public class SpringSecurity {
 
     private CustomUserDetailsService userService;
-
+    
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Autowired
-    public SpringSecurity(CustomUserDetailsService userService) {
+    public SpringSecurity(CustomUserDetailsService userService, JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.userService = userService;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -33,12 +37,17 @@ public class SpringSecurity {
             .authorizeHttpRequests(autho -> autho
                 .requestMatchers("/api/v2/auth/**").permitAll()
                 .requestMatchers("/api/v2/user/**").authenticated()
-                .anyRequest().authenticated()
+                .requestMatchers("/api/v2/student/**").hasRole("Student")
+                .requestMatchers("/api/v2/administrator/**").hasRole("Administrator")
+                .requestMatchers("/api/v2/news/**").authenticated()
+                .anyRequest().denyAll()
             )
             .sessionManagement(session -> 
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
-            .authenticationProvider(authenticationProvider());
+            .authenticationProvider(authenticationProvider())
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            
         return http.build();
     }
       @Bean

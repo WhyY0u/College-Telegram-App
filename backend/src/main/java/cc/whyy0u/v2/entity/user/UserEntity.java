@@ -6,6 +6,7 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,7 +16,6 @@ import lombok.Data;
 import java.util.Map;
 import java.util.HashMap;
 import jakarta.persistence.JoinColumn;
-import java.time.LocalDate;
 
 
 @Data
@@ -43,18 +43,15 @@ public class UserEntity {
     @Column(name = "pin_code", nullable = true, length = 256)
     private String pinCode;
 
-    @Column(name = "phone", unique = true, nullable = true, length = 10)
-    private String phone;
-
-    @Column(name = "birth_date")
-    private LocalDate birthDate;
-
     @Column(name = "is_registered", nullable = false)
     private boolean isRegistered;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
+    @Column(name = "role", nullable = false, length = 200)
     private Role role;
+
+    @Column(name = "chatId", nullable = true, length = 200)
+    private String chatId;
 
     @ElementCollection
     @CollectionTable(name = "user_tokens", joinColumns = @JoinColumn(name = "user_id"))

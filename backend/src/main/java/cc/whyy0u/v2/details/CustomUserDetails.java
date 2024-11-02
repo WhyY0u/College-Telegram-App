@@ -51,6 +51,7 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
     @Override
     public java.util.Collection<? extends GrantedAuthority> getAuthorities() {
     Set<GrantedAuthority> authorities = new HashSet<>();
@@ -58,7 +59,6 @@ public class CustomUserDetails implements UserDetails {
     if (role != null) {
         authorities.add(new SimpleGrantedAuthority("ROLE_" + role.name()));
     }
-
-    return authorities;
-  }
+         return authorities;
+    }
 }

@@ -10,7 +10,8 @@ node_modules
 dist
 dist-ssr
 *.local
-
+*.png
+*.jpg
 .vscode/*
 !.vscode/extensions.json
 .idea

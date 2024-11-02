@@ -7,16 +7,20 @@ import org.springframework.stereotype.Service;
 
 import cc.whyy0u.v2.controller.auth.request.LoginPinCodeRequest;
 import cc.whyy0u.v2.details.CustomUserDetails;
+import cc.whyy0u.v2.entity.profile.ProfileEntity;
 import cc.whyy0u.v2.entity.user.Device;
 import cc.whyy0u.v2.entity.user.DeviceType;
 import cc.whyy0u.v2.entity.user.UserEntity;
 import cc.whyy0u.v2.security.jwt.response.SignInResponce;
+import cc.whyy0u.v2.service.profile.ProfileService;
 import cc.whyy0u.v2.service.user.UserService;
 
 @Service
 public class AuthenticationService {
 
     private final UserService userService;
+    
+    private final ProfileService profileService;
 
     private final JwtService jwtService;
 
@@ -26,10 +30,12 @@ public class AuthenticationService {
     @Autowired
     public AuthenticationService(UserService userService, 
                                  JwtService jwtService, 
-                                 AuthenticationManager authenticationManager) {
+                                 AuthenticationManager authenticationManager,
+                                 ProfileService profileService) {
         this.userService = userService;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
+        this.profileService = profileService;
     }
 
     public SignInResponce signIn(LoginPinCodeRequest request, DeviceType os, String ipAddress) {
@@ -40,7 +46,14 @@ public class AuthenticationService {
         UserEntity entity = userService.findByIIN(request.getIin()); 
         String jwt = jwtService.generateToken(new CustomUserDetails(entity));
         entity.getTokenDeviceMap().put(jwt, new Device(ipAddress, os));
-        if(!entity.isRegistered()) entity.setRegistered(true);
+        if(!entity.isRegistered()) {
+         entity.setRegistered(true);
+         ProfileEntity profile = new ProfileEntity();
+         profile.setDescription("");
+         profile.setUserId(entity.getId());
+         profile.setImage("");
+         profileService.saveProfile(profile);
+        }
         userService.saveEntity(entity);
         return new SignInResponce(jwt, entity.isRegistered()); 
     }
