@@ -10,6 +10,7 @@ cc/whyy0u/v2/utils/DateUtils.class
 cc/whyy0u/v2/controller/news/NewsController.class
 cc/whyy0u/v2/controller/student/StudentController.class
 cc/whyy0u/v2/entity/ticket/TicketStatus.class
+cc/whyy0u/v2/security/WebConfig.class
 cc/whyy0u/v2/service/user/CustomUserDetailsService.class
 cc/whyy0u/v2/controller/auth/request/IsRegisterRequest.class
 cc/whyy0u/v2/security/jwt/response/NewPinCodeResponse.class
@@ -25,6 +26,7 @@ cc/whyy0u/v2/controller/user/request/UpdateProfile.class
 cc/whyy0u/v2/controller/user/response/GetTicketUserResponse.class
 cc/whyy0u/v2/controller/administrator/request/AddNews.class
 cc/whyy0u/v2/controller/auth/request/LoginPinCodeRequest.class
+cc/whyy0u/v2/security/WebConfig$1.class
 cc/whyy0u/v2/security/jwt/response/SignInResponce.class
 cc/whyy0u/v2/service/user/UserService.class
 cc/whyy0u/v2/entity/ticket/TicketType.class

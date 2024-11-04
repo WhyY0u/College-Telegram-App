@@ -9,6 +9,7 @@
 /home/whyy0u/Desktop/OtherProject/College-Telegram-App-2.0/backend/src/main/java/cc/whyy0u/v2/utils/DateUtils.java
 /home/whyy0u/Desktop/OtherProject/College-Telegram-App-2.0/backend/src/main/java/cc/whyy0u/v2/controller/auth/AuthController.java
 /home/whyy0u/Desktop/OtherProject/College-Telegram-App-2.0/backend/src/main/java/cc/whyy0u/v2/controller/auth/request/LoginPinCodeRequest.java
+/home/whyy0u/Desktop/OtherProject/College-Telegram-App-2.0/backend/src/main/java/cc/whyy0u/v2/security/WebConfig.java
 /home/whyy0u/Desktop/OtherProject/College-Telegram-App-2.0/backend/src/main/java/cc/whyy0u/v2/security/jwt/JwtAuthenticationFilter.java
 /home/whyy0u/Desktop/OtherProject/College-Telegram-App-2.0/backend/src/main/java/cc/whyy0u/v2/entity/profile/ProfileEntity.java
 /home/whyy0u/Desktop/OtherProject/College-Telegram-App-2.0/backend/src/main/java/cc/whyy0u/v2/validator/FileCountLimit.java
