@@ -60,7 +60,6 @@ protected void doFilterInternal(
         UserDetails userDetails = new CustomUserDetails(entity);
         if (jwtService.isTokenValid(jwt, userDetails)) {
             SecurityContext context = SecurityContextHolder.createEmptyContext();
-            if(entity.getTokenDeviceMap().containsKey(jwt)) {
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                     userDetails,
                     null,
@@ -69,7 +68,7 @@ protected void doFilterInternal(
             authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             context.setAuthentication(authToken);
             SecurityContextHolder.setContext(context);
-        }
+        
     }
     }
     filterChain.doFilter(request, response);

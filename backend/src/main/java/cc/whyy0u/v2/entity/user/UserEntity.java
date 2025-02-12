@@ -1,21 +1,14 @@
 package cc.whyy0u.v2.entity.user;
 
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.Table;
 import lombok.Data;
-import java.util.Map;
-import java.util.HashMap;
-import jakarta.persistence.JoinColumn;
 
 
 @Data
@@ -28,7 +21,7 @@ public class UserEntity {
     @Column(name = "id", unique = true, nullable = false)
     private Long id;
 
-    @Column(name = "iin", unique = true, nullable = false, length = 20)
+    @Column(name = "iin", unique = true, nullable = false, length = 12)
     private String iin;
 
     @Column(name = "name", nullable = false, length = 50)
@@ -40,6 +33,9 @@ public class UserEntity {
     @Column(name = "patronymic", nullable = false, length = 50)
     private String patronymic;
 
+    @Column(name = "ugroup", nullable = false, length = 12)
+    private String group;
+
     @Column(name = "pin_code", nullable = true, length = 256)
     private String pinCode;
 
@@ -49,13 +45,4 @@ public class UserEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false, length = 200)
     private Role role;
-
-    @Column(name = "chatId", nullable = true, length = 200)
-    private String chatId;
-
-    @ElementCollection
-    @CollectionTable(name = "user_tokens", joinColumns = @JoinColumn(name = "user_id"))
-    @MapKeyColumn(name = "token", length = 512)
-    @Column(name = "device")
-    private Map<String, Device> tokenDeviceMap = new HashMap<>();
 }

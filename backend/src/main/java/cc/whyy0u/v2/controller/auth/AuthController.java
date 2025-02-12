@@ -12,15 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import cc.whyy0u.v2.controller.auth.request.IsRegisterRequest;
 import cc.whyy0u.v2.controller.auth.request.LoginPinCodeRequest;
 import cc.whyy0u.v2.controller.auth.request.SendCodeRequest;
-import cc.whyy0u.v2.entity.user.DeviceType;
 import cc.whyy0u.v2.entity.user.UserEntity;
 import cc.whyy0u.v2.security.jwt.AuthenticationService;
 import cc.whyy0u.v2.security.jwt.response.SignInResponce;
-import cc.whyy0u.v2.service.email.EmailService;
 import cc.whyy0u.v2.service.user.UserService;
-import cc.whyy0u.v2.utils.OSUtils;
-import cc.whyy0u.v2.utils.RandomUtils;
-import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
@@ -36,9 +31,6 @@ public class AuthController {
 
     @Autowired
     PasswordEncoder encoder;
-
-    @Autowired
-    EmailService email;
 
     @PostMapping("/check/register")
     public ResponseEntity<?> isRegister(@Valid @RequestBody IsRegisterRequest request) {
@@ -59,20 +51,11 @@ public class AuthController {
          if(userEntity != null) {
             if(userEntity.isRegistered()) {
                 return ResponseEntity.badRequest().body("Пользвателю уже был сгенирирован код.");
-
             } else {
-                String code = RandomUtils.generateRandomPinCode(6);
-                String htmlBody = "<h1>"+ code + "</h1>";
-                try {
-                    email.sendHtmlEmail(request.getEmail(), "Код доступа", htmlBody);
-                    userEntity.setPinCode(encoder.encode(code));
-                    userService.saveEntity(userEntity);
-                    return ResponseEntity.ok("Код был отправлен на почту.");
-                } catch (MessagingException e) {
-                    e.printStackTrace();
-                    return ResponseEntity.badRequest().body("Ошибка при отправке на почту");
-                }
-               
+                   userEntity.setPinCode(encoder.encode(request.getPin()));
+                   userEntity.setRegistered(true);
+                   userService.saveEntity(userEntity);
+                   return ResponseEntity.ok("ok");
             }
         }
          return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Походу вы не являетесь студентом коледжа.");
@@ -85,14 +68,8 @@ public class AuthController {
         if(entity.getPinCode() == null  || entity.getPinCode().length() == 0) {
           return ResponseEntity.badRequest().body("Пользватель еще не зарегистрировался.");
         }
-        String userAgent = httpRequest.getHeader("User-Agent");
 
-        DeviceType os = OSUtils.getOperatingSystem(userAgent);
-        String ipAddress = httpRequest.getHeader("X-Forwarded-For");
-        if (ipAddress == null || ipAddress.isEmpty()) {
-            ipAddress = httpRequest.getRemoteAddr();
-        }
-        SignInResponce response = authenticationService.signIn(request, os, ipAddress);
+        SignInResponce response = authenticationService.signIn(request);
         if(response == null) ResponseEntity.status(HttpStatus.BAD_REQUEST).body("");
         return ResponseEntity.ok(response);
     }

@@ -36,17 +36,14 @@ public class SpringSecurity {
         http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(autho -> autho
                 .requestMatchers("/api/v2/auth/**").permitAll()
-                .requestMatchers("/api/v2/user/**").authenticated()
-                .requestMatchers("/api/v2/student/**").hasRole("Student")
-                .requestMatchers("/api/v2/administrator/**").hasRole("Administrator")
-                .requestMatchers("/api/v2/news/**").authenticated()
+                .requestMatchers("/api/v2/ticket/**").authenticated()
                 .anyRequest().denyAll()
             )
             .sessionManagement(session -> 
                 session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             )
             .authenticationProvider(authenticationProvider())
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class).cors();
             
         return http.build();
     }

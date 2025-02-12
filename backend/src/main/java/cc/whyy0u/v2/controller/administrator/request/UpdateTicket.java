@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class UpdateTicket {
 
-    TicketStatus status;
+    String status;
 
     @Size(min = 35, max = 2000)
     String comment;

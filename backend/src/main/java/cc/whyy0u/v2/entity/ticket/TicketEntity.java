@@ -1,7 +1,6 @@
 package cc.whyy0u.v2.entity.ticket;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -44,21 +43,14 @@ public class TicketEntity {
     private TicketType type;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "visionType", unique = false, nullable = false)
-    private TicketVisionType visionType;
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "status", unique = false, nullable = false)
     private TicketStatus status;
 
     @CreationTimestamp
     @Column(name = "create_date", unique = false, nullable = false)
     private LocalDateTime date;
-    
-    @Column(name = "images", unique = false, nullable = true)
-    private String images;
 
-    
+
 
     public TicketEntity() {
 
@@ -67,7 +59,6 @@ public class TicketEntity {
     public TicketEntity(CreateTicketRequest request) {
         this.name = request.getName();
         this.description = request.getDescription();
-        this.visionType = request.getVisionType();
         this.type = request.getType();
     }
 

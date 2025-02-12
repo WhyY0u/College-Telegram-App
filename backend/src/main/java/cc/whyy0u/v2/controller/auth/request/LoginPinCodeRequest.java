@@ -11,6 +11,6 @@ public class LoginPinCodeRequest {
     String iin;
     
     @NotNull
-    @Size(min = 6, max = 6)
+    @Size(min = 4, max = 4)
     String pinCode;
 }

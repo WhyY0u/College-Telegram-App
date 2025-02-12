@@ -9,7 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import cc.whyy0u.v2.controller.administrator.response.GetAllAdministrator;
-import cc.whyy0u.v2.entity.news.EventEntity;
 import cc.whyy0u.v2.entity.user.Role;
 import cc.whyy0u.v2.entity.user.UserEntity;
 import cc.whyy0u.v2.repository.user.UserRepository;

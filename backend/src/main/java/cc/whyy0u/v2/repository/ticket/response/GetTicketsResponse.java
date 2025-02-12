@@ -8,6 +8,9 @@ import lombok.Data;
 public class GetTicketsResponse {
     Long id;
     String name;
-    TicketStatus status;
-    TicketType type;
+    String status;
+    String description;
+    String type;
+    String userName;
+    String userGroup;
 }
