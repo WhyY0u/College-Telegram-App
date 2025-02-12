@@ -18,6 +18,9 @@ import cc.whyy0u.v2.security.jwt.response.SignInResponce;
 import cc.whyy0u.v2.service.user.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @RequestMapping("/api/v2/auth")
@@ -31,6 +34,12 @@ public class AuthController {
 
     @Autowired
     PasswordEncoder encoder;
+
+    @GetMapping("/ping")
+    public String getPing() {
+        return "ok";
+    }
+    
 
     @PostMapping("/check/register")
     public ResponseEntity<?> isRegister(@Valid @RequestBody IsRegisterRequest request) {
